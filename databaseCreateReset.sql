@@ -23,18 +23,10 @@ CREATE TABLE animal
   FOREIGN KEY (X, Y, level) REFERENCES tile(X, Y, level)
 );
 
-CREATE TABLE disease
-(
-  diseaseID INT NOT NULL,
-  name INT NOT NULL,
-  description INT NOT NULL,
-  PRIMARY KEY (diseaseID)
-);
-
 CREATE TABLE description
 (
   descriptionID INT NOT NULL,
-  description CHAR(255) NOT NULL,
+  description VARCHAR(255) NOT NULL,
   X INT NOT NULL,
   Y INT NOT NULL,
   level INT NOT NULL,
@@ -44,8 +36,7 @@ CREATE TABLE description
 
 CREATE TABLE tileObstacle
 (
-  name INT NOT NULL,
-  description INT NOT NULL,
+  description VARCHAR(255) NOT NULL,
   startX INT NOT NULL,
   startY INT NOT NULL,
   startlevel INT NOT NULL,
@@ -59,7 +50,7 @@ CREATE TABLE tileObstacle
 
 CREATE TABLE locationInAnimal
 (
-  name CHAR(32) NOT NULL,
+  name VARCHAR(32) NOT NULL,
   locationID INT NOT NULL,
   skinThickness INT NOT NULL,
   animalID INT NOT NULL,
@@ -70,8 +61,9 @@ CREATE TABLE locationInAnimal
 CREATE TABLE tick
 (
   tickID INT NOT NULL,
-  noMovementCalc INT NOT NULL,
+  timeVisible INT NOT NULL,
   LocationID INT,
+  disease VARCHAR(255),
   X INT NOT NULL,
   Y INT NOT NULL,
   level INT NOT NULL,
@@ -82,7 +74,7 @@ CREATE TABLE tick
 
 CREATE TABLE route
 (
-  decription INT NOT NULL,
+  description INT NOT NULL,
   locationToID INT NOT NULL,
   locationFromID INT NOT NULL,
   PRIMARY KEY (locationToID, locationFromID),
@@ -90,12 +82,8 @@ CREATE TABLE route
   FOREIGN KEY (locationFromID) REFERENCES locationInAnimal(locationID)
 );
 
-CREATE TABLE diseased
+CREATE TABLE story
 (
-  animalcID INT,
-  tickID INT,
-  diseaseID INT NOT NULL,
-  FOREIGN KEY (animalcID) REFERENCES animal(animalID),
-  FOREIGN KEY (tickID) REFERENCES tick(tickID),
-  FOREIGN KEY (diseaseID) REFERENCES disease(diseaseID)
+  storyID INT NOT NULL,
+  description VARCHAR(1000) NOT NULL
 );
