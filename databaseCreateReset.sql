@@ -43,7 +43,7 @@ CREATE TABLE tileObstacle
   endX INT NOT NULL,
   endY INT NOT NULL,
   endLevel INT NOT NULL,
-  PRIMARY KEY (X, Y, level, X, Y, level),
+  PRIMARY KEY (startX, startY, startlevel, endX, endY, endlevel),
   FOREIGN KEY (startX, startY, startLevel) REFERENCES tile(X, Y, level),
   FOREIGN KEY (endX, endY, endlevel) REFERENCES tile(X, Y, level)
 );
