@@ -86,4 +86,32 @@ CREATE TABLE story
 (
   storyID INT NOT NULL,
   description VARCHAR(1000) NOT NULL
-);
+); 
+
+INSERT INTO locationInAnimal(name, locationID, skinThickness, animalID)
+VALUES ("Head", 1, 0, 1)
+INSERT INTO locationInAnimal VALUES ("neck", 2, 1, 1)
+INSERT INTO locationInAnimal VALUES ("right armpit", 3, 1, 1)
+INSERT INTO locationInAnimal VALUES ("left armpit", 4, 1, 1)
+INSERT INTO locationInAnimal VALUES ("right arm", 5, 0, 1)
+INSERT INTO locationInAnimal VALUES ("left arm", 6, 0, 1)
+INSERT INTO locationInAnimal VALUES ("right hand", 7, 0, 1)
+INSERT INTO locationInAnimal VALUES ("left hand", 8, 0, 1)
+INSERT INTO locationInAnimal VALUES ("chest", 9, 0 1)
+INSERT INTO locationInAnimal VALUES ("stomach", 10, 0, 1)
+INSERT INTO locationInAnimal VALUES ("back", 11, 0, 1)
+INSERT INTO locationInAnimal VALUES ("right side", 12, 1, 1,)
+INSERT INTO locationInAnimal VALUES ("left side", 13, 1, 1)
+INSERT INTO locationInAnimal VALUES ("groin", 14, 1, 1)
+INSERT INTO locationInAnimal VALUES ("right thig", 15, 0, 1)
+INSERT INTO locationInAnimal VALUES ("left thig", 16, 0, 1)
+INSERT INTO locationInAnimal VALUES ("right knee", 17, 0, 1) 
+INSERT INTO locationInAnimal VALUES ("left knee", 18, 0, 1)
+INSERT INTO locationInAnimal VALUES ("right ham", 19, 1, 1)
+INSERT INTO locationInAnimal VALUES ("left ham", 20, 1, 1)
+INSERT INTO locationInAnimal VALUES ("right calf", 21, 0, 1)
+INSERT INTO locationInAnimal VALUES ("left calf", 22, 0, 1)
+INSERT INTO locationInAnimal VALUES ("right foot", 23, 0, 1)
+INSERT INTO locationInAnimal VALUES ("left foot", 24, 0, 1)
+
+
