@@ -2,15 +2,17 @@ DROP DATABASE IF EXISTS tickslife;
 CREATE DATABASE tickslife;
 USE tickslife;
 
+CREATE USER 'dbuser' IDENTIFIED BY 'dbpass';
+GRANT ALL PRIVILEGES ON *.* TO 'dbuser';
+
 CREATE TABLE tile
 (
   X INT NOT NULL,
   Y INT NOT NULL,
   level INT NOT NULL,
   distanceToAnimal INT NOT NULL,
-  directionToAnimal
-  PRIMARY KEY (X, Y, level),
-  UNIQUE (X, Y, level)
+  directionToAnimal INT NOT NULL,
+  PRIMARY KEY (X, Y, level)
 );
 
 CREATE TABLE animal
@@ -207,7 +209,7 @@ INSERT INTO animal VALUES (1,"Squirrel",1,5,1);
 INSERT INTO animal VALUES (2,"Mole",3,1,1);
 
 INSERT INTO animal VALUES (3,"Dog",2,4,2);
-INSERT INTO animal VALUES (4,"Man",5,1,2);
+INSERT INTO animal VALUES (4,"Man",1,5,2);
 
 INSERT INTO animal VALUES (5,"Man",1,3,3);
 
