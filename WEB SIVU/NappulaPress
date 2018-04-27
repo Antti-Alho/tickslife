@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8"> 
+<style>
+p {
+    font-size: 16px;
+    font-family: "Verdana";
+ }
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+    height: 900px; /* Should be removed. Only for demonstration */
+}
+
+.left, .right {
+  width: 25%;
+}
+
+.middle {
+  width: 45%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+</style>
+</head>
+<body>
+
+<h2>GroupFive</h2>
+
+<div class="row">
+  <div class="column left" style="background-color:#ffffe6;">
+    <h2>GroupFive</h2>
+    <h3>
+<ul>
+  <li>Factsheet</li>
+  <li>Description</li>
+  <li>History</li>
+  <li>Projects</li>
+  <li>Images</li>
+  <li>Logo & Icon</li>
+</ul>     
+<h3/>
+<h2>Factsheet<h2/>
+<h3>
+<ul>
+  <li>Developers</li>
+  Antti Alho<br>
+Joonatan Hämäläinen<br>
+Merja Leisti<br>
+Metropolia Helsinki<p/>
+  <li>Founding date:</li>
+  2018
+  <li>Website:</li>
+  http://users.metropolia.fi/~merjalei/tickslife
+  <li>Press / Business contact:</li>
+  Metropolia Helsinki
+  <li>Releases</li>
+  Tick’s Life
+  </ul>  
+<h3/>
+  </div>
+  <div class="column middle" style="background-color:#ffffcc;">
+    <h2>Description</h2>
+    
+<p>GroupFive is a group of engineering students founded in March 2018 by amateur creators Antti Alho, 
+Joonatan Hämäläinen and Merja Leisti. The group was established based upon a shared force 
+of making involuntary schoolworks. These students leverage their collective experience and complementary skills. 
+Tick’s Life, a weird text adventure game, is the group’s first project.<p/> 
+
+<p>About the Founders: Antti is best known as a github authority and highly experienced programmer. 
+Joonatan is a multifaceted programmer with additional abilities in wide fields of game design. 
+Merja has many years of inclusive experience in drawing on blackboards.<p/>
+<br>
+<h2>History</h2>
+<p>
+The original idea of the game came to Antti on the 28th March 2018. Antti first sketched a game 
+in which children would have been killed by the game. Fortunately he got this new idea of a tick. 
+Co-creators Hämäläinen and Leisti in the beginning were considerably suspicious. 
+After having clarified several facts and made some experimentations and – above all being involved 
+in those who had the opportunity to read a tick story by Antti’s mother – Hämäläinen and Leisti 
+strongly suggested to execute this: to design a game of a tick’s life.<p/>
+<p>The second phase of the enormous game development work, was to gather all possible information 
+about ticks, particularly from the tick’s point of view. Plenty of diligent investigation of 
+how the tick’s chelicera works, what could a prey animal be, what are the properties of the skin spot, 
+where a tick successfully can bite, was carried out.<p/>
+<p>Antti insisted on creating preys that move during the procession of the game. 
+Joonatan was enthusiastic about putting descriptive colors to text. Merja wanted it just 
+to stay as simple as possible – while at home contemporarily drawing coloured pencil 
+pictures of a tick and insular landscape.
+</p>
+  </div>
+  <div class="column right" style="background-color:#ffffe6;">
+    <h2>Images</h2>
+    <img src="punkkiBites.jpg" alt="A tick biting " width="300" height="200S">
+    <img src="punkki1.jpg" alt="A tick biting " width="300" height="200S">
+    <img src="saaristo3.jpg" alt="A tick biting " width="300" height="200S">
+    <p>Some text..</p>
+  </div>
+</div>
+
+</body>
+
+
+</html>

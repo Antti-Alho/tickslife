@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+
+<style>
+p {
+    font-size: 16px;
+    font-family: "Verdana";
+    
+}
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+    height: 900px; /* Should be removed. Only for demonstration */
+}
+
+.left, .right {
+  width: 25%;
+}
+
+.middle {
+  width: 45%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+</style>
+</head>
+<body>
+
+<h2>TICKS</h2>
+
+<div class="row">
+  <div class="column left" style="background-color:#ffffe6;">
+    <h2>Anatomy</h2>
+    <p>Some text..</p>
+  </div>
+  <div class="column middle" style="background-color:#ffffcc;">
+    <h2>About Ticks</h2>
+    <p>Some text..</p>
+  </div>
+  <div class="column right" style="background-color:#ffffe6;">
+    <h2>Images</h2>
+    <img src="punkkiBites.jpg" alt="A tick biting " width="300" height="200S">
+    <p></p>
+  </div>
+</div>
+
+</body>
+
+
+</html>
