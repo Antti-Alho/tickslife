@@ -10,9 +10,6 @@ CREATE TABLE tile
   X INT NOT NULL,
   Y INT NOT NULL,
   level INT NOT NULL,
-  distanceToAnimal INT NOT NULL,
-  directionToAnimal INT NOT NULL,
-  tileColor INT NOT NULL,
   PRIMARY KEY (X, Y, level)
 );
 
@@ -40,6 +37,7 @@ CREATE TABLE animalRoute
 
 CREATE TABLE description
 (
+  color INT NOT NULL,
   descriptionID INT NOT NULL,
   description VARCHAR(255) NOT NULL,
   X INT NOT NULL,
@@ -105,117 +103,117 @@ CREATE TABLE story
 ); 
 
 #lvl1
-INSERT INTO tile VALUES (1,1,1,0,0);
-INSERT INTO tile VALUES (2,1,1,0,0);
-INSERT INTO tile VALUES (3,1,1,0,0);
-INSERT INTO tile VALUES (4,1,1,0,0);
-INSERT INTO tile VALUES (5,1,1,0,0);
+INSERT INTO tile VALUES (1,1,1);
+INSERT INTO tile VALUES (2,1,1);
+INSERT INTO tile VALUES (3,1,1);
+INSERT INTO tile VALUES (4,1,1);
+INSERT INTO tile VALUES (5,1,1);
 
-INSERT INTO tile VALUES (1,2,1,0,0);
-INSERT INTO tile VALUES (2,2,1,0,0);
-INSERT INTO tile VALUES (3,2,1,0,0);
-INSERT INTO tile VALUES (4,2,1,0,0);
-INSERT INTO tile VALUES (5,2,1,0,0);
+INSERT INTO tile VALUES (1,2,1);
+INSERT INTO tile VALUES (2,2,1);
+INSERT INTO tile VALUES (3,2,1);
+INSERT INTO tile VALUES (4,2,1);
+INSERT INTO tile VALUES (5,2,1);
 
-INSERT INTO tile VALUES (1,3,1,0,0);
-INSERT INTO tile VALUES (2,3,1,0,0);
-INSERT INTO tile VALUES (3,3,1,0,0);
-INSERT INTO tile VALUES (4,3,1,0,0);
-INSERT INTO tile VALUES (5,3,1,0,0);
+INSERT INTO tile VALUES (1,3,1);
+INSERT INTO tile VALUES (2,3,1);
+INSERT INTO tile VALUES (3,3,1);
+INSERT INTO tile VALUES (4,3,1);
+INSERT INTO tile VALUES (5,3,1);
 
-INSERT INTO tile VALUES (1,4,1,0,0);
-INSERT INTO tile VALUES (2,4,1,0,0);
-INSERT INTO tile VALUES (3,4,1,0,0);
-INSERT INTO tile VALUES (4,4,1,0,0);
-INSERT INTO tile VALUES (5,4,1,0,0);
+INSERT INTO tile VALUES (1,4,1);
+INSERT INTO tile VALUES (2,4,1);
+INSERT INTO tile VALUES (3,4,1);
+INSERT INTO tile VALUES (4,4,1);
+INSERT INTO tile VALUES (5,4,1);
 
-INSERT INTO tile VALUES (1,5,1,0,0);
-INSERT INTO tile VALUES (2,5,1,0,0);
-INSERT INTO tile VALUES (3,5,1,0,0);
-INSERT INTO tile VALUES (4,5,1,0,0);
-INSERT INTO tile VALUES (5,5,1,0,0);
+INSERT INTO tile VALUES (1,5,1);
+INSERT INTO tile VALUES (2,5,1);
+INSERT INTO tile VALUES (3,5,1);
+INSERT INTO tile VALUES (4,5,1);
+INSERT INTO tile VALUES (5,5,1);
 
 #lvl2
-INSERT INTO tile VALUES (1,1,2,0,0);
-INSERT INTO tile VALUES (2,1,2,0,0);
-INSERT INTO tile VALUES (3,1,2,0,0);
-INSERT INTO tile VALUES (4,1,2,0,0);
+INSERT INTO tile VALUES (1,1,2);
+INSERT INTO tile VALUES (2,1,2);
+INSERT INTO tile VALUES (3,1,2);
+INSERT INTO tile VALUES (4,1,2);
 
-INSERT INTO tile VALUES (1,2,2,0,0);
-INSERT INTO tile VALUES (2,2,2,0,0);
-INSERT INTO tile VALUES (3,2,2,0,0);
-INSERT INTO tile VALUES (4,2,2,0,0);
+INSERT INTO tile VALUES (1,2,2);
+INSERT INTO tile VALUES (2,2,2);
+INSERT INTO tile VALUES (3,2,2);
+INSERT INTO tile VALUES (4,2,2);
 
-INSERT INTO tile VALUES (1,3,2,0,0);
-INSERT INTO tile VALUES (2,3,2,0,0);
-INSERT INTO tile VALUES (3,3,2,0,0);
-INSERT INTO tile VALUES (4,3,2,0,0);
+INSERT INTO tile VALUES (1,3,2);
+INSERT INTO tile VALUES (2,3,2);
+INSERT INTO tile VALUES (3,3,2);
+INSERT INTO tile VALUES (4,3,2);
 
-INSERT INTO tile VALUES (1,4,2,0,0);
-INSERT INTO tile VALUES (2,4,2,0,0);
-INSERT INTO tile VALUES (3,4,2,0,0);
-INSERT INTO tile VALUES (4,4,2,0,0);
+INSERT INTO tile VALUES (1,4,2);
+INSERT INTO tile VALUES (2,4,2);
+INSERT INTO tile VALUES (3,4,2);
+INSERT INTO tile VALUES (4,4,2);
 
-INSERT INTO tile VALUES (1,5,2,0,0);
-INSERT INTO tile VALUES (2,5,2,0,0);
-INSERT INTO tile VALUES (3,5,2,0,0);
-INSERT INTO tile VALUES (4,5,2,0,0);
+INSERT INTO tile VALUES (1,5,2);
+INSERT INTO tile VALUES (2,5,2);
+INSERT INTO tile VALUES (3,5,2);
+INSERT INTO tile VALUES (4,5,2);
 
 #lvl3
-INSERT INTO tile VALUES (1,1,3,0,0);
-INSERT INTO tile VALUES (2,1,3,0,0);
-INSERT INTO tile VALUES (3,1,3,0,0);
+INSERT INTO tile VALUES (1,1,3);
+INSERT INTO tile VALUES (2,1,3);
+INSERT INTO tile VALUES (3,1,3);
 
-INSERT INTO tile VALUES (1,2,3,0,0);
-INSERT INTO tile VALUES (2,2,3,0,0);
-INSERT INTO tile VALUES (3,2,3,0,0);
+INSERT INTO tile VALUES (1,2,3);
+INSERT INTO tile VALUES (2,2,3);
+INSERT INTO tile VALUES (3,2,3);
 
-INSERT INTO tile VALUES (1,3,3,0,0);
-INSERT INTO tile VALUES (2,3,3,0,0);
-INSERT INTO tile VALUES (3,3,3,0,0);
+INSERT INTO tile VALUES (1,3,3);
+INSERT INTO tile VALUES (2,3,3);
+INSERT INTO tile VALUES (3,3,3);
 
 #lvl4
-INSERT INTO tile VALUES (1,1,4,0,0);
-INSERT INTO tile VALUES (2,1,4,0,0);
-INSERT INTO tile VALUES (3,1,4,0,0);
-INSERT INTO tile VALUES (4,1,4,0,0);
-INSERT INTO tile VALUES (5,1,4,0,0);
-INSERT INTO tile VALUES (6,1,4,0,0);
+INSERT INTO tile VALUES (1,1,4);
+INSERT INTO tile VALUES (2,1,4);
+INSERT INTO tile VALUES (3,1,4);
+INSERT INTO tile VALUES (4,1,4);
+INSERT INTO tile VALUES (5,1,4);
+INSERT INTO tile VALUES (6,1,4);
 
-INSERT INTO tile VALUES (1,2,4,0,0);
-INSERT INTO tile VALUES (2,2,4,0,0);
-INSERT INTO tile VALUES (3,2,4,0,0);
-INSERT INTO tile VALUES (4,2,4,0,0);
-INSERT INTO tile VALUES (5,2,4,0,0);
-INSERT INTO tile VALUES (6,2,4,0,0);
+INSERT INTO tile VALUES (1,2,4);
+INSERT INTO tile VALUES (2,2,4);
+INSERT INTO tile VALUES (3,2,4);
+INSERT INTO tile VALUES (4,2,4);
+INSERT INTO tile VALUES (5,2,4);
+INSERT INTO tile VALUES (6,2,4);
 
-INSERT INTO tile VALUES (1,3,4,0,0);
-INSERT INTO tile VALUES (2,3,4,0,0);
-INSERT INTO tile VALUES (3,3,4,0,0);
-INSERT INTO tile VALUES (4,3,4,0,0);
-INSERT INTO tile VALUES (5,3,4,0,0);
-INSERT INTO tile VALUES (6,3,4,0,0);
+INSERT INTO tile VALUES (1,3,4);
+INSERT INTO tile VALUES (2,3,4);
+INSERT INTO tile VALUES (3,3,4);
+INSERT INTO tile VALUES (4,3,4);
+INSERT INTO tile VALUES (5,3,4);
+INSERT INTO tile VALUES (6,3,4);
 
-INSERT INTO tile VALUES (1,4,4,0,0);
-INSERT INTO tile VALUES (2,4,4,0,0);
-INSERT INTO tile VALUES (3,4,4,0,0);
-INSERT INTO tile VALUES (4,4,4,0,0);
-INSERT INTO tile VALUES (5,4,4,0,0);
-INSERT INTO tile VALUES (6,4,4,0,0);
+INSERT INTO tile VALUES (1,4,4);
+INSERT INTO tile VALUES (2,4,4);
+INSERT INTO tile VALUES (3,4,4);
+INSERT INTO tile VALUES (4,4,4);
+INSERT INTO tile VALUES (5,4,4);
+INSERT INTO tile VALUES (6,4,4);
 
-INSERT INTO tile VALUES (1,5,4,0,0);
-INSERT INTO tile VALUES (2,5,4,0,0);
-INSERT INTO tile VALUES (3,5,4,0,0);
-INSERT INTO tile VALUES (4,5,4,0,0);
-INSERT INTO tile VALUES (5,5,4,0,0);
-INSERT INTO tile VALUES (6,5,4,0,0);
+INSERT INTO tile VALUES (1,5,4);
+INSERT INTO tile VALUES (2,5,4);
+INSERT INTO tile VALUES (3,5,4);
+INSERT INTO tile VALUES (4,5,4);
+INSERT INTO tile VALUES (5,5,4);
+INSERT INTO tile VALUES (6,5,4);
 
-INSERT INTO tile VALUES (1,6,4,0,0);
-INSERT INTO tile VALUES (2,6,4,0,0);
-INSERT INTO tile VALUES (3,6,4,0,0);
-INSERT INTO tile VALUES (4,6,4,0,0);
-INSERT INTO tile VALUES (5,6,4,0,0);
-INSERT INTO tile VALUES (6,6,4,0,0);
+INSERT INTO tile VALUES (1,6,4);
+INSERT INTO tile VALUES (2,6,4);
+INSERT INTO tile VALUES (3,6,4);
+INSERT INTO tile VALUES (4,6,4);
+INSERT INTO tile VALUES (5,6,4);
+INSERT INTO tile VALUES (6,6,4);
 
 #animals id,name,x,y,lvl
 INSERT INTO animal VALUES (1,"Squirrel",1,5,1);
@@ -846,33 +844,33 @@ INSERT INTO tileObstacle VALUES ("you can't jump from the roof of the doghouse i
 
 INSERT INTO tick VALUES (1,0,NULL,NULL,5,5,1);
 
-#lvl1 descriptions id, string, x, y, lvl
-INSERT INTO description VALUES (1,"\033[92m + 'You are in a forest near a shore. A few leafy trees are growing around. If you look to the right, the forest looks grassy.' + \033[0m",1,1,1);
-INSERT INTO description VALUES (2,"\033[93m + 'You are on a path near a shore. Thick grass is growing along the path.' + \033[0m",2,1,1);
-INSERT INTO description VALUES (3,"\033[92m + 'You are in a forest near a shore. Many kinds of trees are growing around and some pine cones can be seen on the ground.' + \033[0m",3,1,1);
-INSERT INTO description VALUES (4,"\033[92m + 'There is a shore nearby. The ground looks rocky. Leafy trees and a few pines are growing around and you can see some cones on the ground.' + \033[0m",4,1,1);
-INSERT INTO description VALUES (5,"\033[92m + 'There are leafy trees growing around you. If you look through the gaps between the leaves you can see the sea. Also a tall old spruce is standing nearby and some cones can be seen on the ground.' + \033[0m",5,1,1);
+#lvl1 color, descriptions id, string, x, y, lvl
+INSERT INTO description VALUES (2,1,"You are in a forest near a shore. A few leafy trees are growing around. If you look to the right, the forest looks grassy.",1,1,1);
+INSERT INTO description VALUES (3,2,"You are on a path near a shore. Thick grass is growing along the path.",2,1,1);
+INSERT INTO description VALUES (2,3,"You are in a forest near a shore. Many kinds of trees are growing around and some pine cones can be seen on the ground.",3,1,1);
+INSERT INTO description VALUES (2,4,"There is a shore nearby. The ground looks rocky. Leafy trees and a few pines are growing around and you can see some cones on the ground.",4,1,1);
+INSERT INTO description VALUES (2,5,"There are leafy trees growing around you. If you look through the gaps between the leaves you can see the sea. Also a tall old spruce is standing nearby and some cones can be seen on the ground.",5,1,1);
 
-INSERT INTO description VALUES (6,"\033[92m + 'You are in a leafy forest near a shore. The ground is pretty rocky. If you look to the right, you can see long thick grass growing.' + \033[0m",1,2,1);
-INSERT INTO description VALUES (7,"\033[93m +'You are on a path near a shore. The grass along the path is long and green.' + \033[0m",2,2,1);
-INSERT INTO description VALUES (8,"\033[93m +'There is a path with lots of spruce cones on the ground. A tall spruce is growing nearby.' + \033[0m",3,2,1);
-INSERT INTO description VALUES (9,"\033[92m + 'You are in a forest nearby a shore. A lot of grass is growing around and several leafy trees as well. The flower buds of a spruce nearby, have been eaten by a squirrel.' + \033[0m",4,2,1);
-INSERT INTO description VALUES (10,"\033[92m + 'This part of a forest is located near a shore. There are some leafy trees and a spruce growing around. On a branch of the spruce there is a squirrel’s nest.' + \033[0m",5,2,1);
+INSERT INTO description VALUES (2,6,"You are in a leafy forest near a shore. The ground is pretty rocky. If you look to the right, you can see long thick grass growing.",1,2,1);
+INSERT INTO description VALUES (3,7,"You are on a path near a shore. The grass along the path is long and green.",2,2,1);
+INSERT INTO description VALUES (3,8,"There is a path with lots of spruce cones on the ground. A tall spruce is growing nearby.",3,2,1);
+INSERT INTO description VALUES (2,9,"You are in a forest nearby a shore. A lot of grass is growing around and several leafy trees as well. The flower buds of a spruce nearby, have been eaten by a squirrel.",4,2,1);
+INSERT INTO description VALUES (2,10,"This part of a forest is located near a shore. There are some leafy trees and a spruce growing around. On a branch of the spruce there is a squirrel’s nest.",5,2,1);
 
-INSERT INTO description VALUES (11,"\033[92m + 'The forest around you is leafy and grassy, but some damage can be seen on the plants: they have been badly chewed.' + \033[0m",1,3,1);
-INSERT INTO description VALUES (12,"\033[92m + 'This forest nearby a shore is pretty grassy. There are both, leafy trees, and pines growing here. Dead grass and thatch throughout the lawn can be seen.' + \033[0m" ,2,3,1);
-INSERT INTO description VALUES (13,"\033[93m + 'There is a windy path here. Leafy trees are growing along the path. If you look carefully you can see some vole holes on the ground.' + \033[0m",3,3,1);
-INSERT INTO description VALUES (14,"\033[92m + 'You are in a leafy forest near a shore. The ground is pretty rocky. If you look to the left you can see long thick grass growing there.' + \033[0m",4,3,1);
-INSERT INTO description VALUES (15,"\033[92m + 'You are in a forest near a shore. Many kinds of trees are growing around. The ground is rocky.' + \033[0m",5,3,1);
+INSERT INTO description VALUES (2,11,"The forest around you is leafy and grassy, but some damage can be seen on the plants: they have been badly chewed.",1,3,1);
+INSERT INTO description VALUES (2,12,"This forest nearby a shore is pretty grassy. There are both, leafy trees, and pines growing here. Dead grass and thatch throughout the lawn can be seen." ,2,3,1);
+INSERT INTO description VALUES (3,13,"There is a windy path here. Leafy trees are growing along the path. If you look carefully you can see some vole holes on the ground.",3,3,1);
+INSERT INTO description VALUES (2,14,"You are in a leafy forest near a shore. The ground is pretty rocky. If you look to the left you can see long thick grass growing there.",4,3,1);
+INSERT INTO description VALUES (2,15,"You are in a forest near a shore. Many kinds of trees are growing around. The ground is rocky.",5,3,1);
 
-INSERT INTO description VALUES (16,"\033[92m + 'The landscape is rocky and grassy. If you look carefully you can see vole tunnels in the lawn.' + \033[0m",1,4,1);
-INSERT INTO description VALUES (17,"\033[93m + 'You are on a grassy path. Several kinds of trees are growing along the path. Looks like a tiny animal has eaten buds and bark of the trees.' + \033[0m",2,4,1);
-INSERT INTO description VALUES (18,"\033[93m + 'There is a wandering path here, with trees along it. Some damage can be seen on the roots and there is a mole nest at the base of a leafy tree.' + \033[0m",3,4,1);
-INSERT INTO description VALUES (19,"\033[92m + 'There is a shore nearby. The ground looks rocky. Leafy trees are growing around.' + \033[0m",4,4,1);
-INSERT INTO description VALUES (20,"\033[92m + 'You are in a forest. This forest is located near a sea. Pale naked rocks can be seen around.' + \033[0m",5,4,1);
+INSERT INTO description VALUES (2,16,"The landscape is rocky and grassy. If you look carefully you can see vole tunnels in the lawn.",1,4,1);
+INSERT INTO description VALUES (3,17,"You are on a grassy path. Several kinds of trees are growing along the path. Looks like a tiny animal has eaten buds and bark of the trees.",2,4,1);
+INSERT INTO description VALUES (3,18,"There is a wandering path here, with trees along it. Some damage can be seen on the roots and there is a mole nest at the base of a leafy tree.",3,4,1);
+INSERT INTO description VALUES (2,19,"There is a shore nearby. The ground looks rocky. Leafy trees are growing around.",4,4,1);
+INSERT INTO description VALUES (2,20,"You are in a forest. This forest is located near a sea. Pale naked rocks can be seen around.",5,4,1);
 
-INSERT INTO description VALUES (21,"\033[92m + 'This forest nearby a shore is pretty grassy. There are both leafy trees and pines growing here.' + \033[0m",1,5,1);
-INSERT INTO description VALUES (22,"\033[93m + 'You are on a path nearby a shore. The landscape is rocky and grassy. There are leafy trees are growing around.' + \033[0m",2,5,1);
-INSERT INTO description VALUES (23,"\033[92m + 'You are in an insular landscape, lots of grass around, rocky ground and low leafy trees.' + \033[0m",3,5,1);
-INSERT INTO description VALUES (24,"\033[92m + 'This part of a forest is near a shore. The nature is leafy and grassy.' + \033[0m",4,5,1);
-INSERT INTO description VALUES (25,"\033[92m + 'You are now in an insular landscape. You can see the shore. The ground is rocky and grassy. Several leafy trees growing around. \033[0m",5,5,1);
+INSERT INTO description VALUES (2,21,"This forest nearby a shore is pretty grassy. There are both leafy trees and pines growing here.",1,5,1);
+INSERT INTO description VALUES (3,22,"You are on a path nearby a shore. The landscape is rocky and grassy. There are leafy trees are growing around.",2,5,1);
+INSERT INTO description VALUES (2,23,"You are in an insular landscape, lots of grass around, rocky ground and low leafy trees.",3,5,1);
+INSERT INTO description VALUES (2,24,"This part of a forest is near a shore. The nature is leafy and grassy.",4,5,1);
+INSERT INTO description VALUES (2,25,"You are now in an insular landscape. You can see the shore. The ground is rocky and grassy. Several leafy trees growing around.",5,5,1);
