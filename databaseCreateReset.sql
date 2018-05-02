@@ -2,9 +2,6 @@ DROP DATABASE IF EXISTS tickslife;
 CREATE DATABASE tickslife;
 USE tickslife;
 
-CREATE USER 'dbuser' IDENTIFIED BY 'dbpass';
-GRANT ALL PRIVILEGES ON *.* TO 'dbuser';
-
 CREATE TABLE tile
 (
   X INT NOT NULL,
@@ -40,7 +37,7 @@ CREATE TABLE description
 (
   color INT NOT NULL,
   descriptionID INT NOT NULL,
-  description VARCHAR(255) NOT NULL,
+  description VARCHAR(400) NOT NULL,
   X INT NOT NULL,
   Y INT NOT NULL,
   level INT NOT NULL,
@@ -875,3 +872,34 @@ INSERT INTO description VALUES (3,22,"You are on a path nearby a shore. The land
 INSERT INTO description VALUES (2,23,"You are in an insular landscape, lots of grass around, rocky ground and low leafy trees.",3,5,1);
 INSERT INTO description VALUES (2,24,"This part of a forest is near a shore. The nature is leafy and grassy.",4,5,1);
 INSERT INTO description VALUES (2,25,"You are now in an insular landscape. You can see the shore. The ground is rocky and grassy. Several leafy trees growing around.",5,5,1);
+
+
+# lvl2 descriptions
+INSERT INTO description VALUES (1,"color.BOLD + 'North-Western Yard' + color.END + '\nNot much to see in here. The house and fences shade the grass from the sun the entire day. That’s why the grass has remained almost untouched and gleams its natural green colors.'",1,1,2);
+INSERT INTO description VALUES (2,"color.BOLD + 'Northern Yard' + color.END + '\nIn front, you can see a moderately large house with a couple windows on the yard side but the sunlight makes it so you can’t see inside. The wall of the house is fully covered in grapevines.'",2,1,2);
+INSERT INTO description VALUES (3,"color.BOLD + 'Northern Yard' + color.END + '\nIn front, you can see a moderately large house with a couple windows on the yard side but the sunlight makes it so you can’t see inside. The wall of the house is fully covered in grapevines.'",3,1,2);
+INSERT INTO description VALUES (4,"color.BOLD + 'North-Eastern Yard' + color.END + '\nNot much to see in here. The house and fences shade the grass from the sun the entire day. That’s why the grass has remained almost untouched and gleams its natural green colors.'",4,1,2);
+
+INSERT INTO description VALUES (5,"color.BOLD + 'Western Yard' + color.END + '\nResting against the fence there are a few berry bushes which at this time of the summer, are heavy with berries of different shapes and colors. The ground is filled with half-eaten cherries probably eaten by the birds who often rest on the two trees planted in the yard. Close to the fence you can also see a small cherry tree.'",1,2,2);
+INSERT INTO description VALUES (6,"color.BOLD + 'Center of the Backyard' + color.END + '\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",2,2,2);
+INSERT INTO description VALUES (7,"color.BOLD + 'Center of the Backyard' + color.END + '\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",3,2,2);
+INSERT INTO description VALUES (8,"color.BOLD + 'Eastern Yard' + color.END + '\nA couple meters forward stands a small building, much smaller than the one to the north-west, that is guarded by a dog napping in the doorway.'",4,2,2);
+INSERT INTO description VALUES (9,"color.BOLD + 'Eastern Yard' + color.END + '\nA couple meters forward stands a small building, much smaller than the one to the north-west, that is guarded by a dog. The dog has stood up nervously scanning its surroundings and sniffing the air.'",4,2,2);
+INSERT INTO description VALUES (10,"color.BOLD + 'Doghouse Roof' + color.END + '\nYou climb to the top of the small building and look down. Under you, in the doorway, is a sleeping dog bathing in the sun.'",1,5,2);
+INSERT INTO description VALUES (11,"color.BOLD + 'Doghouse Roof' + color.END + '\nYou climb to the top of the small building and look down. Under you, in the doorway, stands a dog growling loudly and staring you straight in the eye.'",1,5,2);
+
+
+INSERT INTO description VALUES (12,"color.BOLD + 'Western Yard' + color.END + '\nResting against fence there are a few berry bushes which at this time of the summer, are heavy with berries of different shapes and colors. The ground is filled with half-eaten cherries probably eaten by the birds who often rest on the two trees planted in the yard.'",1,3,2);
+INSERT INTO description VALUES (13,"color.BOLD + 'Center Yard' + color.END + '\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",2,3,2);
+INSERT INTO description VALUES (14,"color.BOLD + 'Center Yard' + color.END + '\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",3,3,2);
+INSERT INTO description VALUES (15,"color.BOLD + 'Eastern Yard' + color.END + '\nThis part of the garden has been turned into a flowerbed with tulips, roses and other flowers in all colors of the rainbow.'",4,3,2);
+
+INSERT INTO description VALUES (16,"color.BOLD + 'South-Western Yard' + color.END + '\nOnly grass and some weeds growing from the gaps in the fence. You can hear some car noises coming from the other side of the fence.'",1,4,2);
+INSERT INTO description VALUES (17,"color.BOLD + 'Southern Yard' + color.END + '\nThis is where the fences end on both sides and in front of you, separating backyard from the street , stands a gate. Although the gate itself would be hard to open, under the gate is small gap you just might be able to get through.'",2,4,2);
+INSERT INTO description VALUES (18,"color.BOLD + 'Southern Yard' + color.END + '\nAlong the fence rises a large maple whose branches stretch over the yard fences and cover the most of the southern part of the backyard. It has already dropped a lot of its leaves on the ground. This might be its last summer. You can hear some car noises coming from the other side of the fence.'",3,4,2);
+INSERT INTO description VALUES (19,"color.BOLD + 'South-Eastern Yard' + color.END + '\nOnly grass and some weeds growing from the gaps in the fence. You can hear some car noises coming from the other side of the fence.'",4,4,2);
+
+INSERT INTO description VALUES (21,"color.BOLD + 'GAME OVER' + color.END + '\nYou squeeze through the gap and to the sidewalk. Suddenly, you see someone walking towards you. Unfortunately, you have no time to react and a foot crushes you against the pavement.'",2,5,2);
+INSERT INTO description VALUES (22,"color.BOLD + 'Branch' + color.END + '\nYou proceed to the branch. Even though the rest of the tree seems frail, the branch feels sturdy and well. Under you is a street with a sidewalk on both sides.'",3,5,2);
+INSERT INTO description VALUES (23,"color.BOLD + 'GAME OVER' + color.END + '\nThe man starts moving and your grasp ends up not being tight enough. You fall right under the man’s foot and get crushed by its weight.'",4,5,2);
+
