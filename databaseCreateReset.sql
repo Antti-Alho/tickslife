@@ -164,12 +164,13 @@ INSERT INTO tile VALUES (3,1,3);
 INSERT INTO tile VALUES (1,2,3);
 INSERT INTO tile VALUES (2,2,3);
 INSERT INTO tile VALUES (3,2,3);
-INSERT INTO tile VALUES (4,2,3);
-INSERT INTO tile VALUES (5,2,3);
 
 INSERT INTO tile VALUES (1,3,3);
 INSERT INTO tile VALUES (2,3,3);
 INSERT INTO tile VALUES (3,3,3);
+INSERT INTO tile VALUES (4,3,3);
+INSERT INTO tile VALUES (5,3,3);
+
 
 #lvl4
 INSERT INTO tile VALUES (1,1,4);
@@ -883,13 +884,13 @@ INSERT INTO description VALUES (2,"color.BOLD + 'Northern Yard' + color.END + '\
 INSERT INTO description VALUES (3,"color.BOLD + 'Northern Yard' + color.END + '\nIn front, you can see a moderately large house with a couple windows on the yard side but the sunlight makes it so you can’t see inside. The wall of the house is fully covered in grapevines.'",3,1,2);
 INSERT INTO description VALUES (4,"color.BOLD + 'North-Eastern Yard' + color.END + '\nNot much to see in here. The house and fences shade the grass from the sun the entire day. That’s why the grass has remained almost untouched and gleams its natural green colors.'",4,1,2);
 
-INSERT INTO description VALUES (5,"color.BOLD + 'Western Yard' + color.END + '\nResting against the fence there are a few berry bushes which at this time of the summer, are heavy with berries of different shapes and colors. The ground is filled with half-eaten cherries probably eaten by the birds who often rest on the two trees planted in the yard. Close to the fence you can also see a small cherry tree.'",1,2,2);
+INSERT INTO description VALUES (5,"color.BOLD + 'Western Yard' + color.END + '\nResting against the fence there are a few berry bushes which at this time of the summer, are heavy with berries of different shapes and colors. The ground is filled with half-eaten cherries probably eaten by the birds who often rest on the two trees planted in the yard. Closer to the fence you can also see a small cherry tree.'",1,2,2);
 INSERT INTO description VALUES (6,"color.BOLD + 'Center of the Backyard' + color.END + '\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",2,2,2);
 INSERT INTO description VALUES (7,"color.BOLD + 'Center of the Backyard' + color.END + '\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",3,2,2);
 INSERT INTO description VALUES (8,"color.BOLD + 'Eastern Yard' + color.END + '\nA couple meters forward stands a small building, much smaller than the one to the north-west, that is guarded by a dog napping in the doorway.'",4,2,2);
 INSERT INTO description VALUES (9,"color.BOLD + 'Eastern Yard' + color.END + '\nA couple meters forward stands a small building, much smaller than the one to the north-west, that is guarded by a dog. The dog has stood up nervously scanning its surroundings and sniffing the air.'",4,2,2);
-INSERT INTO description VALUES (10,"color.BOLD + 'Doghouse Roof' + color.END + '\nYou climb to the top of the small building and look down. Under you, in the doorway, is a sleeping dog bathing in the sun.'",1,5,2);
-INSERT INTO description VALUES (11,"color.BOLD + 'Doghouse Roof' + color.END + '\nYou climb to the top of the small building and look down. Under you, in the doorway, stands a dog growling loudly and staring you straight in the eye.'",1,5,2);
+INSERT INTO description VALUES (10,"color.BOLD + 'Doghouse Roof' + color.END + '\nYou climb on the top of the small building and look down. Under you, in the doorway, is a sleeping dog bathing in the sun.'",300,100,2);
+INSERT INTO description VALUES (11,"color.BOLD + 'Doghouse Roof' + color.END + '\nYou climb on the top of the small building and look down. Under you, in the doorway, stands a dog growling loudly and staring you straight in the eye.'",300,100,2);
 
 
 INSERT INTO description VALUES (12,"color.BOLD + 'Western Yard' + color.END + '\nResting against fence there are a few berry bushes which at this time of the summer, are heavy with berries of different shapes and colors. The ground is filled with half-eaten cherries probably eaten by the birds who often rest on the two trees planted in the yard.'",1,3,2);
@@ -903,25 +904,28 @@ INSERT INTO description VALUES (18,"color.BOLD + 'Southern Yard' + color.END + '
 INSERT INTO description VALUES (19,"color.BOLD + 'South-Eastern Yard' + color.END + '\nOnly grass and some weeds growing from the gaps in the fence. You can hear some car noises coming from the other side of the fence.'",4,4,2);
 
 INSERT INTO description VALUES (21,"color.BOLD + 'GAME OVER' + color.END + '\nYou squeeze through the gap and to the sidewalk. Suddenly, you see someone walking towards you. Unfortunately, you have no time to react and a foot crushes you against the pavement.'",2,5,2);
-INSERT INTO description VALUES (22,"color.BOLD + 'Branch' + color.END + '\nYou proceed to the branch. Even though the rest of the tree seems frail, the branch feels sturdy and well. Under you is a street with a sidewalk on both sides.'",3,5,2);
 INSERT INTO description VALUES (23,"color.BOLD + 'GAME OVER' + color.END + '\nThe man starts moving and your grasp ends up not being tight enough. You fall right under the man’s foot and get crushed by its weight.'",4,5,2);
 
+INSERT INTO description VALUES (23,"color.BOLD + 'Small Tree' + color.END + '\nYou climb to the top of the cherry tree. It surely looks pretty scary from this high. Unfortunately the branches don’t rise over the fence so you can’t see what is happening outside the backyard.'",100,100,2);
+INSERT INTO description VALUES (23,"color.BOLD + 'Large Tree' + color.END + '\nYou start climbing its trunk and pass through insect species settled in small grooves they’ve carved in the tree. When approaching a branch extending over the street to the north, you pass through a termite settlement. They don’t seem to mind you and let you pass freely.'",200,100,2);
+INSERT INTO description VALUES (22,"color.BOLD + 'Branch' + color.END + '\nYou proceed to the branch. Even though the rest of the tree seems frail, the branch feels sturdy and well. Under you is a street with a sidewalk on both sides.'",200,101,2);
+
 # lvl2.5 description
-INSERT INTO description VALUES (12, "color.BOLD + 'Window' + color.END + '\nYou climb on the windowsill and look outside. Through the window, you can barely see the backyard. In the left you see the outline of the doghouse and to the right you can spot the shadow of the cherry tree that the moonlight creates against the fence.'",1,1,3);
-INSERT INTO description VALUES (13, "color.BOLD + 'Computer Table' + color.END + '\nYou climb on the computer table and look around. In the table there is a mouse, coffee cup and a monitor. The monitor is open and you can see some writing on the screen: “Tick’s Life”.'",1,1,3);
-INSERT INTO description VALUES (1, "color.BOLD + 'Room' + color.END + '\nThis seems to be the corner of the room. Straight above, you can see a window frame. The window frame transforms the moonlight flooding inside into a shape of a cross reflecting on the floor.'",1,2,3);
-INSERT INTO description VALUES (2, "color.BOLD + 'Room' + color.END + '\nAbove you, there is a computer table made of glass with wooden legs. The material that the legs are made of, may just be rough enough to climb.'",2,2,3);
-INSERT INTO description VALUES (3, "color.BOLD + 'Underneath the Bed' + color.END + '\nUnder the bed, there is an acoustic guitar and some music papers. A few ants have also taken liking to a piece of candy fallen under the bed. The legs are made of some kind of metal.'",3,2,3);
+INSERT INTO description VALUES (12, "color.BOLD + 'Window' + color.END + '\nYou climb on the windowsill and look outside. Through the window, you can barely see the backyard. In the left you see the outline of the doghouse and to the right you can spot the shadow of the cherry tree that the moonlight creates against the fence.'",100,100,3);
+INSERT INTO description VALUES (13, "color.BOLD + 'Computer Table' + color.END + '\nYou climb on the computer table and look around. In the table there is a mouse, coffee cup and a monitor. The monitor is open and you can see some writing on the screen: “Tick’s Life”.'",200,100,3);
+INSERT INTO description VALUES (1, "color.BOLD + 'Room' + color.END + '\nThis seems to be the corner of the room. Straight above, you can see a window frame. The window frame transforms the moonlight flooding inside into a shape of a cross reflecting on the floor.'",1,1,3);
+INSERT INTO description VALUES (2, "color.BOLD + 'Room' + color.END + '\nAbove you, there is a computer table made of glass with wooden legs. The material that the legs are made of, may just be rough enough to climb.'",2,1,3);
+INSERT INTO description VALUES (3, "color.BOLD + 'Underneath the Bed' + color.END + '\nUnder the bed, there is an acoustic guitar and some music papers. A few ants have also taken liking to a piece of candy fallen under the bed. The legs are made of some kind of metal.'",3,1,3);
 
-INSERT INTO description VALUES (4, "color.BOLD + 'Room' + color.END + '\nAll the walls of the room have been painted with light blue paint. However, they almost entirely covered with posters of famous artists and game characters.'",1,3,3);
-INSERT INTO description VALUES (5, "color.BOLD + 'Room' + color.END + '\nIn the middle of the room there is a furry green carpet. Only if the owner knew how much dirt and bacteria a carpet like that collects over the years.'",2,3,3);
-INSERT INTO description VALUES (6, "color.BOLD + 'Room' + color.END + '\nRight beside the bed there is a laundry basket with some clothes spilling out. There is a shirt,  pair of jeans and a couple dirty socks lying on the floor.'",3,3,3);
-INSERT INTO description VALUES (7, "color.BOLD + 'Laundry Basket' + color.END + '\nFrom the laundry basket, you are able to see the whole room. The top of it is also in the same level with the bed. From the bed you can hear some loud snoring.'",4,3,3);
-INSERT INTO description VALUES (8, "color.BOLD + 'Bed' + color.END + '\nYou jump on the bed. When you keep crawling through the bedsheets, the scent of blood keeps getting stronger. Finally after traveling a while through the blankets, you reach the sleeping man’s foot.'",5,3,3);
+INSERT INTO description VALUES (4, "color.BOLD + 'Room' + color.END + '\nAll the walls of the room have been painted with light blue paint. However, they almost entirely covered with posters of famous artists and game characters.'",1,2,3);
+INSERT INTO description VALUES (5, "color.BOLD + 'Room' + color.END + '\nIn the middle of the room there is a furry green carpet. Only if the owner knew how much dirt and bacteria a carpet like that collects over the years.'",2,2,3);
+INSERT INTO description VALUES (6, "color.BOLD + 'Room' + color.END + '\nRight beside the bed there is a laundry basket with some clothes spilling out. There is a shirt,  pair of jeans and a couple dirty socks lying on the floor.'",3,2,3);
+INSERT INTO description VALUES (7, "color.BOLD + 'Laundry Basket' + color.END + '\nFrom the laundry basket, you are able to see the whole room. The top of it is also in the same level with the bed. Coming from north, you can hear some loud snoring.'",300,100,3);
+INSERT INTO description VALUES (8, "color.BOLD + 'Bed' + color.END + '\nYou jump on the bed. When you keep crawling through the bedsheets, the scent of blood keeps getting stronger. Finally after traveling a while through the blankets, you reach the sleeping man’s foot.'",300,99,3);
 
-INSERT INTO description VALUES (9, "color.BOLD + 'Room' + color.END + '\nBeside you sleeps the dog on a blanket. On the floor there is also the dog’s water cup and two stuffed animals, a teddy bear and an elephant.'",1,4,3);
-INSERT INTO description VALUES (10, "color.BOLD + 'Room' + color.END + '\nNothing special here. Only some cabinets probably used for storing clothes.'",2,4,3);
-INSERT INTO description VALUES (11, "color.BOLD + 'Room' + color.END + '\nThis is where you entered into the room. In front of you stands a door separating the room from the rest of the house. Unfortunately, the door is closed. The man must have closed it behind him while entering the room.'",3,4,3);
+INSERT INTO description VALUES (9, "color.BOLD + 'Room' + color.END + '\nBeside you sleeps the dog on a blanket. On the floor there is also the dog’s water cup and two stuffed animals, a teddy bear and an elephant.'",1,3,3);
+INSERT INTO description VALUES (10, "color.BOLD + 'Room' + color.END + '\nNothing special here. Only some cabinets probably used for storing clothes.'",2,3,3);
+INSERT INTO description VALUES (11, "color.BOLD + 'Room' + color.END + '\nThis is where you entered into the room. In front of you stands a door separating the room from the rest of the house. Unfortunately, the door is closed. The man must have closed it behind him while entering the room.'",3,3,3);
 
 
 
@@ -954,8 +958,8 @@ INSERT INTO description VALUES (22, "color.BOLD + 'Central Park' + color.END + '
 INSERT INTO description VALUES (23, "color.BOLD + 'Eastern Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",5,4,4);
 INSERT INTO description VALUES (24, "color.BOLD + 'Eastern Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",6,4,4);
 
-INSERT INTO description VALUES (25, "color.BOLD + 'South-Western Park' + color.END + '\nYou seem to be in the most South-Western part of the park. Around you can see grassfields with a few small flowers sometimes popping through. The air is filled with sound of singing birds.'",1,5,4);
-INSERT INTO description VALUES (26, "color.BOLD + 'South-Western Park' + color.END + '\nYou seem to be in the most South-Western part of the park. Around you can see grassfields with a few small flowers sometimes popping through. The air is filled with sound of singing birds.'",2,5,4);
+INSERT INTO description VALUES (25, "color.BOLD + 'South-Western Park' + color.END + '\nYou seem to be in the most South-Western part of the park. Around you, can be seen grassfields with a few small flowers sometimes popping through. The air is filled with sound of singing birds.'",1,5,4);
+INSERT INTO description VALUES (26, "color.BOLD + 'South-Western Park' + color.END + '\nYou seem to be in the most South-Western part of the park. Around you, can be seen grassfields with a few small flowers sometimes popping through. The air is filled with sound of singing birds. You also see a brown bench which you might be able to climb on.'",2,5,4);
 INSERT INTO description VALUES (27, "color.BOLD + 'Southern Park' + color.END + '\nThe air is filled with sound of singing birds. Popping through the grass you can see some clovers. You even spot a four-leafed one. Wonder what that means...'",3,5,4);
 INSERT INTO description VALUES (29, "color.BOLD + 'Southern Park' + color.END + '\nYou are on a dirt road. The road is surrounded with long and thick grass and coated with sharp gravel.'",4,5,4);
 INSERT INTO description VALUES (30, "color.BOLD + 'South-Eastern Park' + color.END + '\nThe grass in this part of the park seems pretty badly taken care of. The dry ground glares through the lawn. If you listen very closely you can hear a grasshopper.'",5,5,4);
@@ -967,5 +971,5 @@ INSERT INTO description VALUES (34, "color.BOLD + 'Southern Park' + color.END + 
 INSERT INTO description VALUES (35, "color.BOLD + 'Southern Park' + color.END + '\nYou are on a dirt road. The road is surrounded with long and thick grass and coated with sharp gravel.'",4,6,4);
 INSERT INTO description VALUES (36, "color.BOLD + 'South-Eastern Park' + color.END + '\nThe grass in this part of the park seems pretty badly taken care of. The dry ground glares through the lawn. If you listen very closely you can hear a grasshopper.'",5,6,4);
 INSERT INTO description VALUES (37, "color.BOLD + 'South-Eastern Park' + color.END + '\nThe grass in this part of the park seems pretty badly taken care of. The dry ground glares through the lawn. If you listen very closely you can hear a grasshopper.'",6,6,4);
-INSERT INTO description VALUES (38, "color.BOLD + 'Bench' + color.END + '\nYou climb on the bench. On the bench you can see someone lying. You recognize the man you bit the last summer. He looks very sick and has sweat dripping all over. You can barely smell his scent. Almost like he would be close to death...'",7,6,4);
-INSERT INTO description VALUES (39, "color.BOLD + 'Bench' + color.END + '\nYou climb on the bench. The bench is empty...'",7,6,4);
+INSERT INTO description VALUES (38, "color.BOLD + 'Bench' + color.END + '\nYou climb on the bench. On the bench you can see someone lying. You recognize the man you bit the last summer. He looks very sick and has sweat dripping all over. You can barely smell his scent. Almost like he would be close to death...'",100,100,4);
+INSERT INTO description VALUES (39, "color.BOLD + 'Bench' + color.END + '\nYou climb on the bench. The bench is empty...'",100,100,4);
