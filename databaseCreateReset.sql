@@ -891,7 +891,6 @@ INSERT INTO description VALUES (9,"color.BOLD + 'Eastern Yard' + color.END + '\n
 INSERT INTO description VALUES (10,"color.BOLD + 'Doghouse Roof' + color.END + '\nYou climb to the top of the small building and look down. Under you, in the doorway, is a sleeping dog bathing in the sun.'",1,5,2);
 INSERT INTO description VALUES (11,"color.BOLD + 'Doghouse Roof' + color.END + '\nYou climb to the top of the small building and look down. Under you, in the doorway, stands a dog growling loudly and staring you straight in the eye.'",1,5,2);
 
-
 INSERT INTO description VALUES (12,"color.BOLD + 'Western Yard' + color.END + '\nResting against fence there are a few berry bushes which at this time of the summer, are heavy with berries of different shapes and colors. The ground is filled with half-eaten cherries probably eaten by the birds who often rest on the two trees planted in the yard.'",1,3,2);
 INSERT INTO description VALUES (13,"color.BOLD + 'Center Yard' + color.END + '\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",2,3,2);
 INSERT INTO description VALUES (14,"color.BOLD + 'Center Yard' + color.END + '\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",3,3,2);
@@ -906,17 +905,11 @@ INSERT INTO description VALUES (21,"color.BOLD + 'GAME OVER' + color.END + '\nYo
 INSERT INTO description VALUES (22,"color.BOLD + 'Branch' + color.END + '\nYou proceed to the branch. Even though the rest of the tree seems frail, the branch feels sturdy and well. Under you is a street with a sidewalk on both sides.'",3,5,2);
 INSERT INTO description VALUES (23,"color.BOLD + 'GAME OVER' + color.END + '\nThe man starts moving and your grasp ends up not being tight enough. You fall right under the man’s foot and get crushed by its weight.'",4,5,2);
 
-<<<<<<< HEAD
-
 INSERT INTO story VALUES (1, "We are sorry to tell you that your mother died at birth. You are a baby female tick, just hatched from egg to a larva, alone in a big world. It is summertime and you are in a forest. The grass around you is long and green and you can feel the smell of the sea. While observing the scenery, you’re hit with a sudden feeling of hunger running through your body. Blood!");
 INSERT INTO story VALUES (2, "You succeeded in getting your first blood meal! The first summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. Winter comes. Winter goes. New spring comes, and after that the summer. You have changed from the larva into a nymph. You wake up and feel hungry again. Hunting starts the second time. Blood!");
 INSERT INTO story VALUES (3, "You succeeded in getting your second blood meal! The second summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. The second winter comes. New spring comes, and then the summer. You have changed from the nymph into an adult tick. You wake up and feel hungry again. Hunting starts the third time. Blood!");
 INSERT INTO story VALUES (4, "You succeeded in getting your third blood meal! Look who is coming, your lover, a prince tick! The prince impregnates you. After a while, you give birth to new tick eggs, thousands of them! But we are sorry to tell you that you died at birth. BUT you successfully completed the game! Congratulations!");
  
-
-  
-
-=======
 # lvl2.5 description
 INSERT INTO description VALUES (12, "color.BOLD + 'Window' + color.END + '\nYou climb on the windowsill and look outside. Through the window, you can barely see the backyard. In the left you see the outline of the doghouse and to the right you can spot the shadow of the cherry tree that the moonlight creates against the fence.'",1,1,3);
 INSERT INTO description VALUES (13, "color.BOLD + 'Computer Table' + color.END + '\nYou climb on the computer table and look around. In the table there is a mouse, coffee cup and a monitor. The monitor is open and you can see some writing on the screen: “Tick’s Life”.'",1,1,3);
@@ -933,8 +926,6 @@ INSERT INTO description VALUES (8, "color.BOLD + 'Bed' + color.END + '\nYou jump
 INSERT INTO description VALUES (9, "color.BOLD + 'Room' + color.END + '\nBeside you sleeps the dog on a blanket. On the floor there is also the dog’s water cup and two stuffed animals, a teddy bear and an elephant.'",1,4,3);
 INSERT INTO description VALUES (10, "color.BOLD + 'Room' + color.END + '\nNothing special here. Only some cabinets probably used for storing clothes.'",2,4,3);
 INSERT INTO description VALUES (11, "color.BOLD + 'Room' + color.END + '\nThis is where you entered into the room. In front of you stands a door separating the room from the rest of the house. Unfortunately, the door is closed. The man must have closed it behind him while entering the room.'",3,4,3);
-
-
 
 # lvl3 descriptions
 INSERT INTO description VALUES (1, "color.BOLD + 'North-Western Park' + color.END + '\nYou are on a dirt road. The road is surrounded with freshly cut grass and coated with sharp gravel.'",1,1,4);
@@ -980,4 +971,10 @@ INSERT INTO description VALUES (36, "color.BOLD + 'South-Eastern Park' + color.E
 INSERT INTO description VALUES (37, "color.BOLD + 'South-Eastern Park' + color.END + '\nThe grass in this part of the park seems pretty badly taken care of. The dry ground glares through the lawn. If you listen very closely you can hear a grasshopper.'",6,6,4);
 INSERT INTO description VALUES (38, "color.BOLD + 'Bench' + color.END + '\nYou climb on the bench. On the bench you can see someone lying. You recognize the man you bit the last summer. He looks very sick and has sweat dripping all over. You can barely smell his scent. Almost like he would be close to death...'",7,6,4);
 INSERT INTO description VALUES (39, "color.BOLD + 'Bench' + color.END + '\nYou climb on the bench. The bench is empty...'",7,6,4);
->>>>>>> 85784045f37e6b4b5df2690e2361163a5cf206cc
+
+INSERT INTO story VALUES (1, "We are sorry to tell you that your mother died at birth. You are a baby female tick, just hatched from egg to a larva, alone in a big world. It is summertime and you are in a forest. The grass around you is long and green and you can feel the smell of the sea. While observing the scenery, you’re hit with a sudden feeling of hunger running through your body. Blood!");
+INSERT INTO story VALUES (2, "You succeeded in getting your first blood meal! The first summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. Winter comes. Winter goes. New spring comes, and after that the summer. You have changed from the larva into a nymph. You wake up and feel hungry again. Hunting starts the second time. Blood!");
+INSERT INTO story VALUES (3, "You succeeded in getting your second blood meal! The second summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. The second winter comes. New spring comes, and then the summer. You have changed from the nymph into an adult tick. You wake up and feel hungry again. Hunting starts the third time. Blood!");
+INSERT INTO story VALUES (4, "You succeeded in getting your third blood meal! Look who is coming, your lover, a prince tick! The prince impregnates you. After a while, you give birth to new tick eggs, thousands of them! But we are sorry to tell you that you died at birth. BUT you successfully completed the game! Congratulations!");
+
+
