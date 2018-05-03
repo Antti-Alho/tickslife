@@ -156,6 +156,11 @@ INSERT INTO tile VALUES (2,5,2);
 INSERT INTO tile VALUES (3,5,2);
 INSERT INTO tile VALUES (4,5,2);
 
+INSERT INTO tile VALUES (100,100,2);
+INSERT INTO tile VALUES (200,100,2);
+INSERT INTO tile VALUES (200,101,2);
+INSERT INTO tile VALUES (300,100,2);
+
 #lvl3
 INSERT INTO tile VALUES (1,1,3);
 INSERT INTO tile VALUES (2,1,3);
@@ -168,9 +173,11 @@ INSERT INTO tile VALUES (3,2,3);
 INSERT INTO tile VALUES (1,3,3);
 INSERT INTO tile VALUES (2,3,3);
 INSERT INTO tile VALUES (3,3,3);
-INSERT INTO tile VALUES (4,3,3);
-INSERT INTO tile VALUES (5,3,3);
 
+INSERT INTO tile VALUES (100,100,3);
+INSERT INTO tile VALUES (200,100,3);
+INSERT INTO tile VALUES (300,100,3);
+INSERT INTO tile VALUES (300,99,3);
 
 #lvl4
 INSERT INTO tile VALUES (1,1,4);
@@ -216,15 +223,16 @@ INSERT INTO tile VALUES (5,6,4);
 INSERT INTO tile VALUES (6,6,4);
 INSERT INTO tile VALUES (7,6,4);
 
+INSERT INTO tile VALUES (100,100,4);
 
 #animals id,name,x,y,lvl
 INSERT INTO animal VALUES (1,"Squirrel",1,5,1);
-INSERT INTO animal VALUES (2,"Mole",3,1,1);
+INSERT INTO animal VALUES (2,"Vole",3,1,1);
 
 INSERT INTO animal VALUES (3,"Dog",2,4,2);
 INSERT INTO animal VALUES (4,"Man",1,5,2);
 
-INSERT INTO animal VALUES (5,"Man",1,3,3);
+INSERT INTO animal VALUES (5,"Man",300,99,3);
 
 INSERT INTO animal VALUES (6,"Jogger",1,5,4);
 INSERT INTO animal VALUES (7,"Child",1,5,4);
@@ -831,6 +839,40 @@ INSERT INTO route VALUES(24,22,7);
 INSERT INTO route VALUES(21,23,7);
 INSERT INTO route VALUES(22,24,7);
 
+# Animal Route: ID, AnimalID, X, Y, Level
+# Squirrel
+INSERT INTO animalRoute VALUES (1,1,3,1,1);
+INSERT INTO animalRoute VALUES (2,1,4,1,1);
+INSERT INTO animalRoute VALUES (3,1,5,1,1);
+INSERT INTO animalRoute VALUES (4,1,5,2,1);
+INSERT INTO animalRoute VALUES (5,1,4,2,1);
+INSERT INTO animalRoute VALUES (6,1,3,2,1);
+# Vole
+INSERT INTO animalRoute VALUES (7,2,1,3,1);
+INSERT INTO animalRoute VALUES (8,2,2,3,1);
+INSERT INTO animalRoute VALUES (9,2,3,3,1);
+INSERT INTO animalRoute VALUES (10,2,3,4,1);
+INSERT INTO animalRoute VALUES (11,2,2,4,1);
+INSERT INTO animalRoute VALUES (12,2,1,4,1);
+# Jogger 1
+INSERT INTO animalRoute VALUES (13,6,5,1,4);
+INSERT INTO animalRoute VALUES (14,6,5,2,4);
+INSERT INTO animalRoute VALUES (15,6,6,2,4);
+INSERT INTO animalRoute VALUES (16,6,6,3,4);
+INSERT INTO animalRoute VALUES (17,6,6,4,4);
+INSERT INTO animalRoute VALUES (18,6,6,3,4);
+INSERT INTO animalRoute VALUES (19,6,6,2,4);
+INSERT INTO animalRoute VALUES (20,6,5,2,4);
+# Child
+INSERT INTO animalRoute VALUES (21,7,2,4,4);
+INSERT INTO animalRoute VALUES (22,7,3,4,4);
+INSERT INTO animalRoute VALUES (23,7,4,4,4);
+INSERT INTO animalRoute VALUES (24,7,4,5,4);
+INSERT INTO animalRoute VALUES (25,7,4,6,4);
+INSERT INTO animalRoute VALUES (26,7,4,5,4);
+INSERT INTO animalRoute VALUES (27,7,4,4,4);
+INSERT INTO animalRoute VALUES (28,7,3,4,4);
+
 #tileObstacle description, startx, starty, startlvl, endx, endy, endlvl
 INSERT INTO tileObstacle VALUES ("You decide not to climb over the stone in your way. It would take too much effort.",2,4,2,3,4,2);
 INSERT INTO tileObstacle VALUES ("You decide not to climb over the stone in your way. It would take too much effort.",3,4,2,2,4,2);
@@ -949,7 +991,7 @@ INSERT INTO description VALUES (14, "color.BOLD + 'Western Park' + color.END + '
 INSERT INTO description VALUES (15, "color.BOLD + 'Central Park' + color.END + '\nFrom here it looks like the park never ends. In all directions only thing you see is grass, with the exception of some bald spots in the lawn that look like dirt roads.'",3,3,4);
 INSERT INTO description VALUES (16, "color.BOLD + 'Central Park' + color.END + '\nFrom here it looks like the park never ends. In all directions only thing you see is grass, with the exception of some bald spots in the lawn that look like dirt roads.'",4,3,4);
 INSERT INTO description VALUES (17, "color.BOLD + 'Eastern Park' + color.END + '\nThe lawn around you is freshly cut and the air is filled with the smell of grass. An ant colony has conquered most of this part of the park. On the face of it, it may look that there are not that many of them, but under grass they’ve created their own little empire.'",5,3,4);
-INSERT INTO description VALUES (18, "color.BOLD + 'dEastern Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",6,3,4);
+INSERT INTO description VALUES (18, "color.BOLD + 'Eastern Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",6,3,4);
 
 INSERT INTO description VALUES (19, "color.BOLD + 'Western Park' + color.END + '\nThe grass around you is taller than everywhere else in the park. The grass roots are filled with life. Many different insect species, even some that you’ve never even seen before, have settled in the soil and in microscopic plants under the grass.'",1,4,4);
 INSERT INTO description VALUES (20, "color.BOLD + 'Western Park' + color.END + '\nYou are on a dirt road. The road is surrounded with long and thick grass and coated with sharp gravel.'",2,4,4);
@@ -963,7 +1005,7 @@ INSERT INTO description VALUES (26, "color.BOLD + 'South-Western Park' + color.E
 INSERT INTO description VALUES (27, "color.BOLD + 'Southern Park' + color.END + '\nThe air is filled with sound of singing birds. Popping through the grass you can see some clovers. You even spot a four-leafed one. Wonder what that means...'",3,5,4);
 INSERT INTO description VALUES (29, "color.BOLD + 'Southern Park' + color.END + '\nYou are on a dirt road. The road is surrounded with long and thick grass and coated with sharp gravel.'",4,5,4);
 INSERT INTO description VALUES (30, "color.BOLD + 'South-Eastern Park' + color.END + '\nThe grass in this part of the park seems pretty badly taken care of. The dry ground glares through the lawn. If you listen very closely you can hear a grasshopper.'",5,5,4);
-INSERT INTO description VALUES (31, "color.BOLD + 'dSouth-Eastern Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",6,5,4);
+INSERT INTO description VALUES (31, "color.BOLD + 'South-Eastern Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",6,5,4);
 
 INSERT INTO description VALUES (32, "color.BOLD + 'South-Western Park' + color.END + '\nYou seem to be in the most South-Western part of the park. Around you can see grassfields with a few small flowers sometimes popping through. The air is filled with sound of singing birds.'",1,6,4);
 INSERT INTO description VALUES (33, "color.BOLD + 'South-Western Park' + color.END + '\nYou seem to be in the most South-Western part of the park. Around you can see grassfields with a few small flowers sometimes popping through. The air is filled with sound of singing birds.'",2,6,4);
