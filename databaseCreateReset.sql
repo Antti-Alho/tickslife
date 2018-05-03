@@ -164,6 +164,8 @@ INSERT INTO tile VALUES (3,1,3);
 INSERT INTO tile VALUES (1,2,3);
 INSERT INTO tile VALUES (2,2,3);
 INSERT INTO tile VALUES (3,2,3);
+INSERT INTO tile VALUES (4,2,3);
+INSERT INTO tile VALUES (5,2,3);
 
 INSERT INTO tile VALUES (1,3,3);
 INSERT INTO tile VALUES (2,3,3);
@@ -211,6 +213,8 @@ INSERT INTO tile VALUES (3,6,4);
 INSERT INTO tile VALUES (4,6,4);
 INSERT INTO tile VALUES (5,6,4);
 INSERT INTO tile VALUES (6,6,4);
+INSERT INTO tile VALUES (7,6,4);
+
 
 #animals id,name,x,y,lvl
 INSERT INTO animal VALUES (1,"Squirrel",1,5,1);
@@ -841,6 +845,7 @@ INSERT INTO tileObstacle VALUES ("you can't jump from the roof of the doghouse i
 
 INSERT INTO tick VALUES (1,0,NULL,NULL,5,5,1);
 
+
 #lvl1 color, descriptions id, string, x, y, lvl
 INSERT INTO description VALUES (2,1,"You are in a forest near a shore. A few leafy trees are growing around. If you look to the right, the forest looks grassy.",1,1,1);
 INSERT INTO description VALUES (3,2,"You are on a path near a shore. Thick grass is growing along the path.",2,1,1);
@@ -872,7 +877,6 @@ INSERT INTO description VALUES (2,23,"You are in an insular landscape, lots of g
 INSERT INTO description VALUES (2,24,"This part of a forest is near a shore. The nature is leafy and grassy.",4,5,1);
 INSERT INTO description VALUES (2,25,"You are now in an insular landscape. You can see the shore. The ground is rocky and grassy. Several leafy trees growing around.",5,5,1);
 
-
 # lvl2 descriptions
 INSERT INTO description VALUES (1,"color.BOLD + 'North-Western Yard' + color.END + '\nNot much to see in here. The house and fences shade the grass from the sun the entire day. That’s why the grass has remained almost untouched and gleams its natural green colors.'",1,1,2);
 INSERT INTO description VALUES (2,"color.BOLD + 'Northern Yard' + color.END + '\nIn front, you can see a moderately large house with a couple windows on the yard side but the sunlight makes it so you can’t see inside. The wall of the house is fully covered in grapevines.'",2,1,2);
@@ -902,12 +906,71 @@ INSERT INTO description VALUES (21,"color.BOLD + 'GAME OVER' + color.END + '\nYo
 INSERT INTO description VALUES (22,"color.BOLD + 'Branch' + color.END + '\nYou proceed to the branch. Even though the rest of the tree seems frail, the branch feels sturdy and well. Under you is a street with a sidewalk on both sides.'",3,5,2);
 INSERT INTO description VALUES (23,"color.BOLD + 'GAME OVER' + color.END + '\nThe man starts moving and your grasp ends up not being tight enough. You fall right under the man’s foot and get crushed by its weight.'",4,5,2);
 
+# lvl2.5 description
+INSERT INTO description VALUES (12, "color.BOLD + 'Window' + color.END + '\nYou climb on the windowsill and look outside. Through the window, you can barely see the backyard. In the left you see the outline of the doghouse and to the right you can spot the shadow of the cherry tree that the moonlight creates against the fence.'",1,1,3);
+INSERT INTO description VALUES (13, "color.BOLD + 'Computer Table' + color.END + '\nYou climb on the computer table and look around. In the table there is a mouse, coffee cup and a monitor. The monitor is open and you can see some writing on the screen: “Tick’s Life”.'",1,1,3);
+INSERT INTO description VALUES (1, "color.BOLD + 'Room' + color.END + '\nThis seems to be the corner of the room. Straight above, you can see a window frame. The window frame transforms the moonlight flooding inside into a shape of a cross reflecting on the floor.'",1,2,3);
+INSERT INTO description VALUES (2, "color.BOLD + 'Room' + color.END + '\nAbove you, there is a computer table made of glass with wooden legs. The material that the legs are made of, may just be rough enough to climb.'",2,2,3);
+INSERT INTO description VALUES (3, "color.BOLD + 'Underneath the Bed' + color.END + '\nUnder the bed, there is an acoustic guitar and some music papers. A few ants have also taken liking to a piece of candy fallen under the bed. The legs are made of some kind of metal.'",3,2,3);
+
+INSERT INTO description VALUES (4, "color.BOLD + 'Room' + color.END + '\nAll the walls of the room have been painted with light blue paint. However, they almost entirely covered with posters of famous artists and game characters.'",1,3,3);
+INSERT INTO description VALUES (5, "color.BOLD + 'Room' + color.END + '\nIn the middle of the room there is a furry green carpet. Only if the owner knew how much dirt and bacteria a carpet like that collects over the years.'",2,3,3);
+INSERT INTO description VALUES (6, "color.BOLD + 'Room' + color.END + '\nRight beside the bed there is a laundry basket with some clothes spilling out. There is a shirt,  pair of jeans and a couple dirty socks lying on the floor.'",3,3,3);
+INSERT INTO description VALUES (7, "color.BOLD + 'Laundry Basket' + color.END + '\nFrom the laundry basket, you are able to see the whole room. The top of it is also in the same level with the bed. From the bed you can hear some loud snoring.'",4,3,3);
+INSERT INTO description VALUES (8, "color.BOLD + 'Bed' + color.END + '\nYou jump on the bed. When you keep crawling through the bedsheets, the scent of blood keeps getting stronger. Finally after traveling a while through the blankets, you reach the sleeping man’s foot.'",5,3,3);
+
+INSERT INTO description VALUES (9, "color.BOLD + 'Room' + color.END + '\nBeside you sleeps the dog on a blanket. On the floor there is also the dog’s water cup and two stuffed animals, a teddy bear and an elephant.'",1,4,3);
+INSERT INTO description VALUES (10, "color.BOLD + 'Room' + color.END + '\nNothing special here. Only some cabinets probably used for storing clothes.'",2,4,3);
+INSERT INTO description VALUES (11, "color.BOLD + 'Room' + color.END + '\nThis is where you entered into the room. In front of you stands a door separating the room from the rest of the house. Unfortunately, the door is closed. The man must have closed it behind him while entering the room.'",3,4,3);
+
+# lvl3 descriptions
+INSERT INTO description VALUES (1, "color.BOLD + 'North-Western Park' + color.END + '\nYou are on a dirt road. The road is surrounded with freshly cut grass and coated with sharp gravel.'",1,1,4);
+INSERT INTO description VALUES (2, "color.BOLD + 'North-Western Park' + color.END + '\nYou are on a dirt road. The road is surrounded with freshly cut grass and coated with sharp gravel.'",2,1,4);
+INSERT INTO description VALUES (3, "color.BOLD + 'Northern Park' + color.END + '\nThe lawn around you is freshly cut and the air is filled with the smell of grass. Some hardwood has been planted in this part of the park creating a natural atmosphere.'",3,1,4);
+INSERT INTO description VALUES (4, "color.BOLD + 'Northern Park' + color.END + '\nThe lawn around you is freshly cut and the air is filled with the smell of grass. Some hardwood has been planted in this part of the park creating a natural atmosphere.'",4,1,4);
+INSERT INTO description VALUES (5, "color.BOLD + 'North-Eastern Park Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",5,1,4);
+INSERT INTO description VALUES (6, "color.BOLD + 'North-Eastern Park' + color.END + '\nThe lawn around you is freshly cut and the air is filled with the smell of grass. An ant colony has conquered most of this part of the park. On the face of it, it may look that there are not that many of them, but under grass they’ve created their own little empire.'",6,1,4);
+
+INSERT INTO description VALUES (7, "color.BOLD + 'North-Western Park' + color.END + '\nThe lawn around you is freshly cut and the air is filled with the smell of grass. Dead blades of grass have been left behind. The sunshine has absorbed all of their green and left them with a light brown, almost a gray, color.'",1,2,4);
+INSERT INTO description VALUES (8, "color.BOLD + 'North-Western Park' + color.END + '\nYou are on a dirt road. The road is surrounded with freshly cut grass and coated with sharp gravel.'",2,2,4);
+INSERT INTO description VALUES (9, "color.BOLD + 'Northern Park' + color.END + '\nThe lawn around you is freshly cut and the air is filled with the smell of grass. Some hardwood has been planted in this part of the park creating a natural atmosphere.'",3,2,4);
+INSERT INTO description VALUES (10, "color.BOLD + 'Northern Park' + color.END + '\nThe lawn around you is freshly cut and the air is filled with the smell of grass. Some hardwood has been planted in this part of the park creating a natural atmosphere.'",4,2,4);
+INSERT INTO description VALUES (11, "color.BOLD + 'North-Eastern Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",5,2,4);
+INSERT INTO description VALUES (12, "color.BOLD + 'North-Eastern Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",6,2,4);
+
+INSERT INTO description VALUES (13, "color.BOLD + 'Western Park' + color.END + '\nThe grass around you is taller than everywhere else in the park. The grass roots are filled with life. Many different insect species, even some that you’ve never even seen before, have settled in the soil and in microscopic plants under the grass.'",1,3,4);
+INSERT INTO description VALUES (14, "color.BOLD + 'Western Park' + color.END + '\nYou are on a dirt road. The road is surrounded with long and thick grass and coated with sharp gravel.'",2,3,4);
+INSERT INTO description VALUES (15, "color.BOLD + 'Central Park' + color.END + '\nFrom here it looks like the park never ends. In all directions only thing you see is grass, with the exception of some bald spots in the lawn that look like dirt roads.'",3,3,4);
+INSERT INTO description VALUES (16, "color.BOLD + 'Central Park' + color.END + '\nFrom here it looks like the park never ends. In all directions only thing you see is grass, with the exception of some bald spots in the lawn that look like dirt roads.'",4,3,4);
+INSERT INTO description VALUES (17, "color.BOLD + 'Eastern Park' + color.END + '\nThe lawn around you is freshly cut and the air is filled with the smell of grass. An ant colony has conquered most of this part of the park. On the face of it, it may look that there are not that many of them, but under grass they’ve created their own little empire.'",5,3,4);
+INSERT INTO description VALUES (18, "color.BOLD + 'dEastern Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",6,3,4);
+
+INSERT INTO description VALUES (19, "color.BOLD + 'Western Park' + color.END + '\nThe grass around you is taller than everywhere else in the park. The grass roots are filled with life. Many different insect species, even some that you’ve never even seen before, have settled in the soil and in microscopic plants under the grass.'",1,4,4);
+INSERT INTO description VALUES (20, "color.BOLD + 'Western Park' + color.END + '\nYou are on a dirt road. The road is surrounded with long and thick grass and coated with sharp gravel.'",2,4,4);
+INSERT INTO description VALUES (21, "color.BOLD + 'Central Park' + color.END + '\nYou are on a dirt road. The road is surrounded with long and thick grass and coated with sharp gravel.'",3,4,4);
+INSERT INTO description VALUES (22, "color.BOLD + 'Central Park' + color.END + '\nYou are on a dirt road. The road is surrounded with long and thick grass and coated with sharp gravel.'",4,4,4);
+INSERT INTO description VALUES (23, "color.BOLD + 'Eastern Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",5,4,4);
+INSERT INTO description VALUES (24, "color.BOLD + 'Eastern Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",6,4,4);
+
+INSERT INTO description VALUES (25, "color.BOLD + 'South-Western Park' + color.END + '\nYou seem to be in the most South-Western part of the park. Around you can see grassfields with a few small flowers sometimes popping through. The air is filled with sound of singing birds.'",1,5,4);
+INSERT INTO description VALUES (26, "color.BOLD + 'South-Western Park' + color.END + '\nYou seem to be in the most South-Western part of the park. Around you can see grassfields with a few small flowers sometimes popping through. The air is filled with sound of singing birds.'",2,5,4);
+INSERT INTO description VALUES (27, "color.BOLD + 'Southern Park' + color.END + '\nThe air is filled with sound of singing birds. Popping through the grass you can see some clovers. You even spot a four-leafed one. Wonder what that means...'",3,5,4);
+INSERT INTO description VALUES (29, "color.BOLD + 'Southern Park' + color.END + '\nYou are on a dirt road. The road is surrounded with long and thick grass and coated with sharp gravel.'",4,5,4);
+INSERT INTO description VALUES (30, "color.BOLD + 'South-Eastern Park' + color.END + '\nThe grass in this part of the park seems pretty badly taken care of. The dry ground glares through the lawn. If you listen very closely you can hear a grasshopper.'",5,5,4);
+INSERT INTO description VALUES (31, "color.BOLD + 'dSouth-Eastern Park' + color.END + '\nYou are on a dirt road traveling through the lawn. On both sides, you can see ants walking in different directions carrying all sorts of materials probably used to decorate their castles.'",6,5,4);
+
+INSERT INTO description VALUES (32, "color.BOLD + 'South-Western Park' + color.END + '\nYou seem to be in the most South-Western part of the park. Around you can see grassfields with a few small flowers sometimes popping through. The air is filled with sound of singing birds.'",1,6,4);
+INSERT INTO description VALUES (33, "color.BOLD + 'South-Western Park' + color.END + '\nYou seem to be in the most South-Western part of the park. Around you can see grassfields with a few small flowers sometimes popping through. The air is filled with sound of singing birds.'",2,6,4);
+INSERT INTO description VALUES (34, "color.BOLD + 'Southern Park' + color.END + '\nThe air is filled with sound of singing birds. Popping through the grass you can see some clovers. You even spot a four-leafed one. Wonder what that means...'",3,6,4);
+INSERT INTO description VALUES (35, "color.BOLD + 'Southern Park' + color.END + '\nYou are on a dirt road. The road is surrounded with long and thick grass and coated with sharp gravel.'",4,6,4);
+INSERT INTO description VALUES (36, "color.BOLD + 'South-Eastern Park' + color.END + '\nThe grass in this part of the park seems pretty badly taken care of. The dry ground glares through the lawn. If you listen very closely you can hear a grasshopper.'",5,6,4);
+INSERT INTO description VALUES (37, "color.BOLD + 'South-Eastern Park' + color.END + '\nThe grass in this part of the park seems pretty badly taken care of. The dry ground glares through the lawn. If you listen very closely you can hear a grasshopper.'",6,6,4);
+INSERT INTO description VALUES (38, "color.BOLD + 'Bench' + color.END + '\nYou climb on the bench. On the bench you can see someone lying. You recognize the man you bit the last summer. He looks very sick and has sweat dripping all over. You can barely smell his scent. Almost like he would be close to death...'",7,6,4);
+INSERT INTO description VALUES (39, "color.BOLD + 'Bench' + color.END + '\nYou climb on the bench. The bench is empty...'",7,6,4);
 
 INSERT INTO story VALUES (1, "We are sorry to tell you that your mother died at birth. You are a baby female tick, just hatched from egg to a larva, alone in a big world. It is summertime and you are in a forest. The grass around you is long and green and you can feel the smell of the sea. While observing the scenery, you’re hit with a sudden feeling of hunger running through your body. Blood!");
 INSERT INTO story VALUES (2, "You succeeded in getting your first blood meal! The first summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. Winter comes. Winter goes. New spring comes, and after that the summer. You have changed from the larva into a nymph. You wake up and feel hungry again. Hunting starts the second time. Blood!");
 INSERT INTO story VALUES (3, "You succeeded in getting your second blood meal! The second summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. The second winter comes. New spring comes, and then the summer. You have changed from the nymph into an adult tick. You wake up and feel hungry again. Hunting starts the third time. Blood!");
 INSERT INTO story VALUES (4, "You succeeded in getting your third blood meal! Look who is coming, your lover, a prince tick! The prince impregnates you. After a while, you give birth to new tick eggs, thousands of them! But we are sorry to tell you that you died at birth. BUT you successfully completed the game! Congratulations!");
- 
 
-  
 
