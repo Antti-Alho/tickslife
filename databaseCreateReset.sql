@@ -873,6 +873,8 @@ INSERT INTO animalRoute VALUES (26,7,4,5,4);
 INSERT INTO animalRoute VALUES (27,7,4,4,4);
 INSERT INTO animalRoute VALUES (28,7,3,4,4);
 
+INSERT INTO animalRoute VALUES (29,7,3,4,4);
+
 #tileObstacle description, startx, starty, startlvl, endx, endy, endlvl
 INSERT INTO tileObstacle VALUES ("You decide not to climb over the stone in your way. It would take too much effort.",2,4,2,3,4,2);
 INSERT INTO tileObstacle VALUES ("You decide not to climb over the stone in your way. It would take too much effort.",3,4,2,2,4,2);
@@ -885,6 +887,10 @@ INSERT INTO tileObstacle VALUES ("There is a banana peel on the ground! it's so 
 
 INSERT INTO tileObstacle VALUES ("don't go into the doghouse",4,1,2,4,2,2);
 INSERT INTO tileObstacle VALUES ("you can't jump from the roof of the doghouse its too highdon't go into the doghouse",4,2,2,4,1,2);
+
+INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",1,4,2,1,5,2);
+INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",3,4,2,3,5,2);
+INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",4,4,2,4,5,2);
 
 INSERT INTO tick VALUES (1,0,NULL,NULL,5,5,1);
 
@@ -945,7 +951,9 @@ INSERT INTO description VALUES (17,"color.BOLD + 'Southern Yard' + color.END + '
 INSERT INTO description VALUES (18,"color.BOLD + 'Southern Yard' + color.END + '\nAlong the fence rises a large maple whose branches stretch over the yard fences and cover the most of the southern part of the backyard. It has already dropped a lot of its leaves on the ground. This might be its last summer. You can hear some car noises coming from the other side of the fence.'",3,4,2);
 INSERT INTO description VALUES (19,"color.BOLD + 'South-Eastern Yard' + color.END + '\nOnly grass and some weeds growing from the gaps in the fence. You can hear some car noises coming from the other side of the fence.'",4,4,2);
 
+INSERT INTO description VALUES (23,"color.BOLD + 'GAME OVER' + color.END + '\nWhile falling a sudden gust of wind flies you to the driveway. The last thing you hear is a screeching tire when you get crushed by its weight.'",1,5,2);
 INSERT INTO description VALUES (21,"color.BOLD + 'GAME OVER' + color.END + '\nYou squeeze through the gap and to the sidewalk. Suddenly, you see someone walking towards you. Unfortunately, you have no time to react and a foot crushes you against the pavement.'",2,5,2);
+INSERT INTO description VALUES (22,"color.BOLD + 'Branch' + color.END + '\nYou proceed to the branch. Even though the rest of the tree seems frail, the branch feels sturdy and well. Under you is a street with a sidewalk on both sides.'",200,101,2);
 INSERT INTO description VALUES (23,"color.BOLD + 'GAME OVER' + color.END + '\nThe man starts moving and your grasp ends up not being tight enough. You fall right under the man’s foot and get crushed by its weight.'",4,5,2);
 
 INSERT INTO description VALUES (23,"color.BOLD + 'Small Tree' + color.END + '\nYou climb to the top of the cherry tree. It surely looks pretty scary from this high. Unfortunately the branches don’t rise over the fence so you can’t see what is happening outside the backyard.'",100,100,2);

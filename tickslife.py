@@ -2,10 +2,11 @@ import mysql.connector
 import mysql.connector.errors as err
 
 
-db = mysql.connector.connect(host="localhost",
-					  user="dbuser",
-					  password="dbpass",
-					  db="tickslife")
+db = mysql.connector.connect(
+        host="localhost",
+        user="dbuser",
+        password="dbpass",
+        db="tickslife")
 
 def climbDrop():
 	#merja
@@ -47,22 +48,22 @@ def animalMove():
 		#return false
 
 def endOfTurn():
-	BLUE1 = "\033[94m"
-	GREEN2 = "\033[92m"
-	BROWN3 = "\033[93m"
-	ENDC4 = "\033[0m"
+        BLUE1 = "\033[94m"
+        GREEN2 = "\033[92m"
+        BROWN3 = "\033[93m"
+        ENDC4 = "\033[0m"
 
-	cur = db.cursor()
-	sql = "SELECT description, color FROM description INNER JOIN tick ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
-	cur.execute(sql)
-	for row in cur.fetchall():
+        cur = db.cursor()
+        sql = "SELECT description, color FROM description INNER JOIN tick ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
+        cur.execute(sql)
+        for row in cur.fetchall():
                 if row[1] == 2:
                         print(GREEN2)
-		elif row[1] == 3:
+                elif row[1] == 3:
                         print(BROWN3)
-		print(row[0])
-	print(ENDC4)
-	return 
+                print(row[0])
+        print(ENDC4)
+        return
 
 def tickMove(direction):
 	cur = db.cursor()
