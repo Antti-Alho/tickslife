@@ -21,7 +21,7 @@ def drop():
         animalID = row[0]
     if cur.rowcount>=1:
         sql = "UPDATE tick SET locationID = 1, animalID = " + str(animalID) + ";" 
-        cur.execute(sql)
+     :   cur.execute(sql)
     return
 
 def inspect():
@@ -50,7 +50,7 @@ def smell():
         print("The smell of prey here is medium.")
     elif distance == 0:
         print("The smell of prey is strong!")
-    else
+    else:
         print("There is no smell of prey here.")
     return 
 
