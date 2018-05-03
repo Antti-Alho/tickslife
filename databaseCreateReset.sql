@@ -923,8 +923,6 @@ INSERT INTO description VALUES (9, "color.BOLD + 'Room' + color.END + '\nBeside 
 INSERT INTO description VALUES (10, "color.BOLD + 'Room' + color.END + '\nNothing special here. Only some cabinets probably used for storing clothes.'",2,4,3);
 INSERT INTO description VALUES (11, "color.BOLD + 'Room' + color.END + '\nThis is where you entered into the room. In front of you stands a door separating the room from the rest of the house. Unfortunately, the door is closed. The man must have closed it behind him while entering the room.'",3,4,3);
 
-
-
 # lvl3 descriptions
 INSERT INTO description VALUES (1, "color.BOLD + 'North-Western Park' + color.END + '\nYou are on a dirt road. The road is surrounded with freshly cut grass and coated with sharp gravel.'",1,1,4);
 INSERT INTO description VALUES (2, "color.BOLD + 'North-Western Park' + color.END + '\nYou are on a dirt road. The road is surrounded with freshly cut grass and coated with sharp gravel.'",2,1,4);
@@ -969,3 +967,10 @@ INSERT INTO description VALUES (36, "color.BOLD + 'South-Eastern Park' + color.E
 INSERT INTO description VALUES (37, "color.BOLD + 'South-Eastern Park' + color.END + '\nThe grass in this part of the park seems pretty badly taken care of. The dry ground glares through the lawn. If you listen very closely you can hear a grasshopper.'",6,6,4);
 INSERT INTO description VALUES (38, "color.BOLD + 'Bench' + color.END + '\nYou climb on the bench. On the bench you can see someone lying. You recognize the man you bit the last summer. He looks very sick and has sweat dripping all over. You can barely smell his scent. Almost like he would be close to death...'",7,6,4);
 INSERT INTO description VALUES (39, "color.BOLD + 'Bench' + color.END + '\nYou climb on the bench. The bench is empty...'",7,6,4);
+
+INSERT INTO story VALUES (1, "We are sorry to tell you that your mother died at birth. You are a baby female tick, just hatched from egg to a larva, alone in a big world. It is summertime and you are in a forest. The grass around you is long and green and you can feel the smell of the sea. While observing the scenery, you’re hit with a sudden feeling of hunger running through your body. Blood!");
+INSERT INTO story VALUES (2, "You succeeded in getting your first blood meal! The first summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. Winter comes. Winter goes. New spring comes, and after that the summer. You have changed from the larva into a nymph. You wake up and feel hungry again. Hunting starts the second time. Blood!");
+INSERT INTO story VALUES (3, "You succeeded in getting your second blood meal! The second summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. The second winter comes. New spring comes, and then the summer. You have changed from the nymph into an adult tick. You wake up and feel hungry again. Hunting starts the third time. Blood!");
+INSERT INTO story VALUES (4, "You succeeded in getting your third blood meal! Look who is coming, your lover, a prince tick! The prince impregnates you. After a while, you give birth to new tick eggs, thousands of them! But we are sorry to tell you that you died at birth. BUT you successfully completed the game! Congratulations!");
+
+

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 body  {
     background-image: url("Punkki1.jpg");
-    background-color: #cccccc;
+    
 }
 </style>
-</head>
-
 
 <style>
 div.a {
     text-align: center;
 }
 
-d
+
 </style>
 </head>
 <body>
@@ -40,18 +40,15 @@ d
 
 <a href="NappulaTicksLife" target=""w3-button w3-black" value="TICK'S LIFE</a> 
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<body>
-
 <div class="w3-container">
   
   <input type="button" class="w3-button w3-black" value="TICK'S LIFE">
-  <button class="w3-button w3-black">PRESS</button>
-  <a href="#" class="w3-button w3-black">ABOUT TICKS</a>
+  
+   <a href="NappulaPress" class="w3-button w3-black">PRESS</a>
+  <a href="NappulaAboutTicks" class="w3-button w3-black">ABOUT TICKS</a>
 </div>
 </div>
-
+ 
 
 </body>
 </html>
