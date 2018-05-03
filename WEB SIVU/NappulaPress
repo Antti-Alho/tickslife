@@ -6,7 +6,10 @@ p {
     font-size: 16px;
     font-family: "Verdana";
  }
-
+li {
+	font-size: 16px;
+	font-family: "Verdana";
+ }
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -43,21 +46,25 @@ p {
 <div class="row">
   <div class="column left" style="background-color:#ffffe6;">
     <h2>GroupFive</h2>
-    <h3>
+  			
+    <h4>
 <ul>
   <li>Factsheet</li>
   <li>Description</li>
   <li>History</li>
   <li>Projects</li>
   <li>Images</li>
-  <li>Logo & Icon</li>
-</ul>     
+ </ul> 
+<br> 
+<br>    
+<br>    
+<br>    
 <h3/>
 <h2>Factsheet<h2/>
 <h3>
 <ul>
   <li>Developers</li>
-  Antti Alho<br>
+  <p>Antti Alho<br>
 Joonatan Hämäläinen<br>
 Merja Leisti<br>
 Metropolia Helsinki<p/>
