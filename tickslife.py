@@ -2,7 +2,6 @@ import mysql.connector
 import mysql.connector.errors as err
 from enum import Enum
 
-<<<<<<< HEAD
 db = mysql.connector.connect(
         host="localhost",
         user="dbuser",
@@ -10,8 +9,6 @@ db = mysql.connector.connect(
         db="tickslife")
 storycount = 1
 
-def drop():
-=======
 class direction(Enum):
     NORTH = 0
     SOUTH = 1
@@ -44,15 +41,8 @@ class animalDirection(Enum):
     rightFoot = 23
     leftFoot = 24
 
-db = mysql.connector.connect(
-    host="localhost",
-    user="dbuser",
-    password="dbpass",
-    db="tickslife"
-)
 
-def climbAnimal(): #
->>>>>>> 66fdee636e6040fffecb687f5592d88408263777
+def climbAnimal():
     cur = db.cursor()
     sql = "SELECT animalID FROM animal INNER JOIN tick \
     ON animal.X = tick.X AND animal.Y = tick.Y AND animal.level = tick.level;"
@@ -103,14 +93,7 @@ def smell():
         print("The smell of prey is strong!")
     else:
         print("There is no smell of prey here.")
-<<<<<<< HEAD
     return 
-
-def distanceToAnimal(X,Y,lvl): # return integer value of how many steps it takes to find nearest animal
-	return
-=======
-    return
->>>>>>> 66fdee636e6040fffecb687f5592d88408263777
 
 def containsAnimal(): 
     cur = db.cursor()
@@ -123,7 +106,6 @@ def containsAnimal():
         return false
 
 def printNextStory():
-<<<<<<< HEAD
     cur = db.cursor()
     sql = "SELECT storyID, description FROM story;"
     cur.execute
@@ -135,11 +117,6 @@ def printNextStory():
             storycount += 1
             
 	return
-=======
-    #joonatan
-    return
->>>>>>> 66fdee636e6040fffecb687f5592d88408263777
-
 
 def bite():
     #joonatan
@@ -184,24 +161,6 @@ def IsTickInAnimal():
         return false
 
 def endOfTurn():
-<<<<<<< HEAD
-        BLUE1 = "\033[94m"
-        GREEN2 = "\033[92m"
-        BROWN3 = "\033[93m"
-        ENDC4 = "\033[0m"
-
-        cur = db.cursor()
-        sql = "SELECT description, color FROM description INNER JOIN tick ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
-        cur.execute(sql)
-        for row in cur.fetchall():
-                if row[1] == 2:
-                        print(GREEN2)
-                elif row[1] == 3:
-                        print(BROWN3)
-                print(row[0])
-        print(ENDC4)
-        return
-=======
     BLUE1 = "\033[94m"
     GREEN2 = "\033[92m"
     BROWN3 = "\033[93m"
@@ -218,7 +177,6 @@ def endOfTurn():
         print(row[0])
     print(ENDC4)
     return 
->>>>>>> 66fdee636e6040fffecb687f5592d88408263777
 
 def tickMove(direction):
     cur = db.cursor()
