@@ -7,7 +7,6 @@ CREATE TABLE tile
   X INT NOT NULL,
   Y INT NOT NULL,
   level INT NOT NULL,
-  isRoad INT NOT NULL,
   PRIMARY KEY (X, Y, level)
 );
 
@@ -74,12 +73,13 @@ CREATE TABLE tick
   tickID INT NOT NULL,
   timeVisible INT NOT NULL,
   LocationID INT,
+  animalID INT,
   disease VARCHAR(255),
   X INT NOT NULL,
   Y INT NOT NULL,
   level INT NOT NULL,
   PRIMARY KEY (tickID),
-  FOREIGN KEY (LocationID) REFERENCES locationInAnimal(locationID),
+  FOREIGN KEY (LocationID, animalID) REFERENCES locationInAnimal(locationID, animalID),
   FOREIGN KEY (X, Y, level) REFERENCES tile(X, Y, level)
 );
 
@@ -101,117 +101,99 @@ CREATE TABLE story
 ); 
 
 #lvl1
-INSERT INTO tile VALUES (1,1,1,0);
-INSERT INTO tile VALUES (2,1,1,0);
-INSERT INTO tile VALUES (3,1,1,0);
-INSERT INTO tile VALUES (4,1,1,0);
-INSERT INTO tile VALUES (5,1,1,0);
-
-INSERT INTO tile VALUES (1,2,1,0);
-INSERT INTO tile VALUES (2,2,1,0);
-INSERT INTO tile VALUES (3,2,1,0);
-INSERT INTO tile VALUES (4,2,1,0);
-INSERT INTO tile VALUES (5,2,1,0);
-
-INSERT INTO tile VALUES (1,3,1,0);
-INSERT INTO tile VALUES (2,3,1,0);
-INSERT INTO tile VALUES (3,3,1,0);
-INSERT INTO tile VALUES (4,3,1,0);
-INSERT INTO tile VALUES (5,3,1,0);
-
-INSERT INTO tile VALUES (1,4,1,0);
-INSERT INTO tile VALUES (2,4,1,0);
-INSERT INTO tile VALUES (3,4,1,0);
-INSERT INTO tile VALUES (4,4,1,0);
-INSERT INTO tile VALUES (5,4,1,0);
-
-INSERT INTO tile VALUES (1,5,1,0);
-INSERT INTO tile VALUES (2,5,1,0);
-INSERT INTO tile VALUES (3,5,1,0);
-INSERT INTO tile VALUES (4,5,1,0);
-INSERT INTO tile VALUES (5,5,1,0);
-
+INSERT INTO tile VALUES (1,1,1);
+INSERT INTO tile VALUES (2,1,1);
+INSERT INTO tile VALUES (3,1,1);
+INSERT INTO tile VALUES (4,1,1);
+INSERT INTO tile VALUES (5,1,1);
+INSERT INTO tile VALUES (1,2,1);
+INSERT INTO tile VALUES (2,2,1);
+INSERT INTO tile VALUES (3,2,1);
+INSERT INTO tile VALUES (4,2,1);
+INSERT INTO tile VALUES (5,2,1);
+INSERT INTO tile VALUES (1,3,1);
+INSERT INTO tile VALUES (2,3,1);
+INSERT INTO tile VALUES (3,3,1);
+INSERT INTO tile VALUES (4,3,1);
+INSERT INTO tile VALUES (5,3,1);
+INSERT INTO tile VALUES (1,4,1);
+INSERT INTO tile VALUES (2,4,1);
+INSERT INTO tile VALUES (3,4,1);
+INSERT INTO tile VALUES (4,4,1);
+INSERT INTO tile VALUES (5,4,1);
+INSERT INTO tile VALUES (1,5,1);
+INSERT INTO tile VALUES (2,5,1);
+INSERT INTO tile VALUES (3,5,1);
+INSERT INTO tile VALUES (4,5,1);
+INSERT INTO tile VALUES (5,5,1);
 #lvl2
-INSERT INTO tile VALUES (1,1,2,0);
-INSERT INTO tile VALUES (2,1,2,0);
-INSERT INTO tile VALUES (3,1,2,0);
-INSERT INTO tile VALUES (4,1,2,0);
-
-INSERT INTO tile VALUES (1,2,2,0);
-INSERT INTO tile VALUES (2,2,2,0);
-INSERT INTO tile VALUES (3,2,2,0);
-INSERT INTO tile VALUES (4,2,2,0);
-
-INSERT INTO tile VALUES (1,3,2,0);
-INSERT INTO tile VALUES (2,3,2,0);
-INSERT INTO tile VALUES (3,3,2,0);
-INSERT INTO tile VALUES (4,3,2,0);
-
-INSERT INTO tile VALUES (1,4,2,0);
-INSERT INTO tile VALUES (2,4,2,0);
-INSERT INTO tile VALUES (3,4,2,0);
-INSERT INTO tile VALUES (4,4,2,0);
-
-INSERT INTO tile VALUES (1,5,2,0);
-INSERT INTO tile VALUES (2,5,2,0);
-INSERT INTO tile VALUES (3,5,2,0);
-INSERT INTO tile VALUES (4,5,2,0);
-
+INSERT INTO tile VALUES (1,1,2);
+INSERT INTO tile VALUES (2,1,2);
+INSERT INTO tile VALUES (3,1,2);
+INSERT INTO tile VALUES (4,1,2);
+INSERT INTO tile VALUES (1,2,2);
+INSERT INTO tile VALUES (2,2,2);
+INSERT INTO tile VALUES (3,2,2);
+INSERT INTO tile VALUES (4,2,2);
+INSERT INTO tile VALUES (1,3,2);
+INSERT INTO tile VALUES (2,3,2);
+INSERT INTO tile VALUES (3,3,2);
+INSERT INTO tile VALUES (4,3,2);
+INSERT INTO tile VALUES (1,4,2);
+INSERT INTO tile VALUES (2,4,2);
+INSERT INTO tile VALUES (3,4,2);
+INSERT INTO tile VALUES (4,4,2);
+INSERT INTO tile VALUES (1,5,2);
+INSERT INTO tile VALUES (2,5,2);
+INSERT INTO tile VALUES (3,5,2);
+INSERT INTO tile VALUES (4,5,2);
 #lvl3
-INSERT INTO tile VALUES (1,1,3,0);
-INSERT INTO tile VALUES (2,1,3,0);
-INSERT INTO tile VALUES (3,1,3,0);
-
-INSERT INTO tile VALUES (1,2,3,0);
-INSERT INTO tile VALUES (2,2,3,0);
-INSERT INTO tile VALUES (3,2,3,0);
-
-INSERT INTO tile VALUES (1,3,3,0);
-INSERT INTO tile VALUES (2,3,3,0);
-INSERT INTO tile VALUES (3,3,3,0);
-
+INSERT INTO tile VALUES (1,1,3);
+INSERT INTO tile VALUES (2,1,3);
+INSERT INTO tile VALUES (3,1,3);
+INSERT INTO tile VALUES (1,2,3);
+INSERT INTO tile VALUES (2,2,3);
+INSERT INTO tile VALUES (3,2,3);
+INSERT INTO tile VALUES (1,3,3);
+INSERT INTO tile VALUES (2,3,3);
+INSERT INTO tile VALUES (3,3,3);
 #lvl4
-INSERT INTO tile VALUES (1,1,4,0);
-INSERT INTO tile VALUES (2,1,4,0);
-INSERT INTO tile VALUES (3,1,4,0);
-INSERT INTO tile VALUES (4,1,4,0);
-INSERT INTO tile VALUES (5,1,4,0);
-INSERT INTO tile VALUES (6,1,4,0);
-
-INSERT INTO tile VALUES (1,2,4,0);
-INSERT INTO tile VALUES (2,2,4,0);
-INSERT INTO tile VALUES (3,2,4,0);
-INSERT INTO tile VALUES (4,2,4,0);
-INSERT INTO tile VALUES (5,2,4,0);
-INSERT INTO tile VALUES (6,2,4,0);
-
-INSERT INTO tile VALUES (1,3,4,0);
-INSERT INTO tile VALUES (2,3,4,0);
-INSERT INTO tile VALUES (3,3,4,0);
-INSERT INTO tile VALUES (4,3,4,0);
-INSERT INTO tile VALUES (5,3,4,0);
-INSERT INTO tile VALUES (6,3,4,0);
-
-INSERT INTO tile VALUES (1,4,4,0);
-INSERT INTO tile VALUES (2,4,4,0);
-INSERT INTO tile VALUES (3,4,4,0);
-INSERT INTO tile VALUES (4,4,4,0);
-INSERT INTO tile VALUES (5,4,4,0);
-INSERT INTO tile VALUES (6,4,4,0);
-
-INSERT INTO tile VALUES (1,5,4,0);
-INSERT INTO tile VALUES (2,5,4,0);
-INSERT INTO tile VALUES (3,5,4,0);
-INSERT INTO tile VALUES (4,5,4,0);
-INSERT INTO tile VALUES (5,5,4,0);
-INSERT INTO tile VALUES (6,5,4,0);
-
-INSERT INTO tile VALUES (1,6,4,0);
-INSERT INTO tile VALUES (2,6,4,0);
-INSERT INTO tile VALUES (3,6,4,0);
-INSERT INTO tile VALUES (4,6,4,0);
-INSERT INTO tile VALUES (5,6,4,0);
-INSERT INTO tile VALUES (6,6,4,0);
+INSERT INTO tile VALUES (1,1,4);
+INSERT INTO tile VALUES (2,1,4);
+INSERT INTO tile VALUES (3,1,4);
+INSERT INTO tile VALUES (4,1,4);
+INSERT INTO tile VALUES (5,1,4);
+INSERT INTO tile VALUES (6,1,4);
+INSERT INTO tile VALUES (1,2,4);
+INSERT INTO tile VALUES (2,2,4);
+INSERT INTO tile VALUES (3,2,4);
+INSERT INTO tile VALUES (4,2,4);
+INSERT INTO tile VALUES (5,2,4);
+INSERT INTO tile VALUES (6,2,4);
+INSERT INTO tile VALUES (1,3,4);
+INSERT INTO tile VALUES (2,3,4);
+INSERT INTO tile VALUES (3,3,4);
+INSERT INTO tile VALUES (4,3,4);
+INSERT INTO tile VALUES (5,3,4);
+INSERT INTO tile VALUES (6,3,4);
+INSERT INTO tile VALUES (1,4,4);
+INSERT INTO tile VALUES (2,4,4);
+INSERT INTO tile VALUES (3,4,4);
+INSERT INTO tile VALUES (4,4,4);
+INSERT INTO tile VALUES (5,4,4);
+INSERT INTO tile VALUES (6,4,4);
+INSERT INTO tile VALUES (1,5,4);
+INSERT INTO tile VALUES (2,5,4);
+INSERT INTO tile VALUES (3,5,4);
+INSERT INTO tile VALUES (4,5,4);
+INSERT INTO tile VALUES (5,5,4);
+INSERT INTO tile VALUES (6,5,4);
+INSERT INTO tile VALUES (1,6,4);
+INSERT INTO tile VALUES (2,6,4);
+INSERT INTO tile VALUES (3,6,4);
+INSERT INTO tile VALUES (4,6,4);
+INSERT INTO tile VALUES (5,6,4);
+INSERT INTO tile VALUES (6,6,4);
 
 #animals id,name,x,y,lvl
 INSERT INTO animal VALUES (1,"Squirrel",1,5,1);
@@ -241,7 +223,7 @@ INSERT INTO locationInAnimal VALUES ("left side", 13, 1, 1);
 INSERT INTO locationInAnimal VALUES ("groin", 14, 1, 1);
 INSERT INTO locationInAnimal VALUES ("right thig", 15, 0, 1);
 INSERT INTO locationInAnimal VALUES ("left thig", 16, 0, 1);
-INSERT INTO locationInAnimal VALUES ("right knee", 17, 0, 1) ;
+INSERT INTO locationInAnimal VALUES ("right knee", 17, 0, 1);
 INSERT INTO locationInAnimal VALUES ("left knee", 18, 0, 1);
 INSERT INTO locationInAnimal VALUES ("right ham", 19, 1, 1);
 INSERT INTO locationInAnimal VALUES ("left ham", 20, 1, 1);
@@ -840,7 +822,7 @@ INSERT INTO tileObstacle VALUES ("There is a banana peel on the ground! it's so 
 INSERT INTO tileObstacle VALUES ("don't go into the doghouse",4,1,2,4,2,2);
 INSERT INTO tileObstacle VALUES ("you can't jump from the roof of the doghouse its too highdon't go into the doghouse",4,2,2,4,1,2);
 
-INSERT INTO tick VALUES (1,0,NULL,NULL,5,5,1);
+INSERT INTO tick VALUES (1,0,NULL,NULL,NULL,5,5,1);
 
 #lvl1 color, descriptions id, string, x, y, lvl
 INSERT INTO description VALUES (2,1,"You are in a forest near a shore. A few leafy trees are growing around. If you look to the right, the forest looks grassy.",1,1,1);
@@ -875,31 +857,31 @@ INSERT INTO description VALUES (2,25,"You are now in an insular landscape. You c
 
 
 # lvl2 descriptions
-INSERT INTO description VALUES (1,"color.BOLD + 'North-Western Yard' + color.END + '\nNot much to see in here. The house and fences shade the grass from the sun the entire day. That’s why the grass has remained almost untouched and gleams its natural green colors.'",1,1,2);
-INSERT INTO description VALUES (2,"color.BOLD + 'Northern Yard' + color.END + '\nIn front, you can see a moderately large house with a couple windows on the yard side but the sunlight makes it so you can’t see inside. The wall of the house is fully covered in grapevines.'",2,1,2);
-INSERT INTO description VALUES (3,"color.BOLD + 'Northern Yard' + color.END + '\nIn front, you can see a moderately large house with a couple windows on the yard side but the sunlight makes it so you can’t see inside. The wall of the house is fully covered in grapevines.'",3,1,2);
-INSERT INTO description VALUES (4,"color.BOLD + 'North-Eastern Yard' + color.END + '\nNot much to see in here. The house and fences shade the grass from the sun the entire day. That’s why the grass has remained almost untouched and gleams its natural green colors.'",4,1,2);
+INSERT INTO description VALUES (2,1,"'North-Western Yard'\nNot much to see in here. The house and fences shade the grass from the sun the entire day. That’s why the grass has remained almost untouched and gleams its natural green colors.'",1,1,2);
+INSERT INTO description VALUES (2,2,"'Northern Yard'\nIn front, you can see a moderately large house with a couple windows on the yard side but the sunlight makes it so you can’t see inside. The wall of the house is fully covered in grapevines.'",2,1,2);
+INSERT INTO description VALUES (2,3,"'Northern Yard'\nIn front, you can see a moderately large house with a couple windows on the yard side but the sunlight makes it so you can’t see inside. The wall of the house is fully covered in grapevines.'",3,1,2);
+INSERT INTO description VALUES (2,4,"'North-Eastern Yard'\nNot much to see in here. The house and fences shade the grass from the sun the entire day. That’s why the grass has remained almost untouched and gleams its natural green colors.'",4,1,2);
 
-INSERT INTO description VALUES (5,"color.BOLD + 'Western Yard' + color.END + '\nResting against the fence there are a few berry bushes which at this time of the summer, are heavy with berries of different shapes and colors. The ground is filled with half-eaten cherries probably eaten by the birds who often rest on the two trees planted in the yard. Close to the fence you can also see a small cherry tree.'",1,2,2);
-INSERT INTO description VALUES (6,"color.BOLD + 'Center of the Backyard' + color.END + '\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",2,2,2);
-INSERT INTO description VALUES (7,"color.BOLD + 'Center of the Backyard' + color.END + '\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",3,2,2);
-INSERT INTO description VALUES (8,"color.BOLD + 'Eastern Yard' + color.END + '\nA couple meters forward stands a small building, much smaller than the one to the north-west, that is guarded by a dog napping in the doorway.'",4,2,2);
-INSERT INTO description VALUES (9,"color.BOLD + 'Eastern Yard' + color.END + '\nA couple meters forward stands a small building, much smaller than the one to the north-west, that is guarded by a dog. The dog has stood up nervously scanning its surroundings and sniffing the air.'",4,2,2);
-INSERT INTO description VALUES (10,"color.BOLD + 'Doghouse Roof' + color.END + '\nYou climb to the top of the small building and look down. Under you, in the doorway, is a sleeping dog bathing in the sun.'",1,5,2);
-INSERT INTO description VALUES (11,"color.BOLD + 'Doghouse Roof' + color.END + '\nYou climb to the top of the small building and look down. Under you, in the doorway, stands a dog growling loudly and staring you straight in the eye.'",1,5,2);
+INSERT INTO description VALUES (2,5,"'Western Yard'\nResting against the fence there are a few berry bushes which at this time of the summer, are heavy with berries of different shapes and colors. The ground is filled with half-eaten cherries probably eaten by the birds who often rest on the two trees planted in the yard. Close to the fence you can also see a small cherry tree.'",1,2,2);
+INSERT INTO description VALUES (2,6,"'Center of the Backyard'\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",2,2,2);
+INSERT INTO description VALUES (2,7,"'Center of the Backyard'\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",3,2,2);
+INSERT INTO description VALUES (2,8,"'Eastern Yard'\nA couple meters forward stands a small building, much smaller than the one to the north-west, that is guarded by a dog napping in the doorway.'",4,2,2);
+INSERT INTO description VALUES (2,9,"'Eastern Yard'\nA couple meters forward stands a small building, much smaller than the one to the north-west, that is guarded by a dog. The dog has stood up nervously scanning its surroundings and sniffing the air.'",4,2,2);
+INSERT INTO description VALUES (2,10,"'Doghouse Roof'\nYou climb to the top of the small building and look down. Under you, in the doorway, is a sleeping dog bathing in the sun.'",1,5,2);
+INSERT INTO description VALUES (2,11,"'Doghouse Roof'\nYou climb to the top of the small building and look down. Under you, in the doorway, stands a dog growling loudly and staring you straight in the eye.'",1,5,2);
 
 
-INSERT INTO description VALUES (12,"color.BOLD + 'Western Yard' + color.END + '\nResting against fence there are a few berry bushes which at this time of the summer, are heavy with berries of different shapes and colors. The ground is filled with half-eaten cherries probably eaten by the birds who often rest on the two trees planted in the yard.'",1,3,2);
-INSERT INTO description VALUES (13,"color.BOLD + 'Center Yard' + color.END + '\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",2,3,2);
-INSERT INTO description VALUES (14,"color.BOLD + 'Center Yard' + color.END + '\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",3,3,2);
-INSERT INTO description VALUES (15,"color.BOLD + 'Eastern Yard' + color.END + '\nThis part of the garden has been turned into a flowerbed with tulips, roses and other flowers in all colors of the rainbow.'",4,3,2);
+INSERT INTO description VALUES (2,12,"'Western Yard'\nResting against fence there are a few berry bushes which at this time of the summer, are heavy with berries of different shapes and colors. The ground is filled with half-eaten cherries probably eaten by the birds who often rest on the two trees planted in the yard.'",1,3,2);
+INSERT INTO description VALUES (2,13,"'Center Yard'\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",2,3,2);
+INSERT INTO description VALUES (2,14,"'Center Yard'\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",3,3,2);
+INSERT INTO description VALUES (2,15,"'Eastern Yard'\nThis part of the garden has been turned into a flowerbed with tulips, roses and other flowers in all colors of the rainbow.'",4,3,2);
 
-INSERT INTO description VALUES (16,"color.BOLD + 'South-Western Yard' + color.END + '\nOnly grass and some weeds growing from the gaps in the fence. You can hear some car noises coming from the other side of the fence.'",1,4,2);
-INSERT INTO description VALUES (17,"color.BOLD + 'Southern Yard' + color.END + '\nThis is where the fences end on both sides and in front of you, separating backyard from the street , stands a gate. Although the gate itself would be hard to open, under the gate is small gap you just might be able to get through.'",2,4,2);
-INSERT INTO description VALUES (18,"color.BOLD + 'Southern Yard' + color.END + '\nAlong the fence rises a large maple whose branches stretch over the yard fences and cover the most of the southern part of the backyard. It has already dropped a lot of its leaves on the ground. This might be its last summer. You can hear some car noises coming from the other side of the fence.'",3,4,2);
-INSERT INTO description VALUES (19,"color.BOLD + 'South-Eastern Yard' + color.END + '\nOnly grass and some weeds growing from the gaps in the fence. You can hear some car noises coming from the other side of the fence.'",4,4,2);
+INSERT INTO description VALUES (2,16,"'South-Western Yard'\nOnly grass and some weeds growing from the gaps in the fence. You can hear some car noises coming from the other side of the fence.'",1,4,2);
+INSERT INTO description VALUES (2,17,"'Southern Yard'\nThis is where the fences end on both sides and in front of you, separating backyard from the street , stands a gate. Although the gate itself would be hard to open, under the gate is small gap you just might be able to get through.'",2,4,2);
+INSERT INTO description VALUES (2,18,"'Southern Yard'\nAlong the fence rises a large maple whose branches stretch over the yard fences and cover the most of the southern part of the backyard. It has already dropped a lot of its leaves on the ground. This might be its last summer. You can hear some car noises coming from the other side of the fence.'",3,4,2);
+INSERT INTO description VALUES (2,19,"'South-Eastern Yard'\nOnly grass and some weeds growing from the gaps in the fence. You can hear some car noises coming from the other side of the fence.'",4,4,2);
 
-INSERT INTO description VALUES (21,"color.BOLD + 'GAME OVER' + color.END + '\nYou squeeze through the gap and to the sidewalk. Suddenly, you see someone walking towards you. Unfortunately, you have no time to react and a foot crushes you against the pavement.'",2,5,2);
-INSERT INTO description VALUES (22,"color.BOLD + 'Branch' + color.END + '\nYou proceed to the branch. Even though the rest of the tree seems frail, the branch feels sturdy and well. Under you is a street with a sidewalk on both sides.'",3,5,2);
-INSERT INTO description VALUES (23,"color.BOLD + 'GAME OVER' + color.END + '\nThe man starts moving and your grasp ends up not being tight enough. You fall right under the man’s foot and get crushed by its weight.'",4,5,2);
+INSERT INTO description VALUES (2,21,"'GAME OVER'\nYou squeeze through the gap and to the sidewalk. Suddenly, you see someone walking towards you. Unfortunately, you have no time to react and a foot crushes you against the pavement.'",2,5,2);
+INSERT INTO description VALUES (2,22,"'Branch'\nYou proceed to the branch. Even though the rest of the tree seems frail, the branch feels sturdy and well. Under you is a street with a sidewalk on both sides.'",3,5,2);
+INSERT INTO description VALUES (2,23,"'GAME OVER'\nThe man starts moving and your grasp ends up not being tight enough. You fall right under the man’s foot and get crushed by its weight.'",4,5,2);
 

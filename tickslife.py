@@ -8,10 +8,26 @@ class direction(Enum):
 	WEST = 2
 	EAST = 3
 
-db = mysql.connector.connect(host="localhost",
-                      user="dbuser",
-                      password="dbpass",
-                      db="tickslife")
+class node:
+	neighbors = []
+	def __init__(self, X, Y, lvl, routeToMe):
+		self.X = X
+		self.Y = Y
+		self.lvl = lvl
+		self.routeToMe = routeToMe # if this is null im the first one
+
+	def __str__(self):
+		return str(self.__dict__)
+
+	def __eq__(self, other):
+		return self.__dict__ == other.__dict__
+
+db = mysql.connector.connect(
+	host="localhost",
+	user="dbuser",
+	password="dbpass",
+	db="tickslife"
+)
 
 def climbDrop():
 	#merja
@@ -25,11 +41,103 @@ def smell():
 	#merja
 	return
 
-def distanceToAnimal(X,Y,lvl):
-	#antti
-	distance = sys.maxint
+def fillOpenSetA(X,Y,lvl):
+	cur = db.cursor()
+	openSet = []
+	sql = "SELECT X,Y,level FROM tick WHERE X = "+str(X)+" and Y ="+str(Y)" and level = "+str(lvl)";"
+	cur.execute(sql)
+	for row in cur.fetchall():
+		x = row[0]
+		y = row[1]
+		level = row[2]
+	openSet.append(node(x,y,level,none))
+	return openSet
 
-	return distance
+def containsAnimal(X,Y,lvl): #returns true or false if 
+	cur = db.cursor()
+	openSet = []
+	sql = "SELECT X,Y,level FROM tick WHERE X = "+str(X)+" and Y ="+str(Y)" and level = "+str(lvl)";"
+	cur.execute(sql)
+	for row in cur.fetchall():
+		x = row[0]
+		y = row[1]
+		level = row[2]
+	if 
+		return true
+	else: 
+		return false
+
+def getNeighboursA(closedSet, nodeFrom):
+	cur = db.cursor()
+	neighbors = []
+	sql = "SELECT X,Y,level FROM tick WHERE X = "+str(nodeFrom.X-1)+" and Y ="+str(nodeFrom.Y)" and level = "+str(lvl)";"
+	try:
+		cur.execute(sql)
+		for row in cur.fetchall():
+			x = row[0]
+			y = row[1]
+			level = row[2]
+		newNode = node(x,y,nodeFrom.lvl,nodeFrom)
+		if newNode not in closedSet:
+			neighbors.append(newNode)
+		else 
+			continue
+
+	except err.IntegrityError:
+		continue
+	sql = "SELECT X,Y,level FROM tick WHERE X = "+str(nodeFrom.X+1)+" and Y ="+str(nodeFrom.Y)" and level = "+str(lvl)";"
+	try:
+		cur.execute(sql)
+		for row in cur.fetchall():
+			x = row[0]
+			y = row[1]
+			level = row[2]
+		newNode = node(x,y,nodeFrom.lvl,nodeFrom)
+		if newNode not in closedSet:
+			neighbors.append(newNode)
+		else 
+			continue
+
+	except err.IntegrityError:
+		continue
+	sql = "SELECT X,Y,level FROM tick WHERE X = "+str(nodeFrom.X)+" and Y ="+str(nodeFrom.Y-1)" and level = "+str(lvl)";"	try:
+		cur.execute(sql)
+		for row in cur.fetchall():
+			x = row[0]
+			y = row[1]
+			level = row[2]
+		newNode = node(x,y,nodeFrom.lvl,nodeFrom)
+		if newNode not in closedSet:
+			neighbors.append(newNode)
+		else 
+			continue
+
+	except err.IntegrityError:
+		continue
+	sql = "SELECT X,Y,level FROM tick WHERE X = "+str(nodeFrom.X)+" and Y ="+str(nodeFrom.Y+1)" and level = "+str(lvl)";"
+	try:
+		cur.execute(sql)
+		for row in cur.fetchall():
+			x = row[0]
+			y = row[1]
+			level = row[2]
+		newNode = node(x,y,nodeFrom.lvl,nodeFrom)
+		if newNode not in closedSet:
+			neighbors.append(newNode)
+		else 
+			continue
+
+	except err.IntegrityError:
+		continue
+	return neighbors
+
+def distanceToAnimalA(X,Y,lvl): # return integer value of how many steps it takes to find nearest animal
+	return
+
+def pathReconstructA(closedSet):
+	for X in closedSet
+		X.
+	return route[]
 
 def directionToAnimal(X,Y,lvl):
 	#antti
@@ -47,9 +155,35 @@ def moveInAnimal(direction):
 	#antti
 	return
 
+#
+def possibleMovementsInAnimal():
+	possibleMovements = []
+	cur = db.cursor()
+	sql = "SELECT locationInAnimal.name FROM tick INNER JOIN route \
+	ON tick.locationID = route.locationID AND tick.animalID = route.animalID\
+	INNER JOIN locationInAnimal ON locationInAnimal.locationID = route.locationToID;"
+	cur.execute(sql)
+	for row in cur.fetchall():
+		possibleMovements.append(row[0])
+	return possibleMovements
+
 def animalMove():
 	#antti
 	return
+
+def isTickVulnerable():
+	cur = db.cursor()
+	sql = "SELECT description.color FROM tick INNER JOIN tile\
+	ON tick.X = tile.X AND tick.Y = tile.Y AND tick.level = tile.level\
+	INNER JOIN description\
+	ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
+	cur.execute(sql)
+	for row in cur.fetchall():
+
+	if asd:
+		return true
+	else:
+		return false
 
 def IsTickInAnimal():
 	#antti
