@@ -1,33 +1,15 @@
 import mysql.connector
 import mysql.connector.errors as err
-from enum import Enum
 
-class direction(Enum):
-	NORTH = 0
-	SOUTH = 1
-	WEST = 2
-	EAST = 3
 
-class node:
-	neighbors = []
-	def __init__(self, X, Y, lvl, routeToMe):
-		self.X = X
-		self.Y = Y
-		self.lvl = lvl
-		self.routeToMe = routeToMe # if this is null im the first one
-
-	def __str__(self):
-		return str(self.__dict__)
-
-	def __eq__(self, other):
-		return self.__dict__ == other.__dict__
 
 db = mysql.connector.connect(
-	host="localhost",
-	user="dbuser",
-	password="dbpass",
-	db="tickslife"
+    host="localhost",
+    user="dbuser",
+    password="dbpass",
+    db="tickslife"
 )
+
 
 def drop():
     cur = db.cursor()
@@ -70,103 +52,8 @@ def smell():
         print("There is no smell of prey here.")
     return 
 
-def fillOpenSetA(X,Y,lvl):
-	cur = db.cursor()
-	openSet = []
-	sql = "SELECT X,Y,level FROM tick WHERE X = "+str(X)+" and Y ="+str(Y)" and level = "+str(lvl)";"
-	cur.execute(sql)
-	for row in cur.fetchall():
-		x = row[0]
-		y = row[1]
-		level = row[2]
-	openSet.append(node(x,y,level,none))
-	return openSet
-
-def containsAnimal(X,Y,lvl): #returns true or false if 
-	cur = db.cursor()
-	openSet = []
-	sql = "SELECT X,Y,level FROM tick WHERE X = "+str(X)+" and Y ="+str(Y)" and level = "+str(lvl)";"
-	cur.execute(sql)
-	for row in cur.fetchall():
-		x = row[0]
-		y = row[1]
-		level = row[2]
-	if 
-		return true
-	else: 
-		return false
-
-def getNeighboursA(closedSet, nodeFrom):
-	cur = db.cursor()
-	neighbors = []
-	sql = "SELECT X,Y,level FROM tick WHERE X = "+str(nodeFrom.X-1)+" and Y ="+str(nodeFrom.Y)" and level = "+str(lvl)";"
-	try:
-		cur.execute(sql)
-		for row in cur.fetchall():
-			x = row[0]
-			y = row[1]
-			level = row[2]
-		newNode = node(x,y,nodeFrom.lvl,nodeFrom)
-		if newNode not in closedSet:
-			neighbors.append(newNode)
-		else 
-			continue
-
-	except err.IntegrityError:
-		continue
-	sql = "SELECT X,Y,level FROM tick WHERE X = "+str(nodeFrom.X+1)+" and Y ="+str(nodeFrom.Y)" and level = "+str(lvl)";"
-	try:
-		cur.execute(sql)
-		for row in cur.fetchall():
-			x = row[0]
-			y = row[1]
-			level = row[2]
-		newNode = node(x,y,nodeFrom.lvl,nodeFrom)
-		if newNode not in closedSet:
-			neighbors.append(newNode)
-		else 
-			continue
-
-	except err.IntegrityError:
-		continue
-	sql = "SELECT X,Y,level FROM tick WHERE X = "+str(nodeFrom.X)+" and Y ="+str(nodeFrom.Y-1)" and level = "+str(lvl)";"	try:
-		cur.execute(sql)
-		for row in cur.fetchall():
-			x = row[0]
-			y = row[1]
-			level = row[2]
-		newNode = node(x,y,nodeFrom.lvl,nodeFrom)
-		if newNode not in closedSet:
-			neighbors.append(newNode)
-		else 
-			continue
-
-	except err.IntegrityError:
-		continue
-	sql = "SELECT X,Y,level FROM tick WHERE X = "+str(nodeFrom.X)+" and Y ="+str(nodeFrom.Y+1)" and level = "+str(lvl)";"
-	try:
-		cur.execute(sql)
-		for row in cur.fetchall():
-			x = row[0]
-			y = row[1]
-			level = row[2]
-		newNode = node(x,y,nodeFrom.lvl,nodeFrom)
-		if newNode not in closedSet:
-			neighbors.append(newNode)
-		else 
-			continue
-
-	except err.IntegrityError:
-		continue
-	return neighbors
-
 def distanceToAnimalA(X,Y,lvl): # return integer value of how many steps it takes to find nearest animal
 	return
-
-def pathReconstructA(closedSet):
-	for X in closedSet
-		X.
-	return route[]
 
 def directionToAnimal(X,Y,lvl):
 	#antti
@@ -215,11 +102,12 @@ def isTickVulnerable():
 		return false
 
 def IsTickInAnimal():
+
 	#antti
-	if asd:
-		return true
-	else:
-		return false
+	#if asd:
+		#return true
+	#else:
+		#return false
 
 def endOfTurn():
 	BLUE1 = "\033[94m"
@@ -231,10 +119,10 @@ def endOfTurn():
 	sql = "SELECT description, color FROM description INNER JOIN tick ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
 	cur.execute(sql)
 	for row in cur.fetchall():
-		if row[1] == 2:
-			print(GREEN2)
+                if row[1] == 2:
+                        print(GREEN2)
 		elif row[1] == 3:
-			print(BROWN3)
+                        print(BROWN3)
 		print(row[0])
 	print(ENDC4)
 	return 
@@ -249,7 +137,6 @@ def tickMove(direction):
 		y = row[1]
 		level = row[2]
 		time = row[3]
-	#if x != asd and y != asd and lvl != asd: #joonatan
 	if direction == "north":
 		sql = "UPDATE tick SET Y = "+str(y-1)+";"
 	if direction == "south":
@@ -260,15 +147,41 @@ def tickMove(direction):
 		sql = "UPDATE tick SET X = "+str(x+1)+";"
 	if direction == "still":
 		sql = "UPDATE tick SET timeVisible = "+str(time+1)+";"
+	if direction == "down" and y == 100:
+		if x == 100 and level == 2:
+			sql = "UPDATE tick SET X = 1, Y = 2;"
+		if x == 200 and level == 2:
+			sql = "UPDATE tick SET X = 3, Y = 4;"
+		if x == 300 and level == 2:
+			sql = "UPDATE tick SET X = 4, Y = 2;"
+		if x == 100 and level == 3:
+			sql = "UPDATE tick SET X = 1, Y = 1;"
+		if x == 200 and level == 3:
+			sql = "UPDATE tick SET X = 2, Y = 2;"
+		if x == 300 and level == 3:
+			sql = "UPDATE tick SET X = 3, Y = 3;"
+		if x == 100 and level == 4:
+			sql = "UPDATE tick SET X = 5, Y = 4;"
+	if direction == "climb":
+		if x == 1 and y == 2 and level == 2:
+			sql = "UPDATE tick SET X = 100, Y = 100;"
+		if x == 3 and y == 4 and level == 2:
+			sql = "UPDATE tick SET X = 200, Y = 100;"
+		if x == 4 and y == 2 and level == 2:
+			sql = "UPDATE tick SET X = 300, Y = 100;"
+		if x == 1 and y == 1 and level == 3:
+			sql = "UPDATE tick SET X = 100, Y = 100;"
+		if x == 2 and y == 2 and level == 3:
+			sql = "UPDATE tick SET X = 200, Y = 100;"
+		if x == 3 and y == 3 and level == 3:
+			sql = "UPDATE tick SET X = 300, Y = 100;"
+		if x == 2 and y == 5 and level == 4:
+			sql = "UPDATE tick SET X = 100, Y = 100;"
 	try:
 		cur.execute(sql)
 	except err.IntegrityError:
 		print("You can't go there")
 	return
-	#else: #joonatan
-	#	if direction == "climb":
-	#		sql = "UPDATE tick SET X = ;"
-	#	return
 
 cmd = ""
 
@@ -296,6 +209,8 @@ while cmd != 'exit':
 			tickMove("west")
 		elif command[1] == "east" or command[1] == "e" or command[1] == "E":
 			tickMove("east")
+		elif command[1] == "down":
+			tickMove("down")
 		else:#error message when go commands parameter is wrong
 			print("")
 			print("-- ", end = "")
@@ -309,6 +224,8 @@ while cmd != 'exit':
 	if command[0] == "help":
 		print("possible commands:")
 		print("go")
+	if command [0] == "climb":
+		tickMove("climb")
 
 	print(" --- ")
 
