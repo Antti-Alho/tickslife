@@ -8,6 +8,32 @@ class direction(Enum):
     WEST = 2
     EAST = 3
 
+class animalDirection(Enum):
+    Head = 1
+    neck = 2
+    rightArmpit = 3
+    leftArmpit = 4
+    rightArm = 5
+    leftArm = 6
+    rightHand = 7
+    leftHand = 8
+    chest = 9
+    stomach = 10
+    back = 11
+    rightSide = 12
+    leftSide = 13
+    groin = 14
+    rightThig = 15
+    leftThig = 16
+    rightKnee = 17
+    leftKnee = 18
+    rightHam = 19
+    leftHam = 20
+    rightCalf = 21
+    leftCalf = 22
+    rightFoot = 23
+    leftFoot = 24
+
 db = mysql.connector.connect(
     host="localhost",
     user="dbuser",
@@ -17,7 +43,8 @@ db = mysql.connector.connect(
 
 def climbAnimal(): #
     cur = db.cursor()
-    sql = "SELECT animalID FROM animal INNER JOIN tick ON animal.X = tick.X AND animal.Y = tick.Y AND animal.level = tick.level;"
+    sql = "SELECT animalID FROM animal INNER JOIN tick \
+    ON animal.X = tick.X AND animal.Y = tick.Y AND animal.level = tick.level;"
     cur.execute(sql)
     for row in cur.fetchall():
         animalID = row[0]
@@ -38,13 +65,14 @@ def inspect():
             print("The skin here is too thick. Find another body part for biting!")
     return
 
-def distanceToNearestAnimal(X,Y,lvl): 
+def distanceToNearestAnimal(): 
+    distance = sys.maxsize
     cur = db.cursor()
-    sql = "SELECT"
+    sql = "SELECT "
     cur.execute(sql)
     return
 
-def directionToNearestAnimal(X,Y,lvl):
+def directionToNearestAnimal():
     return 
 
 def smell():
@@ -65,15 +93,6 @@ def smell():
     else:
         print("There is no smell of prey here.")
     return
-
-def containsAnimal(X,Y,lvl): #returns true or false if 
-    cur = db.cursor()
-    sql = "SELECT animal.X,animal.Y,animal.level FROM animal WHERE X = "+str(X)+" and Y ="+str(Y)+" and level = "+str(lvl)+";"
-    cur.execute(sql)
-    if cur.rowcount > 0:
-        return true
-    else: 
-        return false
 
 def containsAnimal(): 
     cur = db.cursor()
