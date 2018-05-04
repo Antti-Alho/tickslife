@@ -2,21 +2,57 @@ import mysql.connector
 import mysql.connector.errors as err
 
 
-db = mysql.connector.connect(host="localhost",
-					  user="dbuser",
-					  password="dbpass",
-					  db="tickslife")
 
-def climbDrop():
-	#merja
-	return
+db = mysql.connector.connect(
+    host="localhost",
+    user="dbuser",
+    password="dbpass",
+    db="tickslife"
+)
+
+
+def drop():
+    cur = db.cursor()
+    sql = "SELECT animalID FROM animal INNER JOIN tick ON animal.X = tick.X AND animal.Y = tick.Y AND animal.level = tick.level;"
+    cur.execute(sql)
+    for row in cur.fetchall():
+        animalID = row[0]
+    if cur.rowcount>=1:
+        sql = "UPDATE tick SET locationID = 1, animalID = " + str(animalID) + ";" 
+     :   cur.execute(sql)
+    return
 
 def inspect():
-	#merja
-	return
+    cur = db.cursor()
+    sql = "SELECT skinThickness FROM locationInAnimal INNER JOIN tick ON locationInAnimal.locationID=tick.locationID;"
+    cur.execute(sql)
+    for row in cur.fetchall():
+        if row[0]==1:
+            print("The skin here is thin and smoothy. You can bite!")
+        else:
+            print("The skin here is too thick. Find another body part for biting!")
+    return
 
 def smell():
-	#merja
+    cur = db.cursor()
+    sql = "SELECT X, Y, level FROM tick;"
+    cur.execute(sql)
+    for row in cur.fetchall():
+        X = row[0]
+        Y = row[1]
+        level = row[2]
+    distance = distanceToAnimal(X, Y, level)
+    if distance == 2:
+        print("The smell of prey here is weak.")
+    elif distance == 1:
+        print("The smell of prey here is medium.")
+    elif distance == 0:
+        print("The smell of prey is strong!")
+    else:
+        print("There is no smell of prey here.")
+    return 
+
+def distanceToAnimalA(X,Y,lvl): # return integer value of how many steps it takes to find nearest animal
 	return
 
 def directionToAnimal(X,Y,lvl):
@@ -35,11 +71,38 @@ def moveInAnimal(direction):
 	#antti
 	return
 
+#
+def possibleMovementsInAnimal():
+	possibleMovements = []
+	cur = db.cursor()
+	sql = "SELECT locationInAnimal.name FROM tick INNER JOIN route \
+	ON tick.locationID = route.locationID AND tick.animalID = route.animalID\
+	INNER JOIN locationInAnimal ON locationInAnimal.locationID = route.locationToID;"
+	cur.execute(sql)
+	for row in cur.fetchall():
+		possibleMovements.append(row[0])
+	return possibleMovements
+
 def animalMove():
 	#antti
 	return
 
-#def IsTickInAnimal():
+def isTickVulnerable():
+	cur = db.cursor()
+	sql = "SELECT description.color FROM tick INNER JOIN tile\
+	ON tick.X = tile.X AND tick.Y = tile.Y AND tick.level = tile.level\
+	INNER JOIN description\
+	ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
+	cur.execute(sql)
+	for row in cur.fetchall():
+
+	if asd:
+		return true
+	else:
+		return false
+
+def IsTickInAnimal():
+
 	#antti
 	#if asd:
 		#return true
