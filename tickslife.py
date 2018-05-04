@@ -2,6 +2,13 @@ import mysql.connector
 import mysql.connector.errors as err
 from enum import Enum
 
+db = mysql.connector.connect(
+        host="localhost",
+        user="dbuser",
+        password="dbpass",
+        db="tickslife")
+storycount = 1
+
 class direction(Enum):
     NORTH = 0
     SOUTH = 1
@@ -34,14 +41,8 @@ class animalDirection(Enum):
     rightFoot = 23
     leftFoot = 24
 
-db = mysql.connector.connect(
-    host="localhost",
-    user="dbuser",
-    password="dbpass",
-    db="tickslife"
-)
 
-def climbAnimal(): #
+def climbAnimal():
     cur = db.cursor()
     sql = "SELECT animalID FROM animal INNER JOIN tick \
     ON animal.X = tick.X AND animal.Y = tick.Y AND animal.level = tick.level;"
@@ -92,7 +93,7 @@ def smell():
         print("The smell of prey is strong!")
     else:
         print("There is no smell of prey here.")
-    return
+    return 
 
 def containsAnimal(): 
     cur = db.cursor()
@@ -105,8 +106,17 @@ def containsAnimal():
         return false
 
 def printNextStory():
-    #joonatan
-    return
+    cur = db.cursor()
+    sql = "SELECT storyID, description FROM story;"
+    cur.execute
+    for row in cur.fetchall():
+        storyID = row[0]
+        story = row[1]
+        if storyID == storycount:
+            print(story)
+            storycount += 1
+            
+	return
 
 def bite():
     #joonatan

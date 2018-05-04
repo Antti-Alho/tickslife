@@ -96,8 +96,12 @@ CREATE TABLE route
 
 CREATE TABLE story
 (
-  storyID INT NOT NULL,
-  description VARCHAR(1000) NOT NULL
+  description VARCHAR(1000) NOT NULL,
+  X INT NOT NULL,
+  Y INT NOT NULL,
+  level INT NOT NULL,
+  PRIMARY KEY (level),
+  FOREIGN KEY (X,Y,level) REFERENCES tile(X,Y,level)
 ); 
 
 #lvl1
@@ -859,6 +863,8 @@ INSERT INTO animalRoute VALUES (26,7,4,5,4);
 INSERT INTO animalRoute VALUES (27,7,4,4,4);
 INSERT INTO animalRoute VALUES (28,7,3,4,4);
 
+INSERT INTO animalRoute VALUES (29,7,3,4,4);
+
 #tileObstacle description, startx, starty, startlvl, endx, endy, endlvl
 INSERT INTO tileObstacle VALUES ("You decide not to climb over the stone in your way. It would take too much effort.",2,4,2,3,4,2);
 INSERT INTO tileObstacle VALUES ("You decide not to climb over the stone in your way. It would take too much effort.",3,4,2,2,4,2);
@@ -872,8 +878,11 @@ INSERT INTO tileObstacle VALUES ("There is a banana peel on the ground! it's so 
 INSERT INTO tileObstacle VALUES ("don't go into the doghouse",4,1,2,4,2,2);
 INSERT INTO tileObstacle VALUES ("you can't jump from the roof of the doghouse its too highdon't go into the doghouse",4,2,2,4,1,2);
 
-INSERT INTO tick VALUES (1,0,NULL,NULL,NULL,5,5,1);
+INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",1,4,2,1,5,2);
+INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",3,4,2,3,5,2);
+INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",4,4,2,4,5,2);
 
+INSERT INTO tick VALUES (1,0,NULL,NULL,NULL,5,5,1);
 
 #lvl1 color, descriptions id, string, x, y, lvl
 INSERT INTO description VALUES (2,1,"You are in a forest near a shore. A few leafy trees are growing around. If you look to the right, the forest looks grassy.",1,1,1);
