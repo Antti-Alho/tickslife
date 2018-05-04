@@ -1,23 +1,12 @@
 import mysql.connector
 import mysql.connector.errors as err
 
-
-<<<<<<< HEAD
 db = mysql.connector.connect(
         host="localhost",
         user="dbuser",
         password="dbpass",
         db="tickslife")
-=======
->>>>>>> 8e4164e211b3e9e4cb15b547eb8917475369256a
-
-db = mysql.connector.connect(
-    host="localhost",
-    user="dbuser",
-    password="dbpass",
-    db="tickslife"
-)
-
+storycount = 1
 
 def drop():
     cur = db.cursor()
@@ -60,7 +49,7 @@ def smell():
         print("There is no smell of prey here.")
     return 
 
-def distanceToAnimalA(X,Y,lvl): # return integer value of how many steps it takes to find nearest animal
+def distanceToAnimal(X,Y,lvl): # return integer value of how many steps it takes to find nearest animal
 	return
 
 def directionToAnimal(X,Y,lvl):
@@ -68,8 +57,18 @@ def directionToAnimal(X,Y,lvl):
 	return 
 
 def printNextStory():
-	#joonatan
+    cur = db.cursor()
+    sql = "SELECT storyID, description FROM story;"
+    cur.execute
+    for row in cur.fetchall():
+        storyID = row[0]
+        story = row[1]
+        if storyID == storycount:
+            print(story)
+            storycount += 1
+            
 	return
+
 
 def bite():
 	#joonatan
