@@ -15,7 +15,7 @@ db = mysql.connector.connect(
     db="tickslife"
 )
 
-def drop():
+def climbAnimal(): #
     cur = db.cursor()
     sql = "SELECT animalID FROM animal INNER JOIN tick ON animal.X = tick.X AND animal.Y = tick.Y AND animal.level = tick.level;"
     cur.execute(sql)
@@ -38,7 +38,7 @@ def inspect():
             print("The skin here is too thick. Find another body part for biting!")
     return
 
-def distanceToNearestAnimalA(X,Y,lvl): 
+def distanceToNearestAnimal(X,Y,lvl): 
     cur = db.cursor()
     sql = "SELECT"
     cur.execute(sql)
@@ -112,7 +112,7 @@ def animalMove():
     #antti
     return
 
-def isTickVulnerable():
+def isTickVisible():
     cur = db.cursor()
     sql = "SELECT description.color FROM tick INNER JOIN tile\
     ON tick.X = tile.X AND tick.Y = tile.Y AND tick.level = tile.level\
@@ -126,7 +126,6 @@ def isTickVulnerable():
             return false
 
 def IsTickInAnimal():
-    #antti
     if asd:
         return true
     else:
@@ -160,7 +159,6 @@ def tickMove(direction):
         y = row[1]
         level = row[2]
         time = row[3]
-    #if x != asd and y != asd and lvl != asd: #joonatan
     if direction == "north":
         sql = "UPDATE tick SET Y = "+str(y-1)+";"
     if direction == "south":
@@ -171,15 +169,41 @@ def tickMove(direction):
         sql = "UPDATE tick SET X = "+str(x+1)+";"
     if direction == "still":
         sql = "UPDATE tick SET timeVisible = "+str(time+1)+";"
+    if direction == "down" and y == 100:
+        if x == 100 and level == 2:
+            sql = "UPDATE tick SET X = 1, Y = 2;"
+        if x == 200 and level == 2:
+            sql = "UPDATE tick SET X = 3, Y = 4;"
+        if x == 300 and level == 2:
+            sql = "UPDATE tick SET X = 4, Y = 2;"
+        if x == 100 and level == 3:
+            sql = "UPDATE tick SET X = 1, Y = 1;"
+        if x == 200 and level == 3:
+            sql = "UPDATE tick SET X = 2, Y = 2;"
+        if x == 300 and level == 3:
+            sql = "UPDATE tick SET X = 3, Y = 3;"
+        if x == 100 and level == 4:
+            sql = "UPDATE tick SET X = 5, Y = 4;"
+    if direction == "climb":
+        if x == 1 and y == 2 and level == 2:
+            sql = "UPDATE tick SET X = 100, Y = 100;"
+        if x == 3 and y == 4 and level == 2:
+            sql = "UPDATE tick SET X = 200, Y = 100;"
+        if x == 4 and y == 2 and level == 2:
+            sql = "UPDATE tick SET X = 300, Y = 100;"
+        if x == 1 and y == 1 and level == 3:
+            sql = "UPDATE tick SET X = 100, Y = 100;"
+        if x == 2 and y == 2 and level == 3:
+            sql = "UPDATE tick SET X = 200, Y = 100;"
+        if x == 3 and y == 3 and level == 3:
+            sql = "UPDATE tick SET X = 300, Y = 100;"
+        if x == 2 and y == 5 and level == 4:
+            sql = "UPDATE tick SET X = 100, Y = 100;"
     try:
         cur.execute(sql)
     except err.IntegrityError:
         print("You can't go there")
     return
-    #else: #joonatan
-    #   if direction == "climb":
-    #       sql = "UPDATE tick SET X = ;"
-    #   return
 
 cmd = ""
 
