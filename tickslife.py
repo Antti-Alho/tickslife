@@ -9,6 +9,8 @@ db = mysql.connector.connect(
         password="dbpass",
         db="tickslife")
 
+cmd = ""
+
 class direction(Enum):
     NORTH = 0
     NE = 1
@@ -285,7 +287,12 @@ def endOfTurn():
     print(ENDC4)
     return
 
-def tickMove(direction):
+def printCurrentClimbOptions():
+    #tän saa tehdä jos haluaa!
+    print("asd")
+    return 
+
+def tickMove(direction, command = None):
     cur = db.cursor()
     sql = "SELECT X,Y,level,timeVisible FROM tick"
     cur.execute(sql)
@@ -321,29 +328,31 @@ def tickMove(direction):
         if x == 100 and level == 4:
             sql = "UPDATE tick SET X = 5, Y = 4;"
     if direction == "climb":
-        if x == 1 and y == 2 and level == 2 and command [1] == "tree":
-            sql = "UPDATE tick SET X = 100, Y = 100;"
-        if x == 3 and y == 4 and level == 2 and command [1] == "tree":
-            sql = "UPDATE tick SET X = 200, Y = 100;"
-        if x == 4 and y == 2 and level == 2 and command [1] == "doghouse" or command [1] == "house":
-            sql = "UPDATE tick SET X = 300, Y = 100;"
-        if x == 1 and y == 1 and level == 3 and command [1] == "window":
-            sql = "UPDATE tick SET X = 100, Y = 100;"
-        if x == 2 and y == 2 and level == 3 and command [1] == "table" or command [1] == "computer":
-            sql = "UPDATE tick SET X = 200, Y = 100;"
-        if x == 3 and y == 3 and level == 3 and command [1] == "basket" or command [1] == "laundry":
-            sql = "UPDATE tick SET X = 300, Y = 100;"
-        if x == 2 and y == 5 and level == 4 and command [1] == "bench":
-            sql = "UPDATE tick SET X = 100, Y = 100;"
+        try :
+            if x == 1 and y == 2 and level == 2 and command[1] == "tree":
+                sql = "UPDATE tick SET X = 100, Y = 100;"
+            if x == 3 and y == 4 and level == 2 and command[1] == "tree":
+                sql = "UPDATE tick SET X = 200, Y = 100;"
+            if x == 4 and y == 2 and level == 2 and command[1] == "doghouse" or command[1] == "house":
+                sql = "UPDATE tick SET X = 300, Y = 100;"
+            if x == 1 and y == 1 and level == 3 and command[1] == "window":
+                sql = "UPDATE tick SET X = 100, Y = 100;"
+            if x == 2 and y == 2 and level == 3 and command[1] == "table" or command[1] == "computer":
+                sql = "UPDATE tick SET X = 200, Y = 100;"
+            if x == 3 and y == 3 and level == 3 and command[1] == "basket" or command[1] == "laundry":
+                sql = "UPDATE tick SET X = 300, Y = 100;"
+            if x == 2 and y == 5 and level == 4 and command[1] == "bench":
+                sql = "UPDATE tick SET X = 100, Y = 100;"
+        except NullPointer:
+            print("where do you wan't to climb?")
+            printCurrentClimbOptions()
     try:
         cur.execute(sql)
     except err.IntegrityError:
         print("You can't go there!")
     return
-  
-cmd = ""
 
-while cmd != 'exit':
+def getCommand():
     cmd = input()
     command = []
     length = 0
@@ -354,6 +363,16 @@ while cmd != 'exit':
             command.append("")
         else:
             command[length] = command[length] + cmd[x]
+    return command
+
+while cmd != 'exit':
+    command = getCommand()
+#commands that do not change the game state go here
+    while command != "go" or command != "wait" or command != "climb":
+        command = getCommand()
+        if command[0] == "help":
+            print("possible commands:")
+            print("go")
 
 #go command
     if command[0] == "go" or command[0] == "move" or command[0] == "m":
@@ -379,12 +398,10 @@ while cmd != 'exit':
     if command[0] == "wait":
         tickMove("still")
 
-    if command[0] == "help":
-        print("possible commands:")
-        print("go")
+
 
     if command[0] == "climb" or command[0] == "c" or command[0] == "C":
-        tickMove("climb")
+        tickMove("climb", command)
 
     print(" --- ")
 
