@@ -1,5 +1,6 @@
 import mysql.connector
 import mysql.connector.errors as err
+from math import sqrt, pow
 from enum import Enum
 
 db = mysql.connector.connect(
@@ -10,10 +11,15 @@ db = mysql.connector.connect(
 
 class direction(Enum):
     NORTH = 0
-    SOUTH = 1
-    WEST = 2
-    EAST = 3
-    DOWN = 4
+
+    NW = 1
+    EAST = 2
+    SE = 3
+    SOUTH = 4
+    SW = 5
+    WEST = 6
+    NW = 7
+
 class animalDirection(Enum):
     Head = 1
     neck = 2
@@ -67,11 +73,76 @@ def inspect():
 def distanceToNearestAnimal(): 
     distance = sys.maxsize
     cur = db.cursor()
-    sql = "SELECT "
+    sql = "SELECT tick.X, tick.Y, tick.level FROM tick;"
     cur.execute(sql)
-    return
+    for row in cur.fetchall():
+        tickX = row[0]
+        tickY = row[1]
+        tickLevel = row[2]
+    sql = "SELECT animal.X, animal.Y, animal.level FROM animal WHERE tick.level = animal.level;"
+    animalX = []
+    animalY = []
+    animalLevel = []
+    n = 0
+    for row in cur.fetchall():
+        animalX[n] = row[0]
+        animalY[n] = row[1]
+        animalLevel[n] = row[2]
+        n += n
+    for i in range(len(animalX)):
+        newdist = sqrt(pow(animalX[i])+pow(animalY[i]))
+        if distance > newdist:
+            distance = newdist
+
+    return distance
+
+def nearestAnimal():
+    distance = sys.maxsize
+    nearestX = sys.maxsize
+    nearestY = sys.maxsize
+    cur = db.cursor()
+    sql = "SELECT tick.X, tick.Y, tick.level FROM tick;"
+    cur.execute(sql)
+    for row in cur.fetchall():
+        tickX = row[0]
+        tickY = row[1]
+        tickLevel = row[2]
+    sql = "SELECT animal.X, animal.Y, animal.level FROM animal WHERE tick.level = animal.level;"
+    animalX = []
+    animalY = []
+    animalLevel = []
+    n = 0
+    for row in cur.fetchall():
+        animalX[n] = row[0]
+        animalY[n] = row[1]
+        animalLevel[n] = row[2]
+        n += n
+    for i in range(len(animalX)):
+        newdist = sqrt(pow(animalX[i])+pow(animalY[i]))
+        if distance > newdist:
+            distance = newdist
+            nearestY = animalY[i]
+            nearestX = animalX[i]
+    tulos = [nearestX,nearestY]
+    return tulos
+
 
 def directionToNearestAnimal():
+    distance = distanceToNearestAnimal()
+    cur = db.cursor()
+    sql = "SELECT tick.X, tick.Y, tick.level FROM tick;"
+    cur.execute(sql)
+    for row in cur.fetchall():
+        tickX = row[0]
+        tickY = row[1]
+        tickLevel = row[2]
+    sql = "SELECT animal.X, animal.Y, animal.level FROM animal WHERE tick.level = animal.level;"
+    animalX = []
+    animalY = []
+    animalLevel = []
+    for i in range(len(animalX)):
+        if tickX > animalX
+
     return 
 
 def smell():
@@ -195,7 +266,7 @@ def endOfTurn():
             print(BROWN3)
         print(row[0])
     print(ENDC4)
-    return 
+    return
 
 def tickMove(direction):
     cur = db.cursor()
