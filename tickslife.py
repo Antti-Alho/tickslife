@@ -139,22 +139,22 @@ def directionToNearestAnimal():
     animalX = nearestAnimalXY[0]
     animalY = nearestAnimalXY[1]
     for i in range(len(animalX)):
+        if tickX == animalX and tickY < animalY:
+            print("and comes from north")
+        if tickX < animalX and tickY < animalY:
+            print("and comes from northeast")
+        if tickX < animalX and tickY == animalY:
+            print("and comes from east")
+        if tickX < animalX and tickY > animalY:
+            print("and comes from southeast")
+        if tickX == animalX and tickY > animalY:
+            print("and comes from south")
         if tickX > animalX and tickY > animalY:
-            print("and comes from northwest") 
+            print("and comes from southwest")
         if tickX > animalX and tickY == animalY:
             print("and comes from west")
-        if tickX > animalX and tickY == animalY:
-            print("and comes from west")
-        if tickX > animalX and tickY == animalY:
-            print("and comes from west")
-        if tickX > animalX and tickY == animalY:
-            print("and comes from west")
-        if tickX > animalX and tickY == animalY:
-            print("and comes from west")
-        if tickX > animalX and tickY == animalY:
-            print("and comes from west")
-        if tickX > animalX and tickY == animalY:
-            print("and comes from west")
+        if tickX > animalX and tickY < animalY:
+            print("and comes from northwest")
         if tickX == animalX and tickY == animalY:
             print("and you are pretty sure you could try to grab the animal")
     return 
@@ -178,6 +178,7 @@ def smell():
         print("The smell of prey is strong!")
     else:
         print("There is no smell of prey here.")
+    directionToNearestAnimal()
     return
 
 def containsAnimal(): 
