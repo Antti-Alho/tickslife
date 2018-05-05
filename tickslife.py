@@ -5,7 +5,7 @@ from enum import Enum
 
 class direction(Enum):
     NORTH = 0
-    NW = 1
+    NE = 1
     EAST = 2
     SE = 3
     SOUTH = 4
@@ -126,9 +126,9 @@ def nearestAnimal():
     tulos = [nearestX,nearestY]
     return tulos
 
-
 def directionToNearestAnimal():
     distance = distanceToNearestAnimal()
+    nearestAnimalXY = nearestAnimal()
     cur = db.cursor()
     sql = "SELECT tick.X, tick.Y, tick.level FROM tick;"
     cur.execute(sql)
@@ -136,13 +136,27 @@ def directionToNearestAnimal():
         tickX = row[0]
         tickY = row[1]
         tickLevel = row[2]
-    sql = "SELECT animal.X, animal.Y, animal.level FROM animal WHERE tick.level = animal.level;"
-    animalX = []
-    animalY = []
-    animalLevel = []
+    animalX = nearestAnimalXY[0]
+    animalY = nearestAnimalXY[1]
     for i in range(len(animalX)):
-        if tickX > animalX
-
+        if tickX > animalX and tickY > animalY:
+            print("and comes from northwest") 
+        if tickX > animalX and tickY == animalY:
+            print("and comes from west")
+        if tickX > animalX and tickY == animalY:
+            print("and comes from west")
+        if tickX > animalX and tickY == animalY:
+            print("and comes from west")
+        if tickX > animalX and tickY == animalY:
+            print("and comes from west")
+        if tickX > animalX and tickY == animalY:
+            print("and comes from west")
+        if tickX > animalX and tickY == animalY:
+            print("and comes from west")
+        if tickX > animalX and tickY == animalY:
+            print("and comes from west")
+        if tickX == animalX and tickY == animalY:
+            print("and you are pretty sure you could try to grab the animal")
     return 
 
 def smell():
@@ -155,9 +169,11 @@ def smell():
         level = row[2]
     distance = distanceToAnimal(X, Y, level)
     if distance == 2:
-        print("The smell of prey here is weak.")
+        print("The smell of prey is weak.")
+    elif distance == sqrt(2):
+        print("the smell of pray is weak.")
     elif distance == 1:
-        print("The smell of prey here is medium.")
+        print("The smell of prey is medium.")
     elif distance == 0:
         print("The smell of prey is strong!")
     else:
