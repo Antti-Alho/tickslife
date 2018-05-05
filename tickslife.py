@@ -14,7 +14,7 @@ class direction(Enum):
     SOUTH = 1
     WEST = 2
     EAST = 3
-
+    DOWN = 4
 class animalDirection(Enum):
     Head = 1
     neck = 2
@@ -107,16 +107,11 @@ def containsAnimal():
 
 def printNextStory():
     cur = db.cursor()
-    sql = "SELECT storyID, description FROM story;"
+    sql = "SELECT description FROM story INNER JOIN tick ON story.level = tick.level;"
     cur.execute
     for row in cur.fetchall():
-        storyID = row[0]
-        story = row[1]
-        if storyID == storycount:
-            print(story)
-            storycount += 1
-            
-	return
+            print(row[0])
+    return
 
 def bite():
     #joonatan
@@ -161,7 +156,7 @@ def IsTickInAnimal():
         return false
 
 def endOfTurn():
-    BLUE1 = "\033[94m"
+    RED1 = "\033[94m"
     GREEN2 = "\033[92m"
     BROWN3 = "\033[93m"
     ENDC4 = "\033[0m"
@@ -214,24 +209,24 @@ def tickMove(direction):
         if x == 100 and level == 4:
             sql = "UPDATE tick SET X = 5, Y = 4;"
     if direction == "climb":
-        if x == 1 and y == 2 and level == 2:
+        if x == 1 and y == 2 and level == 2 and command [1] == "tree":
             sql = "UPDATE tick SET X = 100, Y = 100;"
-        if x == 3 and y == 4 and level == 2:
+        if x == 3 and y == 4 and level == 2 and command [1] == "tree":
             sql = "UPDATE tick SET X = 200, Y = 100;"
-        if x == 4 and y == 2 and level == 2:
+        if x == 4 and y == 2 and level == 2 and command [1] == "doghouse" or command [1] == "house":
             sql = "UPDATE tick SET X = 300, Y = 100;"
-        if x == 1 and y == 1 and level == 3:
+        if x == 1 and y == 1 and level == 3 and command [1] == "window":
             sql = "UPDATE tick SET X = 100, Y = 100;"
-        if x == 2 and y == 2 and level == 3:
+        if x == 2 and y == 2 and level == 3 and command [1] == "table" or command [1] == "computer":
             sql = "UPDATE tick SET X = 200, Y = 100;"
-        if x == 3 and y == 3 and level == 3:
+        if x == 3 and y == 3 and level == 3 and command [1] == "basket" or command [1] == "laundry":
             sql = "UPDATE tick SET X = 300, Y = 100;"
-        if x == 2 and y == 5 and level == 4:
+        if x == 2 and y == 5 and level == 4 and command [1] == "bench":
             sql = "UPDATE tick SET X = 100, Y = 100;"
     try:
         cur.execute(sql)
     except err.IntegrityError:
-        print("You can't go there")
+        print("You can't go there!")
     return
 
 cmd = ""
@@ -260,6 +255,8 @@ while cmd != 'exit':
             tickMove("west")
         elif command[1] == "east" or command[1] == "e" or command[1] == "E":
             tickMove("east")
+        elif command[1] == "down" or command[1] == "d" or command[1] == "D":
+            tickMove("down")
         else:#error message when go commands parameter is wrong
             print("")
             print("-- ", end = "")
@@ -273,6 +270,9 @@ while cmd != 'exit':
     if command[0] == "help":
         print("possible commands:")
         print("go")
+
+    if command[0] == "climb" or command[0] == "c" or command[0] == "C":
+        tickMove("climb")
 
     print(" --- ")
 
