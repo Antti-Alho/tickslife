@@ -50,20 +50,20 @@ class animalDirection(Enum):
 
 def climbAnimal():
     cur = db.cursor()
-    sql = "SELECT animalID FROM animal INNER JOIN tick \
+    sql = "SELECT animal.animalID FROM animal INNER JOIN tick \
     ON animal.X = tick.X AND animal.Y = tick.Y AND animal.level = tick.level;"
     cur.execute(sql)
     for row in cur.fetchall():
         animalID = row[0]
     if cur.rowcount>=1:
-        sql = "UPDATE tick SET locationID = 1, animalID = " + str(animalID) + ";"
+        sql = "UPDATE tick SET tick.locationID = 1, tick.animalID = " + str(animalID) + ";"
         cur.execute(sql)
     return
 
 def inspect():
     cur = db.cursor()
     sql = "SELECT locationInAnimal.skinThickness FROM locationInAnimal INNER JOIN tick ON \
-    locationInAnimal.locationID=tick.locationID;"
+    locationInAnimal.locationID=tick.locationID AND locationInAnimal.animalID = tick.animalID;"
     cur.execute(sql)
     for row in cur.fetchall():
         if row[0]==1:
@@ -185,7 +185,7 @@ def smell():
 
 def bite():
     cur = db.cursor()
-    sql = "SELECT locationInAnimal.skinThickness, animal.animalID FROM locationInAnimal INNER JOIN tick ON locationInAnimal.locationID=tick.locationID;"
+    sql = "SELECT locationInAnimal.skinThickness FROM locationInAnimal INNER JOIN tick ON locationInAnimal.locationID=tick.locationID AND locationInAnimal.animalID = tick.animalID;"
     cur.execute(sql)
     for row in cur.fetchall():
         if row[0]==1:
@@ -260,15 +260,19 @@ def isTickVisible():
     cur.execute(sql)
     for row in cur.fetchall():
         if row[0] == 3:
-            return true
+            return True
         else:
-            return false
+            return False
 
-def IsTickInAnimal():
-    if asd:
-        return true
-    else:
-        return false
+def tickIsNotInAnimal():
+    cur = db.cursor()
+    sql = "SELECT animalID FROM tick;"
+    cur.execute(sql)
+    for row in cur.fetchall():
+        if row[0] == None:
+            return True
+        else:
+            return False
 
 def endOfTurn():
     BLUE1 = "\033[94m"
@@ -299,6 +303,10 @@ def printPossibleMoveCommands():
     return
 
 def printAllPossibleCommands():
+    print("asd")
+    return
+
+def printHelp():
     print("asd")
     return
 
@@ -353,7 +361,7 @@ def tickMove(direction, command = None):
                 sql = "UPDATE tick SET X = 300, Y = 100;"
             if x == 2 and y == 5 and level == 4 and command[1] == "bench":
                 sql = "UPDATE tick SET X = 100, Y = 100;"
-        except NullPointer:
+        except IndexError:
             print("where do you wan't to climb?")
             printCurrentClimbOptions()
     try:
@@ -378,32 +386,38 @@ def getCommand():
 while command[0] != 'exit':
     command = getCommand()
 
-    if command[0] == "go" or command[0] == "move" or command[0] == "m":
-        if len(command) < 2:
-            print("you must give direction after go command")
-        elif command[1] == "north" or command[1] == "n" or command[1] == "N":
-            tickMove("north")
-            endOfTurn()
-        elif command[1] == "south" or command[1] == "s" or command[1] == "S":
-            tickMove("south")
-            endOfTurn()
-        elif command[1] == "west" or command[1] == "w" or command[1] == "W":
-            tickMove("west")
-            endOfTurn()
-        elif command[1] == "east" or command[1] == "e" or command[1] == "E":
-            tickMove("east")
-            endOfTurn()
-        elif command[1] == "down" or command[1] == "d" or command[1] == "D":
-            tickMove("down")
-            endOfTurn()
-        else:#error message when go commands parameter is wrong
-            print("")
-            print("--", end="")
-            for i in command:
-                print(i, end=" ")
-            print("-- is not a valid command l2p")
-            printPossibleMoveCommands()
-            printCurrentClimbOptions()
+    if command[0] == "climb" or command[0] == "drop":
+        climbAnimal()
+
+    elif command[0] == "go" or command[0] == "move" or command[0] == "m":
+        if tickIsNotInAnimal():
+            if len(command) < 2:
+                print("you must give direction after go command")
+            elif command[1] == "north" or command[1] == "n" or command[1] == "N":
+                tickMove("north")
+                endOfTurn()
+            elif command[1] == "south" or command[1] == "s" or command[1] == "S":
+                tickMove("south")
+                endOfTurn()
+            elif command[1] == "west" or command[1] == "w" or command[1] == "W":
+                tickMove("west")
+                endOfTurn()
+            elif command[1] == "east" or command[1] == "e" or command[1] == "E":
+                tickMove("east")
+                endOfTurn()
+            elif command[1] == "down" or command[1] == "d" or command[1] == "D":
+                tickMove("down")
+                endOfTurn()
+            else:#error message when go commands parameter is wrong
+                print("")
+                print("--", end="")
+                for i in command:
+                    print(i, end=" ")
+                print("-- is not a valid command l2p")
+                printPossibleMoveCommands()
+                printCurrentClimbOptions()
+        else:
+            print("we should now be in animal but asd")
 
     elif command[0] == "wait":
         tickMove("still")
@@ -411,16 +425,24 @@ while command[0] != 'exit':
     elif command[0] == "climb" or command[0] == "c" or command[0] == "C":
         tickMove("climb", command)
 
-    if command[0] == "help":
+    elif command[0] == "help":
         print("possible commands:")
         printPossibleMoveCommands()
         printCurrentClimbOptions()
+
     elif command[0] == "smell":
         smell()
+
     elif command[0] == "inspect":
         inspect()
-    elif command[0] == "climb" or command[0] == "drop":
-        climbAnimal()
+
+    elif command[0] == "bite":
+        bite()
+
+    else:
+        printPossibleMoveCommands()
+        printCurrentClimbOptions()
+        printHelp()
 
     print(" --- ")
 
