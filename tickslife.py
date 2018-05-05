@@ -7,7 +7,6 @@ db = mysql.connector.connect(
         user="dbuser",
         password="dbpass",
         db="tickslife")
-storycount = 1
 
 class direction(Enum):
     NORTH = 0
@@ -40,7 +39,6 @@ class animalDirection(Enum):
     leftCalf = 22
     rightFoot = 23
     leftFoot = 24
-
 
 def climbAnimal():
     cur = db.cursor()
@@ -95,6 +93,36 @@ def smell():
         print("There is no smell of prey here.")
     return 
 
+def bite():
+    cur = db.cursor()
+    sql = "SELECT locationInAnimal.skinThickness, animal.animalID FROM locationInAnimal INNER JOIN tick ON locationInAnimal.locationID=tick.locationID;"
+    cur.execute(sql)
+    for row in cur.fetchall():
+    if row[0]==1:
+        print("Yess! Excellent spot for biting. You become filled with blood just now.")
+        if row[1]==2:
+            sql = "UPDATE tick SET disease = 'lyme disease';"
+            cur.execute(sql)
+            print("The vole you just bit had lyme disease. You now carry this useful 'gun' with you")
+        if row[0]==3:
+            sql = "UPDATE tick SET X=1, Y=3, level = 3,;"
+            cur.execute(sql)
+        sql = "SELECT level FROM tick;"
+        cur.execute(sql)
+        for row in cur.fetchall():
+        if row[0]==1:
+            sql = "UPDATE tick SET X=3, Y=2, level=2;"
+        elif row[0]==2:
+            sql = "UPDATE tick SET X=1, Y=6, level=4;"
+        elif row[0] ==3:
+            sql = "UPDATE tick SET X=1, Y06, level=4;"
+        cur.execute(sql)    
+        printNextStory() 
+    else:
+        print("The skin was too thick, you couldn't bite here. You fell off.")
+        sql="UPDATE tick SET locationID = NULL, animalID = NULL;" 
+        cur.execute(sql)
+
 def containsAnimal(): 
     cur = db.cursor()
     sql = "SELECT animal.level FROM animal INNER JOIN tick \
@@ -112,15 +140,11 @@ def printNextStory():
     for row in cur.fetchall():
             print(row[0])
     return
-
-def bite():
-    #joonatan
-    return
-
+  
 def moveInAnimal(direction):
     #antti
     return
-
+  
 def possibleMovementsInAnimal():
     possibleMovements = []
     cur = db.cursor()
@@ -156,7 +180,7 @@ def IsTickInAnimal():
         return false
 
 def endOfTurn():
-    RED1 = "\033[94m"
+    BLUE1 = "\033[94m"
     GREEN2 = "\033[92m"
     BROWN3 = "\033[93m"
     ENDC4 = "\033[0m"
@@ -228,7 +252,7 @@ def tickMove(direction):
     except err.IntegrityError:
         print("You can't go there!")
     return
-
+  
 cmd = ""
 
 while cmd != 'exit':
