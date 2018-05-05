@@ -96,8 +96,12 @@ CREATE TABLE route
 
 CREATE TABLE story
 (
-  storyID INT NOT NULL,
-  description VARCHAR(1000) NOT NULL
+  description VARCHAR(1000) NOT NULL,
+  X INT NOT NULL,
+  Y INT NOT NULL,
+  level INT NOT NULL,
+  PRIMARY KEY (level),
+  FOREIGN KEY (X,Y,level) REFERENCES tile(X,Y,level)
 ); 
 
 #lvl1
@@ -135,6 +139,7 @@ INSERT INTO tile VALUES (1,2,2);
 INSERT INTO tile VALUES (2,2,2);
 INSERT INTO tile VALUES (3,2,2);
 INSERT INTO tile VALUES (4,2,2);
+INSERT INTO tile VALUES (5,2,2);
 INSERT INTO tile VALUES (1,3,2);
 INSERT INTO tile VALUES (2,3,2);
 INSERT INTO tile VALUES (3,3,2);
@@ -151,6 +156,9 @@ INSERT INTO tile VALUES (4,5,2);
 INSERT INTO tile VALUES (100,100,2);
 INSERT INTO tile VALUES (200,100,2);
 INSERT INTO tile VALUES (200,101,2);
+INSERT INTO tile VALUES (198,101,2);
+INSERT INTO tile VALUES (199,101,2);
+INSERT INTO tile VALUES (201,101,2);
 INSERT INTO tile VALUES (300,100,2);
 
 #lvl3
@@ -169,6 +177,7 @@ INSERT INTO tile VALUES (100,100,3);
 INSERT INTO tile VALUES (200,100,3);
 INSERT INTO tile VALUES (300,100,3);
 INSERT INTO tile VALUES (300,99,3);
+
 
 #lvl4
 INSERT INTO tile VALUES (1,1,4);
@@ -222,6 +231,9 @@ INSERT INTO animal VALUES (5,"Man",300,99,3);
 
 INSERT INTO animal VALUES (6,"Jogger",1,5,4);
 INSERT INTO animal VALUES (7,"Child",1,5,4);
+
+INSERT INTO animal VALUES (8,"SmellDog", 5,2,2);
+INSERT INTO animal VALUES (9,"SmellMan1",1,5,2);
 
 INSERT INTO locationInAnimal VALUES ("Head", 1, 0, 1);
 INSERT INTO locationInAnimal VALUES ("neck", 2, 1, 1);
@@ -840,24 +852,46 @@ INSERT INTO animalRoute VALUES (9,2,3,3,1);
 INSERT INTO animalRoute VALUES (10,2,3,4,1);
 INSERT INTO animalRoute VALUES (11,2,2,4,1);
 INSERT INTO animalRoute VALUES (12,2,1,4,1);
+# Dog (smell)
+INSERT INTO animalRoute VALUES (13,10,5,2,2);
+# Dog (actual)
+INSERT INTO animalRoute VALUES (13,3,300,100,2);
+# Man 1 (smell)
+INSERT INTO animalRoute VALUES (14,9,1,5,2);
+INSERT INTO animalRoute VALUES (15,9,2,5,2);
+INSERT INTO animalRoute VALUES (16,9,3,5,2);
+INSERT INTO animalRoute VALUES (17,9,4,5,2);
+INSERT INTO animalRoute VALUES (18,9,3,5,2);
+INSERT INTO animalRoute VALUES (19,9,2,5,2);
+# Man 1 (actual)
+INSERT INTO animalRoute VALUES (20,4,198,101,2);
+INSERT INTO animalRoute VALUES (21,4,199,101,2);
+INSERT INTO animalRoute VALUES (22,4,200,101,2);
+INSERT INTO animalRoute VALUES (23,4,201,101,2);
+INSERT INTO animalRoute VALUES (24,4,200,101,2);
+INSERT INTO animalRoute VALUES (25,4,199,101,2);
+# Man 2
+INSERT INTO animalRoute VALUES (20,5,300,99,3);
 # Jogger 1
-INSERT INTO animalRoute VALUES (13,6,5,1,4);
-INSERT INTO animalRoute VALUES (14,6,5,2,4);
-INSERT INTO animalRoute VALUES (15,6,6,2,4);
-INSERT INTO animalRoute VALUES (16,6,6,3,4);
-INSERT INTO animalRoute VALUES (17,6,6,4,4);
-INSERT INTO animalRoute VALUES (18,6,6,3,4);
-INSERT INTO animalRoute VALUES (19,6,6,2,4);
-INSERT INTO animalRoute VALUES (20,6,5,2,4);
+INSERT INTO animalRoute VALUES (21,6,5,1,4);
+INSERT INTO animalRoute VALUES (22,6,5,2,4);
+INSERT INTO animalRoute VALUES (23,6,6,2,4);
+INSERT INTO animalRoute VALUES (24,6,6,3,4);
+INSERT INTO animalRoute VALUES (25,6,6,4,4);
+INSERT INTO animalRoute VALUES (26,6,6,3,4);
+INSERT INTO animalRoute VALUES (27,6,6,2,4);
+INSERT INTO animalRoute VALUES (28,6,5,2,4);
+# Jogger 2
+INSERT INTO animalRoute VALUES (29,6,100,100,4);
 # Child
-INSERT INTO animalRoute VALUES (21,7,2,4,4);
-INSERT INTO animalRoute VALUES (22,7,3,4,4);
-INSERT INTO animalRoute VALUES (23,7,4,4,4);
-INSERT INTO animalRoute VALUES (24,7,4,5,4);
-INSERT INTO animalRoute VALUES (25,7,4,6,4);
-INSERT INTO animalRoute VALUES (26,7,4,5,4);
-INSERT INTO animalRoute VALUES (27,7,4,4,4);
-INSERT INTO animalRoute VALUES (28,7,3,4,4);
+INSERT INTO animalRoute VALUES (30,7,2,4,4);
+INSERT INTO animalRoute VALUES (31,7,3,4,4);
+INSERT INTO animalRoute VALUES (32,7,4,4,4);
+INSERT INTO animalRoute VALUES (33,7,4,5,4);
+INSERT INTO animalRoute VALUES (34,7,4,6,4);
+INSERT INTO animalRoute VALUES (35,7,4,5,4);
+INSERT INTO animalRoute VALUES (36,7,4,4,4);
+INSERT INTO animalRoute VALUES (37,7,3,4,4);
 
 #tileObstacle description, startx, starty, startlvl, endx, endy, endlvl
 INSERT INTO tileObstacle VALUES ("You decide not to climb over the stone in your way. It would take too much effort.",2,4,2,3,4,2);
@@ -869,11 +903,19 @@ INSERT INTO tileObstacle VALUES ("There is a anthill on your way and you don't w
 INSERT INTO tileObstacle VALUES ("There is a banana peel on the ground! it's so slippery you can't take the risk and go this way!",1,2,2,1,3,2);
 INSERT INTO tileObstacle VALUES ("There is a banana peel on the ground! it's so slippery you can't take the risk and go this way!",1,3,2,1,2,2);
 
-INSERT INTO tileObstacle VALUES ("don't go into the doghouse",4,1,2,4,2,2);
-INSERT INTO tileObstacle VALUES ("you can't jump from the roof of the doghouse its too highdon't go into the doghouse",4,2,2,4,1,2);
+INSERT INTO tileObstacle VALUES ("The dog's chain is on the way. You have to go around",4,1,2,4,2,2);
+INSERT INTO tileObstacle VALUES ("The dog's chain is on the way. You have to go around",4,2,2,4,1,2);
+INSERT INTO tileObstacle VALUES ("You see a huge animal in the distance. You really don't want to face it head on!",3,2,2,4,2,2);
+INSERT INTO tileObstacle VALUES ("You can't go there!",4,2,2,5,2,2);
+
+
+INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",1,4,2,1,5,2);
+INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",3,4,2,3,5,2);
+INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",4,4,2,4,5,2);
+INSERT INTO tileObstacle VALUES ("You can't go there!",200,101,2,201,101,2);
+INSERT INTO tileObstacle VALUES ("You can't go there!",200,101,2,199,101,2);
 
 INSERT INTO tick VALUES (1,0,NULL,NULL,NULL,5,5,1);
-
 
 #lvl1 color, descriptions id, string, x, y, lvl
 INSERT INTO description VALUES (2,1,"You are in a forest near a shore. A few leafy trees are growing around. If you look to the right, the forest looks grassy.",1,1,1);
@@ -938,7 +980,7 @@ INSERT INTO description VALUES (2,12, "Window\nYou climb on the windowsill and l
 INSERT INTO description VALUES (2,13, "Computer Table\nYou climb on the computer table and look around. In the table there is a mouse, coffee cup and a monitor. The monitor is open and you can see some writing on the screen: “Tick’s Life”.'",200,100,3);
 INSERT INTO description VALUES (2,1, "Room\nThis seems to be the corner of the room. Straight above, you can see a window frame. The window frame transforms the moonlight flooding inside into a shape of a cross reflecting on the floor.'",1,1,3);
 INSERT INTO description VALUES (2,2, "Room\nAbove you, there is a computer table made of glass with wooden legs. The material that the legs are made of, may just be rough enough to climb.'",2,1,3);
-INSERT INTO description VALUES (2,3, "Underneath the Bed\nUnder the bed, there is an acoustic guitar and some music papers. A few ants have also taken liking to a piece of candy fallen under the bed. The legs are made of some kind of metal.'",3,1,3);
+INSERT INTO description VALUES (2,3, "Underneath the Bed\nUnder the bed, there is an acoustic guitar and some music papers. A few ants have also taken liking to a piece of candy fallen under the bed. The legs are made of some kind of metal. You can hear loud snoring coming from the top.'",3,1,3);
 INSERT INTO description VALUES (2,4, "Room\nAll the walls of the room have been painted with light blue paint. However, they almost entirely covered with posters of famous artists and game characters.'",1,2,3);
 INSERT INTO description VALUES (2,5, "Room\nIn the middle of the room there is a furry green carpet. Only if the owner knew how much dirt and bacteria a carpet like that collects over the years.'",2,2,3);
 INSERT INTO description VALUES (2,6, "Room\nRight beside the bed there is a laundry basket with some clothes spilling out. There is a shirt,  pair of jeans and a couple dirty socks lying on the floor.'",3,2,3);
@@ -989,8 +1031,9 @@ INSERT INTO description VALUES (2,38, "Bench\nYou climb on the bench. On the ben
 INSERT INTO description VALUES (2,39, "Bench\nYou climb on the bench. The bench is empty...'",100,100,4);
 
 
-INSERT INTO story VALUES (1, "We are sorry to tell you that your mother died at birth. You are a baby female tick, just hatched from egg to a larva, alone in a big world. It is summertime and you are in a forest. The grass around you is long and green and you can feel the smell of the sea. While observing the scenery, you’re hit with a sudden feeling of hunger running through your body. Blood!");
-INSERT INTO story VALUES (2, "You succeeded in getting your first blood meal! The first summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. Winter comes. Winter goes. New spring comes, and after that the summer. You have changed from the larva into a nymph. You wake up and feel hungry again. Hunting starts the second time. Blood!");
-INSERT INTO story VALUES (3, "You succeeded in getting your second blood meal! The second summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. The second winter comes. New spring comes, and then the summer. You have changed from the nymph into an adult tick. You wake up and feel hungry again. Hunting starts the third time. Blood!");
-INSERT INTO story VALUES (4, "You succeeded in getting your third blood meal! Look who is coming, your lover, a prince tick! The prince impregnates you. After a while, you give birth to new tick eggs, thousands of them! But we are sorry to tell you that you died at birth. BUT you successfully completed the game! Congratulations!");
+INSERT INTO story VALUES ("We are sorry to tell you that your mother died at birth. You are a baby female tick, just hatched from egg to a larva, alone in a big world. It is summertime and you are in a forest. The grass around you is long and green and you can feel the smell of the sea. While observing the scenery, you’re hit with a sudden feeling of hunger running through your body. Blood!",5,5,1);
+INSERT INTO story VALUES ("You succeeded in getting your first blood meal! The first summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. Winter comes. Winter goes. New spring comes, and after that the summer. You have changed from the larva into a nymph. You wake up. This time you notice that you've ended up in what looks to be a backyard surrounded by a thick and sturdy fence of a small detached house. The grass has grown tall, and it looks like it hasn’t been cut in a few weeks. The sun has scorched the grass for two days straight and it has already lost most of its vibrant green color. Suddenly you start feeling hungry again. Hunting starts the second time. Blood!",3,2,2);
+INSERT INTO story VALUES ("You bite into the dog and start sucking its blood. For almost five hours you sit there enjoying your nutritious and well deserved meal. Suddenly, the house front door opens and the dog stands up. It walks inside and after happy greeting of its owner and some dining, they both fall asleep in the owner’s room. The meal you just had, now starts to feel more of a mere appetizer compared to the bigger prize in the room. You drop on the floor and start looking around.",1,3,3);
+INSERT INTO story VALUES ("You succeeded in getting your second blood meal! The second summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. The second winter comes. New spring comes, and then the summer. You have changed from the nymph into an adult tick. You remember dropping from the man someplace close to the town park. That's also where you wake up. When you look around you quickly find out that you are in the most south-west part of the park. Hunting starts the third and th final time. Blood!",1,6,4);
+#INSERT INTO story VALUES ("You succeeded in getting your third blood meal! Look who is coming, your lover, a prince tick! The prince impregnates you. After a while, you give birth to new tick eggs, thousands of them! But we are sorry to tell you that you died while giving birth BUT you successfully completed the game! Congratulations!",5,5,4);
 
