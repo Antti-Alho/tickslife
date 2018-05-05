@@ -292,6 +292,11 @@ def printCurrentClimbOptions():
     print("asd")
     return 
 
+def printPossibleMoveCommands():
+    #tän saa myös tehdä!
+    print("asd")
+    return
+
 def tickMove(direction, command = None):
     cur = db.cursor()
     sql = "SELECT X,Y,level,timeVisible FROM tick"
@@ -372,7 +377,8 @@ while cmd != 'exit':
         command = getCommand()
         if command[0] == "help":
             print("possible commands:")
-            print("go")
+            printPossibleMoveCommands()
+            print("go [north|south|west|east|down||]")
 
 #go command
     if command[0] == "go" or command[0] == "move" or command[0] == "m":
