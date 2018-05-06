@@ -853,7 +853,7 @@ INSERT INTO animalRoute VALUES (4,2,3,4,1);
 INSERT INTO animalRoute VALUES (5,2,2,4,1);
 INSERT INTO animalRoute VALUES (6,2,1,4,1);
 # Dog (smell)
-INSERT INTO animalRoute VALUES (1,8,5,2,2);
+INSERT INTO animalRoute VALUES (1,8,1,1,2);
 # Dog (actual)
 INSERT INTO animalRoute VALUES (1,3,300,100,2);
 # Man 1 (smell)

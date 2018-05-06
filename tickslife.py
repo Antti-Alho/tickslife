@@ -359,7 +359,9 @@ def animalMove():
                 nextX = row[1]
                 nextY = row[2]
             n += 1
-
+        if nextX == 0:
+            nextX = firstX
+            nextY = firstY
         sql = "UPDATE animal\
         SET X = "+str(nextX)+", Y = "+str(nextY)+" \
         WHERE animalID = "+str(animalID)+";"
@@ -493,20 +495,22 @@ def tickMove(direction, command = None):
             sql = "UPDATE tick SET X = 5, Y = 4;"
     if direction == "up":
         try :
-            if x == 1 and y == 2 and level == 2 and command[1] == "tree":
+            if x == 1 and y == 2 and level == 2 and command[2] == "tree":
                 sql = "UPDATE tick SET X = 100, Y = 100;"
-            if x == 3 and y == 4 and level == 2 and command[1] == "tree":
+            if x == 3 and y == 4 and level == 2 and command[2] == "tree":
                 sql = "UPDATE tick SET X = 200, Y = 100;"
-            if x == 4 and y == 2 and level == 2 and command[1] == "doghouse" or command[1] == "house":
+            if x == 4 and y == 2 and level == 2 and command[2] == "doghouse" or command[2] == "house":
                 sql = "UPDATE tick SET X = 300, Y = 100;"
-            if x == 1 and y == 1 and level == 3 and command[1] == "window":
+            if x == 1 and y == 1 and level == 3 and command[2] == "window":
                 sql = "UPDATE tick SET X = 100, Y = 100;"
-            if x == 2 and y == 2 and level == 3 and command[1] == "table":
+            if x == 2 and y == 2 and level == 3 and command[2] == "table":
                 sql = "UPDATE tick SET X = 200, Y = 100;"
-            if x == 3 and y == 3 and level == 3 and command[1] == "basket":
+            if x == 3 and y == 3 and level == 3 and command[2] == "basket":
                 sql = "UPDATE tick SET X = 300, Y = 100;"
-            if x == 2 and y == 5 and level == 4 and command[1] == "bench":
+            if x == 2 and y == 5 and level == 4 and command[2] == "bench":
                 sql = "UPDATE tick SET X = 100, Y = 100;"
+            else:
+                printCurrentClimbOptions()
         except IndexError:
             print("where do you wan't to climb?")
             printCurrentClimbOptions()
