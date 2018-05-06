@@ -427,11 +427,11 @@ def printPossibleMoveCommands():
     return
 
 def printAllPossibleCommands():
-    print("asd")
+    print("")
     return
 
 def printHelp():
-    print("asd")
+    print("wait\nclimb\ndrop\nbite\ninspect\nsmell\ngo + south/west/east/north/up/down\nmove + south/west/east/north/up/down ")
     return
 
 def climbOrDrop():
