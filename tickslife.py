@@ -249,22 +249,14 @@ def theEnd():
         sql.connector.rollback()
     else:
         command[0] = 'exit'
-            
-          
-          
-def printNextStory():
-    cur = db.cursor()
-    sql = "SELECT description FROM story INNER JOIN tick ON story.level = tick.level;"
-    cur.execute
-    for row in cur.fetchall():
-        print(row[0])
+    return
 
 def death():
     global command
     rollback = False
     cur = db.cursor()
     sql = "SELECT X, Y, level, timeVisible FROM tick"
-    cur.execute
+    cur.execute(sql)
     for row in cur.fetchall():
         if row[0] == 200 and row[1] == 101 and row[2] == 2:
             print("GAME OVER\nYou squeeze through the gap and to the sidewalk. Suddenly, you see someone walking towards you."
@@ -297,8 +289,10 @@ def death():
     return
 
 def moveInAnimal(direction):
-    directionOriginal = direction
-
+    newdirection = ""
+    for x in direction:
+        if x != " ":
+            newdirection = newdirection + x
     cur = db.cursor()
     sql = "SELECT route.locationFromID, route.locationToID, animal.name FROM route INNER JOIN tick \
     ON tick.animalID = route.animalID and tick.locationID = route.locationFromID INNER JOIN animal \
@@ -306,17 +300,15 @@ def moveInAnimal(direction):
     cur.execute(sql)
     move = 1000
     for row in cur.fetchall():
-        print(row)
         try:
-            if row[1] == animalDirection[direction].value:
-                print(animalDirection[direction].value)
-                move = animalDirection[direction].value
+            if row[1] == animalDirection[newdirection].value:
+                move = animalDirection[newdirection].value
                 sql = "UPDATE tick SET locationID = '"+str(move)+"';"
                 print("you move to "+direction+" of the "+row[2])
                 cur.execute(sql)        
         except KeyError:
             print("psyykeni on paloina lattialla")
-            printPossibleMoveCommands()
+            printPossibleMoveCommandsInAnimal()
             break
     return
   
@@ -413,17 +405,39 @@ def endOfTurn():
                 print(BROWN3)
             print(row[0])
         print(ENDC4)
-    #animalMove()
+    animalMove()
     return
 
 def printCurrentClimbOptions():
-    #tan saa tehda jos haluaa!
-    print("asd")
+    cur = db.cursor()
+    sql = "SELECT tick.X, tick.Y, tick.level FROM tick;"
+    cur.execute(sql)
+    for row in cur.fetchall():
+        if row[0] == 1 and row[1] == 2 and row[2] == 2:
+            print("tree")
+        if row[0] == 3 and row[1] == 4 and row[2] == 2:
+            print("tree")
+        if row[0] == 4 and row[1] == 2 and row[2] == 2:
+            print("doghouse or house")
+        if row[0] == 1 and row[1] == 1 and row[2] == 3:
+            print("window")
+        if row[0] == 2 and row[1] == 2 and row[2] == 3:
+            print("table")
+        if row[0] == 3 and row[1] == 3 and row[2] == 3:
+            print("basket")
+        if row[0] == 2 and row[1] == 5 and row[2] == 4:
+            print("bench")
     return 
 
-def printPossibleMoveCommands():
-    #tan saa myos tehda!
-    print("asd")
+def printPossibleMoveCommandsInAnimal():
+    cur = db.cursor()
+    sql = "SELECT route.locationFromID, route.locationToID, locationInAnimal.name FROM route INNER JOIN tick \
+    ON tick.animalID = route.animalID and tick.locationID = route.locationFromID INNER JOIN locationInAnimal \
+    ON locationInAnimal.locationID = route.locationToID and locationInAnimal.animalID = tick.animalID"
+    cur.execute(sql)
+    move = 1000
+    for row in cur.fetchall():
+        print(row[2])
     return
 
 def printAllPossibleCommands():
@@ -509,9 +523,11 @@ def getCommand():
     command = []
     length = 0
     command.append("")
+    eka = 0
     for x in range(len(cmd)):
-        if cmd[x] == " ":
+        if cmd[x] == " " and eka == 0:
             length += 1
+            eka += 1
             command.append("")
         else:
             command[length] = command[length] + cmd[x]
@@ -548,21 +564,18 @@ while command[0] != 'exit':
                 for i in command:
                     print(i, end=" ")
                 print("-- is not a valid command l2p")
-                printPossibleMoveCommands()
                 printCurrentClimbOptions()
         else:
             try:
                 moveInAnimal(command[1])
             except IndexError:
-                printPossibleMoveCommands()
+                printPossibleMoveCommandsInAnimal()
 
     elif command[0] == "wait":
         tickMove("still")
 
     elif command[0] == "help":
-        print("possible commands:")
-        printPossibleMoveCommands()
-        printCurrentClimbOptions()
+        printHelp()
 
     elif command[0] == "smell":
         smell()
@@ -572,11 +585,6 @@ while command[0] != 'exit':
 
     elif command[0] == "bite":
         bite()
-
-    else:
-        printPossibleMoveCommands()
-        printCurrentClimbOptions()
-        printHelp()
 
     print(" --- ")
 
