@@ -846,52 +846,52 @@ INSERT INTO animalRoute VALUES (4,1,5,2,1);
 INSERT INTO animalRoute VALUES (5,1,4,2,1);
 INSERT INTO animalRoute VALUES (6,1,3,2,1);
 # Vole
-INSERT INTO animalRoute VALUES (7,2,1,3,1);
-INSERT INTO animalRoute VALUES (8,2,2,3,1);
-INSERT INTO animalRoute VALUES (9,2,3,3,1);
-INSERT INTO animalRoute VALUES (10,2,3,4,1);
-INSERT INTO animalRoute VALUES (11,2,2,4,1);
-INSERT INTO animalRoute VALUES (12,2,1,4,1);
+INSERT INTO animalRoute VALUES (1,2,1,3,1);
+INSERT INTO animalRoute VALUES (2,2,2,3,1);
+INSERT INTO animalRoute VALUES (3,2,3,3,1);
+INSERT INTO animalRoute VALUES (4,2,3,4,1);
+INSERT INTO animalRoute VALUES (5,2,2,4,1);
+INSERT INTO animalRoute VALUES (6,2,1,4,1);
 # Dog (smell)
-INSERT INTO animalRoute VALUES (13,10,5,2,2);
+INSERT INTO animalRoute VALUES (1,10,5,2,2);
 # Dog (actual)
-INSERT INTO animalRoute VALUES (13,3,300,100,2);
+INSERT INTO animalRoute VALUES (1,3,300,100,2);
 # Man 1 (smell)
-INSERT INTO animalRoute VALUES (14,9,1,5,2);
-INSERT INTO animalRoute VALUES (15,9,2,5,2);
-INSERT INTO animalRoute VALUES (16,9,3,5,2);
-INSERT INTO animalRoute VALUES (17,9,4,5,2);
-INSERT INTO animalRoute VALUES (18,9,3,5,2);
-INSERT INTO animalRoute VALUES (19,9,2,5,2);
+INSERT INTO animalRoute VALUES (1,9,1,5,2);
+INSERT INTO animalRoute VALUES (2,9,2,5,2);
+INSERT INTO animalRoute VALUES (3,9,3,5,2);
+INSERT INTO animalRoute VALUES (4,9,4,5,2);
+INSERT INTO animalRoute VALUES (5,9,3,5,2);
+INSERT INTO animalRoute VALUES (6,9,2,5,2);
 # Man 1 (actual)
-INSERT INTO animalRoute VALUES (20,4,198,101,2);
-INSERT INTO animalRoute VALUES (21,4,199,101,2);
-INSERT INTO animalRoute VALUES (22,4,200,101,2);
-INSERT INTO animalRoute VALUES (23,4,201,101,2);
-INSERT INTO animalRoute VALUES (24,4,200,101,2);
-INSERT INTO animalRoute VALUES (25,4,199,101,2);
+INSERT INTO animalRoute VALUES (1,4,198,101,2);
+INSERT INTO animalRoute VALUES (2,4,199,101,2);
+INSERT INTO animalRoute VALUES (3,4,200,101,2);
+INSERT INTO animalRoute VALUES (4,4,201,101,2);
+INSERT INTO animalRoute VALUES (5,4,200,101,2);
+INSERT INTO animalRoute VALUES (6,4,199,101,2);
 # Man 2
-INSERT INTO animalRoute VALUES (20,5,300,99,3);
+INSERT INTO animalRoute VALUES (1,5,300,99,3);
 # Jogger 1
-INSERT INTO animalRoute VALUES (21,6,5,1,4);
-INSERT INTO animalRoute VALUES (22,6,5,2,4);
-INSERT INTO animalRoute VALUES (23,6,6,2,4);
-INSERT INTO animalRoute VALUES (24,6,6,3,4);
-INSERT INTO animalRoute VALUES (25,6,6,4,4);
-INSERT INTO animalRoute VALUES (26,6,6,3,4);
-INSERT INTO animalRoute VALUES (27,6,6,2,4);
-INSERT INTO animalRoute VALUES (28,6,5,2,4);
+INSERT INTO animalRoute VALUES (1,6,5,1,4);
+INSERT INTO animalRoute VALUES (2,6,5,2,4);
+INSERT INTO animalRoute VALUES (3,6,6,2,4);
+INSERT INTO animalRoute VALUES (4,6,6,3,4);
+INSERT INTO animalRoute VALUES (5,6,6,4,4);
+INSERT INTO animalRoute VALUES (6,6,6,3,4);
+INSERT INTO animalRoute VALUES (7,6,6,2,4);
+INSERT INTO animalRoute VALUES (8,6,5,2,4);
 # Jogger 2
-INSERT INTO animalRoute VALUES (29,6,100,100,4);
+INSERT INTO animalRoute VALUES (1,6,100,100,4);
 # Child
-INSERT INTO animalRoute VALUES (30,7,2,4,4);
-INSERT INTO animalRoute VALUES (31,7,3,4,4);
-INSERT INTO animalRoute VALUES (32,7,4,4,4);
-INSERT INTO animalRoute VALUES (33,7,4,5,4);
-INSERT INTO animalRoute VALUES (34,7,4,6,4);
-INSERT INTO animalRoute VALUES (35,7,4,5,4);
-INSERT INTO animalRoute VALUES (36,7,4,4,4);
-INSERT INTO animalRoute VALUES (37,7,3,4,4);
+INSERT INTO animalRoute VALUES (1,7,2,4,4);
+INSERT INTO animalRoute VALUES (2,7,3,4,4);
+INSERT INTO animalRoute VALUES (3,7,4,4,4);
+INSERT INTO animalRoute VALUES (4,7,4,5,4);
+INSERT INTO animalRoute VALUES (5,7,4,6,4);
+INSERT INTO animalRoute VALUES (6,7,4,5,4);
+INSERT INTO animalRoute VALUES (7,7,4,4,4);
+INSERT INTO animalRoute VALUES (8,7,3,4,4);
 
 #tileObstacle description, startx, starty, startlvl, endx, endy, endlvl
 INSERT INTO tileObstacle VALUES ("You decide not to climb over the stone in your way. It would take too much effort.",2,4,2,3,4,2);
