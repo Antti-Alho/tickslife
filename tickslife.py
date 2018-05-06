@@ -248,6 +248,7 @@ def moveInAnimal(direction):
                 print(animalDirection[direction].value)
                 move = animalDirection[direction].value
                 sql = "UPDATE tick SET locationID = '"+str(move)+"';"
+                print("you move to "+direction+" of the "+row[2])
                 cur.execute(sql)        
         except KeyError:
             print("psyykeni on paloina lattialla")
