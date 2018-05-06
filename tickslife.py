@@ -187,8 +187,8 @@ def bite():
     sql = "SELECT locationInAnimal.skinThickness, animal.animalID FROM locationInAnimal INNER JOIN tick ON locationInAnimal.locationID=tick.locationID;"
     cur.execute(sql)
     for row in cur.fetchall():
-    if row[0]==1:
-        print("Yess! Excellent spot for biting. You become filled with blood just now.")
+        if row[0]==1:
+            print("Yess! Excellent spot for biting. You become filled with blood just now.")
         if row[1]==2:
             sql = "UPDATE tick SET disease = 'lyme disease';"
             cur.execute(sql)
@@ -199,12 +199,12 @@ def bite():
         sql = "SELECT level FROM tick;"
         cur.execute(sql)
         for row in cur.fetchall():
-        if row[0]==1:
-            sql = "UPDATE tick SET X=3, Y=2, level=2;"
-        elif row[0]==2:
-            sql = "UPDATE tick SET X=1, Y=6, level=4;"
-        elif row[0] ==3:
-            sql = "UPDATE tick SET X=1, Y06, level=4;"
+            if row[0]==1:
+                sql = "UPDATE tick SET X=3, Y=2, level=2;"
+            elif row[0]==2:
+                sql = "UPDATE tick SET X=1, Y=6, level=4;"
+            elif row[0] ==3:
+                sql = "UPDATE tick SET X=1, Y06, level=4;"
         cur.execute(sql)    
         printNextStory() 
     else:
