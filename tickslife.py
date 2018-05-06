@@ -212,6 +212,7 @@ def bite():
             print("The skin was too thick, you couldn't bite here. You fell off.")
             sql="UPDATE tick SET locationID = NULL, animalID = NULL;" 
             cur.execute(sql)
+
     return
 
 def containsAnimal(): 
@@ -231,7 +232,70 @@ def printNextStory():
     for row in cur.fetchall():
             print(row[0])
     return
-  
+
+def theEnd():
+    global command
+    answer = 0
+    print("You succeeded in getting your third and final blood meal! Look who is coming, it's your lover, a prince tick!"
+    ,"The prince impregnates you. After a while, you give birth to new tick eggs, thousands of them!"
+    ,"But we are sorry to tell you that you died while giving birth BUT you successfully completed the game! Congratulations!")
+    print("")
+    print("---")
+    while answer != "yes" and answer != "no":
+        answer = input("Do you want to play again?\nType \"yes\" or \"no\"\n")
+        print("")
+        print("---")
+    if answer == "yes":
+        sql.connector.rollback()
+    else:
+        command[0] = 'exit'
+            
+          
+          
+def printNextStory():
+    cur = db.cursor()
+    sql = "SELECT description FROM story INNER JOIN tick ON story.level = tick.level;"
+    cur.execute
+    for row in cur.fetchall():
+        print(row[0])
+
+def death():
+    global command
+    rollback = False
+    cur = db.cursor()
+    sql = "SELECT X, Y, level, timeVisible FROM tick"
+    cur.execute
+    for row in cur.fetchall():
+        if row[0] == 200 and row[1] == 101 and row[2] == 2:
+            print("GAME OVER\nYou squeeze through the gap and to the sidewalk. Suddenly, you see someone walking towards you."
+                  ,"Unfortunately, you have no time to react and a foot crushes you against the pavement...")
+            rollback = True
+        if row[0] == 199 and row[1] == 101 and row[2] == 2:
+            print ("GAME OVER\nThe man starts moving and your grasp ends up not being tight enough."
+                   ,"You fall right under the man’s foot and get crushed by its weight...")
+            rollback = True
+        if row[0] == 198 and row[1] == 101 and row[2] == 2:
+            print("GAME OVER\nWhile falling a sudden gust of wind flies you to the driveway."
+                  ,"The last thing you hear is a screeching tire when you get crushed by its weight...")
+        if row [3] == 4:
+            print("GAME OVER\nYou spent too much time in the open."
+                  ,"A hungry bird spots you and doesn't waist any time when swallowing you as a whole...")
+            rollback = True
+        if rollback == True:
+            answer = 0
+            print("")
+            print("---")
+            while answer != "yes" and answer != "no":
+                answer = input("Do you want to play again?\nType \"yes\" or \"no\"\n")
+                print("")
+                print("---")
+            if answer == "no":
+                command[0] = 'exit'
+            else:
+                mysql.connector.rollback()
+                printNextStory()
+    return
+
 def moveInAnimal(direction):
     directionOriginal = direction
 
@@ -369,6 +433,15 @@ def printHelp():
     print("asd")
     return
 
+def climbOrDrop():
+    cur = db.cursor()
+    sql = "SELECT level FROM tick"
+    cur.execute(sql)
+    for row in cur.fetchall():
+        if row[0] == 2 and command[0] == "drop" or row[0] != 2 and command[0] == "climb":
+            climbAnimal()
+            
+
 def tickMove(direction, command = None):
     cur = db.cursor()
     sql = "SELECT X,Y,level,timeVisible FROM tick"
@@ -403,7 +476,7 @@ def tickMove(direction, command = None):
             sql = "UPDATE tick SET X = 3, Y = 3;"
         if x == 100 and level == 4:
             sql = "UPDATE tick SET X = 5, Y = 4;"
-    if direction == "climb":
+    if direction == "up":
         try :
             if x == 1 and y == 2 and level == 2 and command[1] == "tree":
                 sql = "UPDATE tick SET X = 100, Y = 100;"
@@ -413,9 +486,9 @@ def tickMove(direction, command = None):
                 sql = "UPDATE tick SET X = 300, Y = 100;"
             if x == 1 and y == 1 and level == 3 and command[1] == "window":
                 sql = "UPDATE tick SET X = 100, Y = 100;"
-            if x == 2 and y == 2 and level == 3 and command[1] == "table" or command[1] == "computer":
+            if x == 2 and y == 2 and level == 3 and command[1] == "table":
                 sql = "UPDATE tick SET X = 200, Y = 100;"
-            if x == 3 and y == 3 and level == 3 and command[1] == "basket" or command[1] == "laundry":
+            if x == 3 and y == 3 and level == 3 and command[1] == "basket":
                 sql = "UPDATE tick SET X = 300, Y = 100;"
             if x == 2 and y == 5 and level == 4 and command[1] == "bench":
                 sql = "UPDATE tick SET X = 100, Y = 100;"
@@ -449,7 +522,7 @@ while command[0] != 'exit':
     command = getCommand()
 
     if command[0] == "climb" or command[0] == "drop":
-        climbAnimal()
+        climbOrDrop()
 
     elif command[0] == "go" or command[0] == "move" or command[0] == "m":
         if tickIsNotInAnimal():
@@ -465,6 +538,9 @@ while command[0] != 'exit':
                 tickMove("east")
             elif command[1] == "down" or command[1] == "d" or command[1] == "D":
                 tickMove("down")
+
+            elif command[1] == "up" or command[1] == "u" or command[1] == "U":
+                endOfTurn()
             else:#error message when go commands parameter is wrong
                 print("")
                 print("--", end="")
@@ -481,9 +557,6 @@ while command[0] != 'exit':
 
     elif command[0] == "wait":
         tickMove("still")
-
-    elif command[0] == "climb" or command[0] == "c" or command[0] == "C":
-        tickMove("climb", command)
 
     elif command[0] == "help":
         print("possible commands:")
