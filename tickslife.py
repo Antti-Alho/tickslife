@@ -23,30 +23,30 @@ class direction(Enum):
     NW = 7
 
 class animalDirection(Enum):
-    Head = 1
+    head = 1
     neck = 2
-    rightArmpit = 3
-    leftArmpit = 4
+    rightarmpit = 3
+    leftarmpit = 4
     rightArm = 5
-    leftArm = 6
-    rightHand = 7
-    leftHand = 8
+    leftarm = 6
+    righthand = 7
+    lefthand = 8
     chest = 9
     stomach = 10
     back = 11
-    rightSide = 12
-    leftSide = 13
+    rightside = 12
+    leftside = 13
     groin = 14
-    rightThig = 15
-    leftThig = 16
-    rightKnee = 17
-    leftKnee = 18
-    rightHam = 19
-    leftHam = 20
-    rightCalf = 21
-    leftCalf = 22
-    rightFoot = 23
-    leftFoot = 24
+    rightthig = 15
+    leftthig = 16
+    rightknee = 17
+    leftknee = 18
+    rightham = 19
+    leftham = 20
+    rightcalf = 21
+    leftcalf = 22
+    rightfoot = 23
+    leftfoot = 24
 
 def climbAnimal():
     cur = db.cursor()
@@ -227,13 +227,26 @@ def containsAnimal():
 def printNextStory():
     cur = db.cursor()
     sql = "SELECT description FROM story INNER JOIN tick ON story.level = tick.level;"
-    cur.execute
+    cur.execute(sql)
     for row in cur.fetchall():
             print(row[0])
     return
   
 def moveInAnimal(direction):
-    
+    cur = db.cursor()
+    sql = "SELECT route.locationFromID, route.locationToID FROM route INNER JOIN tick \
+    ON tick.animalID = route.animalID and tick.locationID = route.locationFromID;"
+    cur.execute(sql)
+    move = 1000
+    for row in cur.fetchall():
+        print(row)
+        try:
+            if row[1] == animalDirection[direction].value:
+                move = animalDirection[direction].value
+                sql = "UPDATE tick SET locationID = "+str(move)
+                cur.execute(sql)
+        except KeyError:
+            printPossibleMoveCommands()
     return
   
 def possibleMovementsInAnimal():
@@ -329,7 +342,7 @@ def endOfTurn():
                 print(BROWN3)
             print(row[0])
         print(ENDC4)
-    animalMove()
+    #animalMove()
     return
 
 def printCurrentClimbOptions():
@@ -424,6 +437,8 @@ def getCommand():
             command[length] = command[length] + cmd[x]
     return command
 
+
+printNextStory()
 while command[0] != 'exit':
     command = getCommand()
 
@@ -453,7 +468,10 @@ while command[0] != 'exit':
                 printPossibleMoveCommands()
                 printCurrentClimbOptions()
         else:
-            print("we should now be in animal but asd")
+            try:
+                moveInAnimal(command[1])
+            except IndexError:
+                printPossibleMoveCommands()
 
     elif command[0] == "wait":
         tickMove("still")
