@@ -185,7 +185,7 @@ def smell():
 
 def bite():
     cur = db.cursor()
-    sql = "SELECT locationInAnimal.skinThickness FROM locationInAnimal INNER JOIN tick ON locationInAnimal.locationID=tick.locationID AND locationInAnimal.animalID = tick.animalID;"
+    sql = "SELECT locationInAnimal.skinThickness, locationInAnimal.animalID FROM locationInAnimal INNER JOIN tick ON locationInAnimal.locationID=tick.locationID AND locationInAnimal.animalID = tick.animalID;"
     cur.execute(sql)
     for row in cur.fetchall():
         if row[0]==1:
@@ -233,20 +233,26 @@ def printNextStory():
     return
   
 def moveInAnimal(direction):
+    directionOriginal = direction
+
     cur = db.cursor()
-    sql = "SELECT route.locationFromID, route.locationToID FROM route INNER JOIN tick \
-    ON tick.animalID = route.animalID and tick.locationID = route.locationFromID;"
+    sql = "SELECT route.locationFromID, route.locationToID, animal.name FROM route INNER JOIN tick \
+    ON tick.animalID = route.animalID and tick.locationID = route.locationFromID INNER JOIN animal \
+    ON tick.animalID = animal.animalID;"
     cur.execute(sql)
     move = 1000
     for row in cur.fetchall():
         print(row)
         try:
             if row[1] == animalDirection[direction].value:
+                print(animalDirection[direction].value)
                 move = animalDirection[direction].value
-                sql = "UPDATE tick SET locationID = "+str(move)
+                sql = "UPDATE tick SET locationID = "+str(move)+";"
                 cur.execute(sql)
+                print("you are now in "+direction+" of "+row[3])
         except KeyError:
             printPossibleMoveCommands()
+            break
     return
   
 def possibleMovementsInAnimal():
