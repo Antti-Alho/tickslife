@@ -201,11 +201,11 @@ def bite():
             cur.execute(sql)
             for row in cur.fetchall():
                 if row[0]==1:
-                    sql = "UPDATE tick SET X=3, Y=2, level=2;"
+                    sql = "UPDATE tick SET X=3, Y=2, level=2, locationID = NULL, animalID = NULL;"
                 elif row[0]==2:
-                    sql = "UPDATE tick SET X=1, Y=6, level=4;"
+                    sql = "UPDATE tick SET X=1, Y=6, level=4, locationID = NULL, animalID = NULL;"
                 elif row[0] ==3:
-                    sql = "UPDATE tick SET X=1, Y=6, level=4;"
+                    sql = "UPDATE tick SET X=1, Y=6, level=4, locationID = NULL, animalID = NULL;"
                 cur.execute(sql)    
                 printNextStory() 
         else:
@@ -247,10 +247,10 @@ def moveInAnimal(direction):
             if row[1] == animalDirection[direction].value:
                 print(animalDirection[direction].value)
                 move = animalDirection[direction].value
-                sql = "UPDATE tick SET locationID = "+str(move)+";"
-                cur.execute(sql)
-                print("you are now in "+direction+" of "+row[3])
+                sql = "UPDATE tick SET locationID = '"+str(move)+"';"
+                cur.execute(sql)        
         except KeyError:
+            print("psyykeni on paloina lattialla")
             printPossibleMoveCommands()
             break
     return
