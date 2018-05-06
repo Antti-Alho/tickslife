@@ -224,8 +224,8 @@ INSERT INTO tile VALUES (100,100,4);
 INSERT INTO animal VALUES (1,"Squirrel",1,5,1);
 INSERT INTO animal VALUES (2,"Vole",3,1,1);
 
-INSERT INTO animal VALUES (3,"Dog",2,4,2);
-INSERT INTO animal VALUES (4,"Man",1,5,2);
+INSERT INTO animal VALUES (3,"Dog",300,100,2);
+INSERT INTO animal VALUES (4,"Man",198,101,2);
 
 INSERT INTO animal VALUES (5,"Man",300,99,3);
 
