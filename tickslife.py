@@ -248,7 +248,43 @@ def possibleMovementsInAnimal():
     return possibleMovements
 
 def animalMove():
-    #antti
+    cur = db.cursor()
+    sql = "SELECT animal.X, animal.Y FROM animal INNER JOIN tick \
+    ON animal.level = tick.level"
+    cur.execute(sql)
+    animalX = []
+    animalY = []
+    for row in cur.fetchall():
+        animalX.append(row[0])
+        animalY.append(row[1])
+    for i in range(len(animalX)):
+        sql = "SELECT animalRoute.id, animalRoute.X, animalRoute.Y, animal.animalID FROM animalRoute INNER JOIN animal\
+        ON animal.animalID = animalRoute.animalID;"
+        cur.execute(sql)
+        firstX = 0
+        firstY = 0
+        n = 1
+        currentID = 0
+        nextID = 1
+        nextX = 0
+        nextY = 0
+        animalID = 0
+        for row in cur.fetchall():
+            if row[1] == animalX[i] and row[2] == animalY[i]:
+                currentID = row[0]
+                nextID = row[0]+1
+                if n == 1:
+                    firstX = row[1]
+                    firstY = row[2]
+            if row[0] == nextID:
+                nextX = row[1]
+                nextY = row[2]
+            n += 1
+
+        sql = "UPDATE animal\
+        SET X = "+str(nextX)+", Y = "+str(nextY)+" \
+        WHERE animalID = "+str(animalID)+";"
+        cur.execute(sql)
     return
 
 def isTickVisible():
@@ -290,6 +326,7 @@ def endOfTurn():
             print(BROWN3)
         print(row[0])
     print(ENDC4)
+    animalMove()
     return
 
 def printCurrentClimbOptions():
@@ -421,9 +458,11 @@ while command[0] != 'exit':
 
     elif command[0] == "wait":
         tickMove("still")
+        endOfTurn()
 
     elif command[0] == "climb" or command[0] == "c" or command[0] == "C":
         tickMove("climb", command)
+        endOfTurn()
 
     elif command[0] == "help":
         print("possible commands:")
