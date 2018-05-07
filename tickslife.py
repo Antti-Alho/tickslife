@@ -57,6 +57,7 @@ def climbAnimal():
         animalID = row[0]
     if cur.rowcount>=1:
         sql = "UPDATE tick SET tick.locationID = 1, tick.animalID = " + str(animalID) + ";"
+        print("You somehow ended up in te beasts head!")
         cur.execute(sql)
     return
 
@@ -207,6 +208,8 @@ def bite():
                 elif row[0] ==3:
                     sql = "UPDATE tick SET X=1, Y=6, level=4, locationID = NULL, animalID = NULL;"
                 elif row[0] ==4:
+                    cur.execute(sql)
+                    cur.fetchall()
                     theEnd()
 
                 cur.execute(sql)    
@@ -249,7 +252,7 @@ def theEnd():
         print("")
         print("---")
     if answer == "yes":
-        mysql.connector.rollback()
+        db.rollback()
     else:
         command[0] = 'exit'
     return
@@ -287,7 +290,7 @@ def death():
             if answer == "no":
                 command[0] = 'exit'
             else:
-                mysql.connector.rollback()
+                db.rollback()
                 printNextStory()
     return
 
