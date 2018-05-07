@@ -56,8 +56,8 @@ def climbAnimal():
     for row in cur.fetchall():
         animalID = row[0]
     if cur.rowcount>=1:
-        sql = "UPDATE tick SET tick.locationID = 1, tick.animalID = " + str(animalID) + ";"
-        print("You somehow ended up in te beasts head!")
+        sql = "UPDATE tick SET tick.locationID = 24, tick.animalID = " + str(animalID) + ";"
+        print("You climbed preys left foot") 
         cur.execute(sql)
     return
 
@@ -140,21 +140,21 @@ def directionToNearestAnimal():
     animalX = nearestAnimalXY[0]
     animalY = nearestAnimalXY[1]
     if tickX == animalX and tickY < animalY:
-        print("and comes from north")
+        print("and comes from south")
     if tickX < animalX and tickY < animalY:
-        print("and comes from northeast")
+        print("and comes from southeast")
     if tickX < animalX and tickY == animalY:
         print("and comes from east")
     if tickX < animalX and tickY > animalY:
-        print("and comes from southeast")
+        print("and comes from northeast")
     if tickX == animalX and tickY > animalY:
-        print("and comes from south")
+        print("and comes from north")
     if tickX > animalX and tickY > animalY:
-        print("and comes from southwest")
+        print("and comes from northwest")
     if tickX > animalX and tickY == animalY:
         print("and comes from west")
     if tickX > animalX and tickY < animalY:
-        print("and comes from northwest")
+        print("and comes from southwest")
     if tickX == animalX and tickY == animalY:
         print("and you are pretty sure you could try to grab the animal")
     return 
@@ -240,21 +240,18 @@ def printNextStory():
     return
 
 def theEnd():
-    global command
-    answer = 0
     print("You succeeded in getting your third and final blood meal! Look who is coming, it's your lover, a prince tick!"
     ,"The prince impregnates you. After a while, you give birth to new tick eggs, thousands of them!"
     ,"But we are sorry to tell you that you died while giving birth BUT you successfully completed the game! Congratulations!")
     print("")
     print("---")
+    answer = 0
     while answer != "yes" and answer != "no":
         answer = input("Do you want to play again?\nType \"yes\" or \"no\"\n")
         print("")
         print("---")
     if answer == "yes":
         db.rollback()
-    else:
-        command[0] = 'exit'
     return
 
 def death():
@@ -449,7 +446,7 @@ def printPossibleMoveCommandsInAnimal():
     return
 
 def printHelp():
-    print("wait\nclimb\ndrop\nbite\ninspect\nsmell\ngo + south/west/east/north/up/down\nmove + south/west/east/north/up/down ")
+    print("wait\nclimb\ndrop\nbite\ninspect\nsmell\nrestart\ngo + south/west/east/north/up/down\nmove + south/west/east/north/up/down ")
     return
 
 def climbOrDrop():
@@ -591,7 +588,9 @@ while command[0] != 'exit':
 
     elif command[0] == "bite":
         bite()
-
+    elif command[0] == "restart":
+        db.rollback()
+        printNextStory()
     print(" --- ")
 
 db.close()
