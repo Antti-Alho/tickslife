@@ -57,6 +57,7 @@ def climbAnimal():
         animalID = row[0]
     if cur.rowcount>=1:
         sql = "UPDATE tick SET tick.locationID = 1, tick.animalID = " + str(animalID) + ";"
+        print("You somehow ended up in te beasts head!")
         cur.execute(sql)
     return
 
@@ -206,6 +207,11 @@ def bite():
                     sql = "UPDATE tick SET X=1, Y=6, level=4, locationID = NULL, animalID = NULL;"
                 elif row[0] ==3:
                     sql = "UPDATE tick SET X=1, Y=6, level=4, locationID = NULL, animalID = NULL;"
+                elif row[0] ==4:
+                    cur.execute(sql)
+                    cur.fetchall()
+                    theEnd()
+
                 cur.execute(sql)    
                 printNextStory() 
         else:
@@ -246,7 +252,7 @@ def theEnd():
         print("")
         print("---")
     if answer == "yes":
-        sql.connector.rollback()
+        db.rollback()
     else:
         command[0] = 'exit'
     return
@@ -284,7 +290,7 @@ def death():
             if answer == "no":
                 command[0] = 'exit'
             else:
-                mysql.connector.rollback()
+                db.rollback()
                 printNextStory()
     return
 
@@ -442,10 +448,6 @@ def printPossibleMoveCommandsInAnimal():
         print(row[2])
     return
 
-def printAllPossibleCommands():
-    print("")
-    return
-
 def printHelp():
     print("wait\nclimb\ndrop\nbite\ninspect\nsmell\ngo + south/west/east/north/up/down\nmove + south/west/east/north/up/down ")
     return
@@ -455,7 +457,7 @@ def climbOrDrop():
     sql = "SELECT level FROM tick"
     cur.execute(sql)
     for row in cur.fetchall():
-        if row[0] == 2 and command[0] == "drop" or row[0] != 2 and command[0] == "climb":
+        if row[0] == 2 and command[0] == "climb" or row[0] != 2 and command[0] == "climb":
             climbAnimal()
             
 
