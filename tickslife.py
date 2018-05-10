@@ -459,7 +459,7 @@ while command != 'exit':
             tickMove("west")
         elif command == "east" or command == "e" or command == "E":
             tickMove("east")
-        elif command == "climb" or command == "drop":
+        elif command == "climb":
             climbAnimal()
         elif command == "smell":
             smell()
