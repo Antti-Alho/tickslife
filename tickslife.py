@@ -359,7 +359,7 @@ def endOfTurn():
     GREEN2 = "\033[92m"
     BROWN3 = "\033[93m"
     ENDC4 = "\033[0m"
-    if tickIsNotInAnimal:
+    if tickIsInAnimal() == False:
         cur = db.cursor()
         sql = "SELECT description, color FROM description INNER JOIN tick ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
         cur.execute(sql)
@@ -442,7 +442,6 @@ def tickMove(direction, command = None):
         cur.execute(sql)
     except err.IntegrityError:
         print("You can't go there!")
-    
     endOfTurn()
     return
 
@@ -450,51 +449,46 @@ printNextStory()
 endOfTurn()
 while command != 'exit':
     command = input()
+    try:
+        if tickIsInAnimal() == False:
+            if command == "north" or command == "n" or command == "N":
+                tickMove("north")
+            elif command == "south" or command == "s" or command == "S":
+                tickMove("south")
+            elif command == "west" or command == "w" or command == "W":
+                tickMove("west")
+            elif command == "east" or command == "e" or command == "E":
+                tickMove("east")
+            elif command == "climb" or command == "drop":
+                climbAnimal()
+            elif command == "smell":
+                smell()
+            elif command == "help" or command == "hepl" or command == "h":
+                printHelp()
+            elif command == "wait":
+                tickMove("wait")
+            else:
+                print(command)
+                print("is not a valid command type help for help")
 
-    if tickIsNotInAnimal() = False:
-        if command == "north" or command == "n" or command == "N":
-            tickMove("north")
-        elif command == "south" or command == "s" or command == "S":
-            tickMove("south")
-        elif command == "west" or command == "w" or command == "W":
-            tickMove("west")
-        elif command == "east" or command == "e" or command == "E":
-            tickMove("east")
-        elif command == "climb" or command == "drop":
-            climbAnimal()
-        elif command == "smell":
-            smell()
-        elif command == "help":
-            printHelp()
         elif command == "wait":
-            tickMove("wait")
+            print("Now is not the time to wait! BLOOD!")
+        elif command == "help" or command == "hepl" or command == "h":
+            printHelp()
+        elif command == "inspect":
+            inspect()
+        elif command == "bite":
+            bite()
+        elif command == "restart":
+            db.rollback()
+            printNextStory()
+        elif tickIsInAnimal():
+            moveInAnimal(command)
+        else:
+            print("you broke something")
 
-    elif command == "wait":
-        tickMove("wait")
-
-    elif command == "help":
-        printHelp()
-
-    elif command == "inspect":
-        inspect()
-
-    elif command == "bite":
-        bite()
-
-    elif tickIsInAnimal():
-        moveInAnimal(command)
-
-    else:
-        print("")
-        print("--", end="")
-        for i in command:
-            print(i, end=" ")
-            print("-- is not a valid command l2p")
-
-    elif command[0] == "restart":
-        db.rollback()
-        printNextStory()
-
-    print(" --- ")
+        print(" --- ")
+    except:
+        print("we are smarter than that but good try")
 
 db.close()
