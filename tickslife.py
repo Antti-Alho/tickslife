@@ -23,6 +23,8 @@ def climbAnimal():
         sql = "UPDATE tick SET tick.locationID = 24, tick.animalID = " + str(animalID) + ";"
         print("You climbed preys left foot") 
         cur.execute(sql)
+    else:
+        print("There is nothing to climb into")
     return
 
 def inspect():
@@ -102,7 +104,7 @@ def directionToNearestAnimal():
         tickY = row[1]
         tickLevel = row[2]
     animalX = nearestAnimalXY[0]
-    animalY = nearestAnimalXY[1]
+    animalY = nearestAnimalXY[1]    
     if tickX == animalX and tickY < animalY:
         print("and comes from south")
     if tickX < animalX and tickY < animalY:
@@ -373,27 +375,6 @@ def endOfTurn():
     animalMove()
     return
 
-def printCurrentClimbOptions():
-    cur = db.cursor()
-    sql = "SELECT tick.X, tick.Y, tick.level FROM tick;"
-    cur.execute(sql)
-    for row in cur.fetchall():
-        if row[0] == 1 and row[1] == 2 and row[2] == 2:
-            print("tree")
-        if row[0] == 3 and row[1] == 4 and row[2] == 2:
-            print("tree")
-        if row[0] == 4 and row[1] == 2 and row[2] == 2:
-            print("doghouse or house")
-        if row[0] == 1 and row[1] == 1 and row[2] == 3:
-            print("window")
-        if row[0] == 2 and row[1] == 2 and row[2] == 3:
-            print("table")
-        if row[0] == 3 and row[1] == 3 and row[2] == 3:
-            print("basket")
-        if row[0] == 2 and row[1] == 5 and row[2] == 4:
-            print("bench")
-    return 
-
 def printPossibleMoveCommandsInAnimal():
     cur = db.cursor()
     sql = "SELECT route.locationFromID, route.locationToID, locationInAnimal.name FROM route INNER JOIN tick \
@@ -419,7 +400,7 @@ def printHelp():
         ")
     return
 
-def tickMove(direction, command = None):
+def tickMove(direction):
     cur = db.cursor()
     sql = "SELECT X,Y,level,timeVisible FROM tick"
     cur.execute(sql)
@@ -428,67 +409,92 @@ def tickMove(direction, command = None):
         y = row[1]
         level = row[2]
         time = row[3]
-    if direction == "north":
-        sql = "UPDATE tick SET Y = "+str(y-1)+";"
-    if direction == "south":
-        sql = "UPDATE tick SET Y = "+str(y+1)+";"
-    if direction == "west":
-        sql = "UPDATE tick SET X = "+str(x-1)+";"
-    if direction == "east":
-        sql = "UPDATE tick SET X = "+str(x+1)+";"
-    if direction == "wait":
-        sql = "UPDATE tick SET timeVisible = "+str(time+1)+";"
-    try:
-        cur.execute(sql)
-    except err.IntegrityError:
-        print("You can't go there!")
-    endOfTurn()
+    if noObstacle(x,y,level,direction):
+        if direction == "north":
+            sql = "UPDATE tick SET Y = "+str(y-1)+";"
+        if direction == "south":
+            sql = "UPDATE tick SET Y = "+str(y+1)+";"
+        if direction == "west":
+            sql = "UPDATE tick SET X = "+str(x-1)+";"
+        if direction == "east":
+            sql = "UPDATE tick SET X = "+str(x+1)+";"
+        if direction == "wait":
+            sql = "UPDATE tick SET timeVisible = "+str(time+1)+";"
+        try:
+            cur.execute(sql)
+        except err.IntegrityError:
+            print("You can't go there!")
+        endOfTurn()
     return
+
+
+def noObstacle(x,y,level,command):
+    x2 = x
+    y2 = y
+    
+    if command == "north":
+        y2 = y-1
+    elif command == "south":
+        y2 = y+1
+    elif command == "west":
+        x2 = x-1
+    elif command == "east":
+        x2 = x+1
+
+    cur = db.cursor()
+    sql = "SELECT description FROM tileObstacle \
+    WHERE startX = "+str(x)+" and startY = "+str(y)+" and startlevel = "+str(level)+"\
+    and endX = "+str(x2)+" and endY = "+str(y2)+" and endLevel = "+str(level)+";"
+    cur.execute(sql)
+    for row in cur.fetchall():
+        print(row[0])
+        return False
+    return True
 
 printNextStory()
 endOfTurn()
 while command != 'exit':
     command = input()
-    try:
-        if tickIsInAnimal() == False:
-            if command == "north" or command == "n" or command == "N":
-                tickMove("north")
-            elif command == "south" or command == "s" or command == "S":
-                tickMove("south")
-            elif command == "west" or command == "w" or command == "W":
-                tickMove("west")
-            elif command == "east" or command == "e" or command == "E":
-                tickMove("east")
-            elif command == "climb" or command == "drop":
-                climbAnimal()
-            elif command == "smell":
-                smell()
-            elif command == "help" or command == "hepl" or command == "h":
-                printHelp()
-            elif command == "wait":
-                tickMove("wait")
-            else:
-                print(command)
-                print("is not a valid command type help for help")
 
-        elif command == "wait":
-            print("Now is not the time to wait! BLOOD!")
+    if tickIsInAnimal() == False:
+        if command == "north" or command == "n" or command == "N":
+            tickMove("north")
+        elif command == "south" or command == "s" or command == "S":
+            tickMove("south")
+        elif command == "west" or command == "w" or command == "W":
+            tickMove("west")
+        elif command == "east" or command == "e" or command == "E":
+            tickMove("east")
+        elif command == "climb":
+            climbAnimal()
+        elif command == "smell":
+            smell()
         elif command == "help" or command == "hepl" or command == "h":
             printHelp()
-        elif command == "inspect":
-            inspect()
-        elif command == "bite":
-            bite()
-        elif command == "restart":
-            db.rollback()
-            printNextStory()
-        elif tickIsInAnimal():
-            moveInAnimal(command)
+        elif command == "wait":
+            tickMove("wait")
+        elif command == "exit":
+            print("")
         else:
-            print("you broke something")
+            print(command)
+            print("is not a valid command type help for help")
 
-        print(" --- ")
-    except:
-        print("we are smarter than that but good try")
+    elif command == "wait":
+        print("Now is not the time to wait! BLOOD!")
+    elif command == "help" or command == "hepl" or command == "h":
+        printHelp()
+    elif command == "inspect":
+        inspect()
+    elif command == "bite":
+        bite()
+    elif command == "restart":
+        db.rollback()
+        printNextStory()
+    elif tickIsInAnimal():
+        moveInAnimal(command)
+    else:
+        print("you broke something")
+
+    print(" --- ")
 
 db.close()
