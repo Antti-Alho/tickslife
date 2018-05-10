@@ -23,6 +23,8 @@ def climbAnimal():
         sql = "UPDATE tick SET tick.locationID = 24, tick.animalID = " + str(animalID) + ";"
         print("You climbed preys left foot") 
         cur.execute(sql)
+    else:
+        print("There is nothing to climb into")
     return
 
 def inspect():
@@ -102,7 +104,7 @@ def directionToNearestAnimal():
         tickY = row[1]
         tickLevel = row[2]
     animalX = nearestAnimalXY[0]
-    animalY = nearestAnimalXY[1]
+    animalY = nearestAnimalXY[1]    
     if tickX == animalX and tickY < animalY:
         print("and comes from south")
     if tickX < animalX and tickY < animalY:
@@ -358,7 +360,7 @@ def endOfTurn():
     BLUE1 = "\033[94m"
     GREEN2 = "\033[92m"
     BROWN3 = "\033[93m"
-    ENDC4 = "\033[0m"ommit
+    ENDC4 = "\033[0m"
     if tickIsInAnimal() == False:
         cur = db.cursor()
         sql = "SELECT description, color FROM description INNER JOIN tick ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
@@ -371,27 +373,6 @@ def endOfTurn():
             print(row[0])
         print(ENDC4)
     animalMove()
-    return
-
-def printCurrentClimbOptions():
-    cur = db.cursor()
-    sql = "SELECT tick.X, tick.Y, tick.level FROM tick;"
-    cur.execute(sql)
-    for row in cur.fetchall():
-        if row[0] == 1 and row[1] == 2 and row[2] == 2:
-            print("tree")
-        if row[0] == 3 and row[1] == 4 and row[2] == 2:
-            print("tree")
-        if row[0] == 4 and row[1] == 2 and row[2] == 2:
-            print("doghouse or house")
-        if row[0] == 1 and row[1] == 1 and row[2] == 3:
-            print("window")
-        if row[0] == 2 and row[1] == 2 and row[2] == 3:
-            print("table")
-        if row[0] == 3 and row[1] == 3 and row[2] == 3:
-            print("basket")
-        if row[0] == 2 and row[1] == 5 and row[2] == 4:
-            print("bench")
     return
 
 def printPossibleMoveCommandsInAnimal():
@@ -419,7 +400,7 @@ def printHelp():
         ")
     return
 
-def tickMove(direction, command = None):
+def tickMove(direction):
     cur = db.cursor()
     sql = "SELECT X,Y,level,timeVisible FROM tick"
     cur.execute(sql)
@@ -428,22 +409,47 @@ def tickMove(direction, command = None):
         y = row[1]
         level = row[2]
         time = row[3]
-    if direction == "north":
-        sql = "UPDATE tick SET Y = "+str(y-1)+";"
-    if direction == "south":
-        sql = "UPDATE tick SET Y = "+str(y+1)+";"
-    if direction == "west":
-        sql = "UPDATE tick SET X = "+str(x-1)+";"
-    if direction == "east":
-        sql = "UPDATE tick SET X = "+str(x+1)+";"
-    if direction == "wait":
-        sql = "UPDATE tick SET timeVisible = "+str(time+1)+";"
-    try:
-        cur.execute(sql)
-    except err.IntegrityError:
-        print("You can't go there!")
-    endOfTurn()
+    if noObstacle(x,y,level,direction):
+        if direction == "north":
+            sql = "UPDATE tick SET Y = "+str(y-1)+";"
+        if direction == "south":
+            sql = "UPDATE tick SET Y = "+str(y+1)+";"
+        if direction == "west":
+            sql = "UPDATE tick SET X = "+str(x-1)+";"
+        if direction == "east":
+            sql = "UPDATE tick SET X = "+str(x+1)+";"
+        if direction == "wait":
+            sql = "UPDATE tick SET timeVisible = "+str(time+1)+";"
+        try:
+            cur.execute(sql)
+        except err.IntegrityError:
+            print("You can't go there!")
+        endOfTurn()
     return
+
+
+def noObstacle(x,y,level,command):
+    x2 = x
+    y2 = y
+    
+    if command == "north":
+        y2 = y-1
+    elif command == "south":
+        y2 = y+1
+    elif command == "west":
+        x2 = x-1
+    elif command == "east":
+        x2 = x+1
+
+    cur = db.cursor()
+    sql = "SELECT description FROM tileObstacle \
+    WHERE startX = "+str(x)+" and startY = "+str(y)+" and startlevel = "+str(level)+"\
+    and endX = "+str(x2)+" and endY = "+str(y2)+" and endLevel = "+str(level)+";"
+    cur.execute(sql)
+    for row in cur.fetchall():
+        print(row[0])
+        return False
+    return True
 
 printNextStory()
 endOfTurn()
@@ -467,6 +473,8 @@ while command != 'exit':
             printHelp()
         elif command == "wait":
             tickMove("wait")
+        elif command == "exit":
+            print("")
         else:
             print(command)
             print("is not a valid command type help for help")

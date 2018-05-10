@@ -908,12 +908,9 @@ INSERT INTO tileObstacle VALUES ("The dog's chain is on the way. You have to go 
 INSERT INTO tileObstacle VALUES ("You see a huge animal in the distance. You really don't want to face it head on!",3,2,2,4,2,2);
 INSERT INTO tileObstacle VALUES ("You can't go there!",4,2,2,5,2,2);
 
-
 INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",1,4,2,1,5,2);
 INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",3,4,2,3,5,2);
 INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",4,4,2,4,5,2);
-INSERT INTO tileObstacle VALUES ("You can't go there!",200,101,2,201,101,2);
-INSERT INTO tileObstacle VALUES ("You can't go there!",200,101,2,199,101,2);
 
 INSERT INTO tick VALUES (1,0,NULL,NULL,NULL,5,5,1);
 
