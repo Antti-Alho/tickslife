@@ -20,8 +20,8 @@ def climbAnimal():
     for row in cur.fetchall():
         animalID = row[0]
     if cur.rowcount>=1:
-        sql = "UPDATE tick SET tick.locationID = 1, tick.animalID = " + str(animalID) + ";"
-        print("You somehow ended up in te beasts head!")
+        sql = "UPDATE tick SET tick.locationID = 24, tick.animalID = " + str(animalID) + ";"
+        print("You climbed preys left foot") 
         cur.execute(sql)
     return
 
@@ -204,13 +204,12 @@ def printNextStory():
     return
 
 def theEnd():
-    global command
-    answer = 0
     print("You succeeded in getting your third and final blood meal! Look who is coming, it's your lover, a prince tick!"
     ,"The prince impregnates you. After a while, you give birth to new tick eggs, thousands of them!"
     ,"But we are sorry to tell you that you died while giving birth BUT you successfully completed the game! Congratulations!")
     print("")
     print("---")
+    answer = 0
     while answer != "yes" and answer != "no":
         answer = input("Do you want to play again?\nType \"yes\" or \"no\"\n")
         print("")
@@ -345,15 +344,15 @@ def isTickVisible():
         else:
             return False
 
-def tickIsNotInAnimal():
+def tickIsInAnimal():
     cur = db.cursor()
     sql = "SELECT animalID FROM tick;"
     cur.execute(sql)
     for row in cur.fetchall():
         if row[0] == None:
-            return True
-        else:
             return False
+        else:
+            return True
 
 def endOfTurn():
     BLUE1 = "\033[94m"
@@ -452,7 +451,7 @@ endOfTurn()
 while command != 'exit':
     command = input()
 
-    if tickIsNotInAnimal():
+    if tickIsNotInAnimal() = False:
         if command == "north" or command == "n" or command == "N":
             tickMove("north")
         elif command == "south" or command == "s" or command == "S":
@@ -482,7 +481,7 @@ while command != 'exit':
     elif command == "bite":
         bite()
 
-    elif tickIsNotInAnimal() == False:
+    elif tickIsInAnimal():
         moveInAnimal(command)
 
     else:
@@ -491,8 +490,10 @@ while command != 'exit':
         for i in command:
             print(i, end=" ")
             print("-- is not a valid command l2p")
-            printCurrentClimbOptions()
 
+    elif command[0] == "restart":
+        db.rollback()
+        printNextStory()
 
     print(" --- ")
 

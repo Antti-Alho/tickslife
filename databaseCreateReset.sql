@@ -224,8 +224,8 @@ INSERT INTO tile VALUES (100,100,4);
 INSERT INTO animal VALUES (1,"Squirrel",1,5,1);
 INSERT INTO animal VALUES (2,"Vole",3,1,1);
 
-INSERT INTO animal VALUES (3,"Dog",2,4,2);
-INSERT INTO animal VALUES (4,"Man",1,5,2);
+INSERT INTO animal VALUES (3,"Dog",300,100,2);
+INSERT INTO animal VALUES (4,"Man",198,101,2);
 
 INSERT INTO animal VALUES (5,"Man",300,99,3);
 
@@ -1033,6 +1033,6 @@ INSERT INTO description VALUES (3,39, "Bench\nYou climb on the bench. The bench 
 INSERT INTO story VALUES ("We are sorry to tell you that your mother died at birth. You are a baby female tick, just hatched from egg to a larva, alone in a big world. It is summertime and you are in a forest. The grass around you is long and green and you can feel the smell of the sea. While observing the scenery, you’re hit with a sudden feeling of hunger running through your body. Blood!",5,5,1);
 INSERT INTO story VALUES ("You succeeded in getting your first blood meal! The first summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. Winter comes. Winter goes. New spring comes, and after that the summer. You have changed from the larva into a nymph. You wake up. This time you notice that you've ended up in what looks to be a backyard surrounded by a thick and sturdy fence of a small detached house. The grass has grown tall, and it looks like it hasn’t been cut in a few weeks. The sun has scorched the grass for two days straight and it has already lost most of its vibrant green color. Suddenly you start feeling hungry again. Hunting starts the second time. Blood!",3,2,2);
 INSERT INTO story VALUES ("You bite into the dog and start sucking its blood. For almost five hours you sit there enjoying your nutritious and well deserved meal. Suddenly, the house front door opens and the dog stands up. It walks inside and after happy greeting of its owner and some dining, they both fall asleep in the owner’s room. The meal you just had, now starts to feel more of a mere appetizer compared to the bigger prize in the room. You drop on the floor and start looking around.",1,3,3);
-INSERT INTO story VALUES ("You succeeded in getting your second blood meal! The second summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. The second winter comes. New spring comes, and then the summer. You have changed from the nymph into an adult tick. You remember dropping from the man someplace close to the town park. That's also where you wake up. When you look around you quickly find out that you are in the most south-west part of the park. Hunting starts the third and the final time. Blood!",1,6,4);
+INSERT INTO story VALUES ("You succeeded in getting your second blood meal! The second summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. The second winter comes. New spring comes, and then the summer. You have changed from the nymph into an adult tick. You remember dropping from the dog someplace close to the town park. That's also where you wake up. When you look around you quickly find out that you are in the most south-west part of the park. Hunting starts the third and the final time. Blood!",1,6,4);
 #INSERT INTO story VALUES ("You succeeded in getting your third and final blood meal! Look who is coming, it's your lover, a prince tick! The prince impregnates you. After a while, you give birth to new tick eggs, thousands of them! But we are sorry to tell you that you died while giving birth BUT you successfully completed the game! Congratulations!",5,5,4);
 
