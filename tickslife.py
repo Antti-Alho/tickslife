@@ -342,8 +342,10 @@ def isTickVisible():
     cur.execute(sql)
     for row in cur.fetchall():
         if row[0] == 3:
+            sql = "UPDATE tick SET timeVisible = "+str(time+1)+";"
             return True
         else:
+            sql = "UPDATE tick SET timeVisible = "+0+";"
             return False
 
 def tickIsInAnimal():
@@ -410,6 +412,8 @@ def tickMove(direction):
         level = row[2]
         time = row[3]
     if noObstacle(x,y,level,direction):
+        if time >= 5:
+            death()
         if direction == "north":
             sql = "UPDATE tick SET Y = "+str(y-1)+";"
         if direction == "south":
@@ -422,6 +426,7 @@ def tickMove(direction):
             sql = "UPDATE tick SET timeVisible = "+str(time+1)+";"
         try:
             cur.execute(sql)
+            isTickVisible()
         except err.IntegrityError:
             print("You can't go there!")
         endOfTurn()
