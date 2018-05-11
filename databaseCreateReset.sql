@@ -151,6 +151,10 @@ INSERT INTO tile VALUES (1,5,2);
 INSERT INTO tile VALUES (2,5,2);
 INSERT INTO tile VALUES (3,5,2);
 INSERT INTO tile VALUES (4,5,2);
+INSERT INTO tile VALUES (1,6,2);
+INSERT INTO tile VALUES (2,6,2);
+INSERT INTO tile VALUES (3,6,2);
+INSERT INTO tile VALUES (4,6,2);
 
 #lvl3
 INSERT INTO tile VALUES (1,1,3);
@@ -201,20 +205,19 @@ INSERT INTO tile VALUES (3,6,4);
 INSERT INTO tile VALUES (4,6,4);
 INSERT INTO tile VALUES (5,6,4);
 INSERT INTO tile VALUES (6,6,4);
-INSERT INTO tile VALUES (7,6,4);
 
 
 #animals id,name,x,y,lvl
 INSERT INTO animal VALUES (1,"Squirrel",1,5,1);
 INSERT INTO animal VALUES (2,"Vole",3,1,1);
 
-INSERT INTO animal VALUES (3,"Dog",5,2,2);
+INSERT INTO animal VALUES (3,"Dog",4,2,2);
 INSERT INTO animal VALUES (4,"Man",1,5,2);
 
-INSERT INTO animal VALUES (5,"Man",1,3,3);
+INSERT INTO animal VALUES (5,"Man",3,1,3);
 
-INSERT INTO animal VALUES (6,"Jogger",1,5,4);
-INSERT INTO animal VALUES (7,"Child",1,5,4);
+INSERT INTO animal VALUES (6,"Jogger",5,1,4);
+INSERT INTO animal VALUES (7,"Child",2,4,4);
 
 INSERT INTO locationInAnimal VALUES ("head", 1, 0, 1);
 INSERT INTO locationInAnimal VALUES ("neck", 2, 1, 1);
@@ -834,7 +837,7 @@ INSERT INTO animalRoute VALUES (4,2,3,4,1);
 INSERT INTO animalRoute VALUES (5,2,2,4,1);
 INSERT INTO animalRoute VALUES (6,2,1,4,1);
 # Dog
-INSERT INTO animalRoute VALUES (1,3,2,2,2);
+INSERT INTO animalRoute VALUES (1,3,4,2,2);
 # Man 1
 INSERT INTO animalRoute VALUES (1,4,1,5,2);
 INSERT INTO animalRoute VALUES (2,4,2,5,2);
@@ -843,7 +846,7 @@ INSERT INTO animalRoute VALUES (4,4,4,5,2);
 INSERT INTO animalRoute VALUES (5,4,3,5,2);
 INSERT INTO animalRoute VALUES (6,4,2,5,2);
 # Man 2
-INSERT INTO animalRoute VALUES (1,5,1,3,3);
+INSERT INTO animalRoute VALUES (1,5,3,1,3);
 # Jogger 1
 INSERT INTO animalRoute VALUES (1,6,5,1,4);
 INSERT INTO animalRoute VALUES (2,6,5,2,4);
@@ -853,8 +856,6 @@ INSERT INTO animalRoute VALUES (5,6,6,4,4);
 INSERT INTO animalRoute VALUES (6,6,6,3,4);
 INSERT INTO animalRoute VALUES (7,6,6,2,4);
 INSERT INTO animalRoute VALUES (8,6,5,2,4);
-# Jogger 2
-#INSERT INTO animalRoute VALUES (1,6,100,100,4);
 # Child
 INSERT INTO animalRoute VALUES (1,7,2,4,4);
 INSERT INTO animalRoute VALUES (2,7,3,4,4);
@@ -875,15 +876,15 @@ INSERT INTO tileObstacle VALUES ("There is a anthill on your way and you don't w
 INSERT INTO tileObstacle VALUES ("There is a banana peel on the ground! it's so slippery you can't take the risk and go this way!",1,2,2,1,3,2);
 INSERT INTO tileObstacle VALUES ("There is a banana peel on the ground! it's so slippery you can't take the risk and go this way!",1,3,2,1,2,2);
 
-INSERT INTO tileObstacle VALUES ("The dog's chain is on the way. You have to go around",4,1,2,4,2,2);
-INSERT INTO tileObstacle VALUES ("The dog's chain is on the way. You have to go around",4,2,2,4,1,2);
+INSERT INTO tileObstacle VALUES ("A chain lying on the lawn is on the way. You have to go around",4,1,2,4,2,2);
+INSERT INTO tileObstacle VALUES ("A chain lying on the lawn is on the way. You have to go around",4,2,2,4,1,2);
 INSERT INTO tileObstacle VALUES ("You see a huge animal in the distance. You really don't want to face it head on!",3,2,2,4,2,2);
-INSERT INTO tileObstacle VALUES ("You can't go there!",4,2,2,5,2,2);
 
 INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",1,4,2,1,5,2);
 INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",3,4,2,3,5,2);
 INSERT INTO tileObstacle VALUES ("You cant go to the street. There is a fence in your way",4,4,2,4,5,2);
 
+# Tick location
 INSERT INTO tick VALUES (1,0,NULL,NULL,NULL,5,5,1);
 
 #lvl1 color, descriptions id, string, x, y, lvl
@@ -927,7 +928,6 @@ INSERT INTO description VALUES (2,5,"Western Yard\nResting against the fence the
 INSERT INTO description VALUES (2,6,"Center of the Backyard\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",2,2,2);
 INSERT INTO description VALUES (2,7,"Center of the Backyard\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",3,2,2);
 INSERT INTO description VALUES (2,8,"Eastern Yard\nA couple meters forward stands a small building, much smaller than the one to the north-west, that is guarded by a dog napping in the doorway.'",4,2,2);
-INSERT INTO description VALUES (2,9,"Eastern Yard\nA couple meters forward stands a small building, much smaller than the one to the north-west, that is guarded by a dog. The dog has stood up nervously scanning its surroundings and sniffing the air.'",4,2,2);
 INSERT INTO description VALUES (2,12,"Western Yard\nResting against fence there are a few berry bushes which at this time of the summer, are heavy with berries of different shapes and colors. The ground is filled with half-eaten cherries probably eaten by the birds who often rest on the two trees planted in the yard.'",1,3,2);
 INSERT INTO description VALUES (2,13,"Center Yard\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",2,3,2);
 INSERT INTO description VALUES (2,14,"Center Yard\nThe center of the backyard is exposed to the sun from the early morning till the sundown. Compared to the rest of the backyard the grass seems more damaged, and it has replaced its green with more of a brownish color.'",3,3,2);
@@ -936,11 +936,19 @@ INSERT INTO description VALUES (2,16,"South-Western Yard\nOnly grass and some we
 INSERT INTO description VALUES (2,17,"Southern Yard\nThis is where the fences end on both sides and in front of you, separating backyard from the street , stands a gate. Although the gate itself would be hard to open, under the gate is small gap you just might be able to get through.'",2,4,2);
 INSERT INTO description VALUES (2,18,"Southern Yard\nAlong the fence rises a large maple whose branches stretch over the yard fences and cover the most of the southern part of the backyard. It has already dropped a lot of its leaves on the ground. This might be its last summer. You can hear some car noises coming from the other side of the fence.'",3,4,2);
 INSERT INTO description VALUES (2,19,"South-Eastern Yard\nOnly grass and some weeds growing from the gaps in the fence. You can hear some car noises coming from the other side of the fence.'",4,4,2);
+INSERT INTO description VALUES (3,20,"Sidewalk\nYou sqeeze through the gap and to the sidewalk. The asphalt burns under your feet. You can see some cars passing through on the street.",1,5,2);
+INSERT INTO description VALUES (3,21,"Sidewalk\nYou sqeeze through the gap and to the sidewalk. The asphalt burns under your feet. You can see some cars passing through on the street.",2,5,2);
+INSERT INTO description VALUES (3,22,"Sidewalk\nYou sqeeze through the gap and to the sidewalk. The asphalt burns under your feet. You can see some cars passing through on the street.",3,5,2);
+INSERT INTO description VALUES (3,23,"Sidewalk\nYou sqeeze through the gap and to the sidewalk. The asphalt burns under your feet. You can see some cars passing through on the street.",4,5,2);
 
+INSERT INTO description VALUES (3,24,"GAME OVER\nYou walk into the driveway. The last thing you hear is a screeching tire when you get crushed by its weight...",1,6,2);
+INSERT INTO description VALUES (3,24,"GAME OVER\nYou walk into the driveway. The last thing you hear is a screeching tire when you get crushed by its weight...",2,6,2);
+INSERT INTO description VALUES (3,24,"GAME OVER\nYou walk into the driveway. The last thing you hear is a screeching tire when you get crushed by its weight...",3,6,2);
+INSERT INTO description VALUES (3,24,"GAME OVER\nYou walk into the driveway. The last thing you hear is a screeching tire when you get crushed by its weight...",4,6,2);
 # lvl2.5 description
 INSERT INTO description VALUES (2,1, "Room\nThis seems to be the corner of the room. Straight above, you can see a window frame. The window frame transforms the moonlight flooding inside into a shape of a cross reflecting on the floor.'",1,1,3);
 INSERT INTO description VALUES (2,2, "Room\nAbove you, there is a table made of glass with wooden legs. The material that the legs are made of, may just be rough enough to climb.'",2,1,3);
-INSERT INTO description VALUES (2,3, "Underneath the Bed\nUnder the bed, there is an acoustic guitar and some music papers. A few ants have also taken liking to a piece of candy fallen under the bed. The legs are made of some kind of metal. You can hear loud snoring coming from the top.'",3,1,3);
+INSERT INTO description VALUES (2,3, "Matress\nIn the corner of the room there is a matress with someone sleeping on it. On the floor, next to the matress is an acoustic guitar and some music papers. A few ants have also taken liking to a piece of candy fallen on the floor.",3,1,3);
 INSERT INTO description VALUES (2,4, "Room\nAll the walls of the room have been painted with light blue paint. However, they almost entirely covered with posters of famous artists and game characters.'",1,2,3);
 INSERT INTO description VALUES (2,5, "Room\nIn the middle of the room there is a furry green carpet. Only if the owner knew how much dirt and bacteria a carpet like that collects over the years.'",2,2,3);
 INSERT INTO description VALUES (2,6, "Room\nRight beside the bed there is a basket with some clothes spilling out. There is a shirt,  pair of jeans and a couple dirty socks lying on the floor.'",3,2,3);
@@ -990,5 +998,3 @@ INSERT INTO story VALUES ("We are sorry to tell you that your mother died at bir
 INSERT INTO story VALUES ("You succeeded in getting your first blood meal! The first summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. Winter comes. Winter goes. New spring comes, and after that the summer. You have changed from the larva into a nymph. You wake up. This time you notice that you've ended up in what looks to be a backyard surrounded by a thick and sturdy fence of a small detached house. The grass has grown tall, and it looks like it hasn’t been cut in a few weeks. The sun has scorched the grass for two days straight and it has already lost most of its vibrant green color. Suddenly you start feeling hungry again. Hunting starts the second time. Blood!",3,2,2);
 INSERT INTO story VALUES ("You bite into the dog and start sucking its blood. For almost five hours you sit there enjoying your nutritious and well deserved meal. Suddenly, the house front door opens and the dog stands up. It walks inside and after happy greeting of its owner and some dining, they both fall asleep in the owner’s room. The meal you just had, now starts to feel more of a mere appetizer compared to the bigger prize in the room. You drop on the floor and start looking around.",1,3,3);
 INSERT INTO story VALUES ("You succeeded in getting your second blood meal! The second summer of your life comes to an end. You drop to the ground and go under a pile of dead leaves to hibernate. The second winter comes. New spring comes, and then the summer. You have changed from the nymph into an adult tick. You remember dropping from the dog someplace close to the town park. That's also where you wake up. When you look around you quickly find out that you are in the most south-west part of the park. Hunting starts the third and the final time. Blood!",1,6,4);
-#INSERT INTO story VALUES ("You succeeded in getting your third and final blood meal! Look who is coming, it's your lover, a prince tick! The prince impregnates you. After a while, you give birth to new tick eggs, thousands of them! But we are sorry to tell you that you died while giving birth BUT you successfully completed the game! Congratulations!",5,5,4);
-
