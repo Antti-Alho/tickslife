@@ -224,16 +224,13 @@ INSERT INTO tile VALUES (100,100,4);
 INSERT INTO animal VALUES (1,"Squirrel",1,5,1);
 INSERT INTO animal VALUES (2,"Vole",3,1,1);
 
-INSERT INTO animal VALUES (3,"Dog",300,100,2);
-INSERT INTO animal VALUES (4,"Man",198,101,2);
+INSERT INTO animal VALUES (3,"Dog",5,2,2);
+INSERT INTO animal VALUES (4,"Man",1,5,2);
 
 INSERT INTO animal VALUES (5,"Man",300,99,3);
 
 INSERT INTO animal VALUES (6,"Jogger",1,5,4);
 INSERT INTO animal VALUES (7,"Child",1,5,4);
-
-INSERT INTO animal VALUES (8,"SmellDog", 5,2,2);
-INSERT INTO animal VALUES (9,"SmellMan1",1,5,2);
 
 INSERT INTO locationInAnimal VALUES ("head", 1, 0, 1);
 INSERT INTO locationInAnimal VALUES ("neck", 2, 1, 1);
@@ -852,24 +849,15 @@ INSERT INTO animalRoute VALUES (3,2,3,3,1);
 INSERT INTO animalRoute VALUES (4,2,3,4,1);
 INSERT INTO animalRoute VALUES (5,2,2,4,1);
 INSERT INTO animalRoute VALUES (6,2,1,4,1);
-# Dog (smell)
+# Dog
 INSERT INTO animalRoute VALUES (1,3,2,2,2);
-# Dog (actual)
-INSERT INTO animalRoute VALUES (1,8,300,100,2);
-# Man 1 (smell)
-INSERT INTO animalRoute VALUES (1,9,1,5,2);
-INSERT INTO animalRoute VALUES (2,9,2,5,2);
-INSERT INTO animalRoute VALUES (3,9,3,5,2);
-INSERT INTO animalRoute VALUES (4,9,4,5,2);
-INSERT INTO animalRoute VALUES (5,9,3,5,2);
-INSERT INTO animalRoute VALUES (6,9,2,5,2);
-# Man 1 (actual)
-INSERT INTO animalRoute VALUES (1,4,198,101,2);
-INSERT INTO animalRoute VALUES (2,4,199,101,2);
-INSERT INTO animalRoute VALUES (3,4,200,101,2);
-INSERT INTO animalRoute VALUES (4,4,201,101,2);
-INSERT INTO animalRoute VALUES (5,4,200,101,2);
-INSERT INTO animalRoute VALUES (6,4,199,101,2);
+# Man 1
+INSERT INTO animalRoute VALUES (1,4,1,5,2);
+INSERT INTO animalRoute VALUES (2,4,2,5,2);
+INSERT INTO animalRoute VALUES (3,4,3,5,2);
+INSERT INTO animalRoute VALUES (4,4,4,5,2);
+INSERT INTO animalRoute VALUES (5,4,3,5,2);
+INSERT INTO animalRoute VALUES (6,4,2,5,2);
 # Man 2
 INSERT INTO animalRoute VALUES (1,5,300,99,3);
 # Jogger 1

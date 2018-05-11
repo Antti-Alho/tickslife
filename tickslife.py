@@ -217,6 +217,8 @@ def theEnd():
         print("")
         print("---")
     if answer == "yes":
+        for row in cur.fetchall():
+            print("", end = "")
         db.rollback()
     else:
         command = 'exit'
@@ -229,18 +231,7 @@ def death():
     sql = "SELECT X, Y, level, timeVisible FROM tick"
     cur.execute(sql)
     for row in cur.fetchall():
-        if row[0] == 200 and row[1] == 101 and row[2] == 2:
-            print("GAME OVER\nYou squeeze through the gap and to the sidewalk. Suddenly, you see someone walking towards you."
-                  ,"Unfortunately, you have no time to react and a foot crushes you against the pavement...")
-            rollback = True
-        if row[0] == 199 and row[1] == 101 and row[2] == 2:
-            print ("GAME OVER\nThe man starts moving and your grasp ends up not being tight enough."
-                   ,"You fall right under the man’s foot and get crushed by its weight...")
-            rollback = True
-        if row[0] == 198 and row[1] == 101 and row[2] == 2:
-            print("GAME OVER\nWhile falling a sudden gust of wind flies you to the driveway."
-                  ,"The last thing you hear is a screeching tire when you get crushed by its weight...")
-        if row [3] == 4:
+        if row [3] >= 4:
             print("GAME OVER\nYou spent too much time in the open."
                   ,"A hungry bird spots you and doesn't waist any time when swallowing you as a whole...")
             rollback = True
@@ -335,17 +326,17 @@ def animalMove():
 
 def isTickVisible():
     cur = db.cursor()
-    sql = "SELECT description.color FROM tick INNER JOIN tile\
+    sql = "SELECT description.color, tick.timeVisible FROM tick INNER JOIN tile\
     ON tick.X = tile.X AND tick.Y = tile.Y AND tick.level = tile.level\
     INNER JOIN description\
     ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
     cur.execute(sql)
     for row in cur.fetchall():
         if row[0] == 3:
-            sql = "UPDATE tick SET timeVisible = "+str(time+1)+";"
+            sql = "UPDATE tick SET timeVisible = "+str(row[1]+1)+";"
             return True
         else:
-            sql = "UPDATE tick SET timeVisible = "+0+";"
+            sql = "UPDATE tick SET timeVisible = "+str(0)+";"
             return False
 
 def tickIsInAnimal():
