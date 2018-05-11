@@ -240,17 +240,15 @@ def theEnd():
 def isGameOver():
     rollback = False
     cur = db.cursor()
-    sql = "SELECT timeVisible, description.description FROM tick INNER JOIN description \
+    sql = "SELECT tick.timeVisible, description.description FROM tick INNER JOIN description \
     ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
     cur.execute(sql)
     for row in cur.fetchall():
-<<<<<<< HEAD
-        if row [3] >= 4:
-=======
         visible = row[0]
+
         description = row[1]
+        asd
         if visible > 3:
->>>>>>> 09aeff0f062d4e6a334261bfecb4e32dc03b0775
             print("GAME OVER\nYou spent too much time in the open."
                   ,"A hungry bird spots you and doesn't waist any time when swallowing you as a whole...")
             rollback = True
