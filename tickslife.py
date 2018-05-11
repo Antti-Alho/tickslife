@@ -508,11 +508,6 @@ def tickMove(direction, command = None):
                 sql = "UPDATE tick SET X = 300, Y = 100;"
             if x == 2 and y == 5 and level == 4 and command[2] == "bench":
                 sql = "UPDATE tick SET X = 100, Y = 100;"
-            else:
-                printCurrentClimbOptions()
-        except IndexError:
-            print("where do you wan't to climb?")
-            printCurrentClimbOptions()
     try:
         cur.execute(sql)
     except err.IntegrityError:
