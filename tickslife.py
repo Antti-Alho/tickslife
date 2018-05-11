@@ -245,9 +245,7 @@ def isGameOver():
     cur.execute(sql)
     for row in cur.fetchall():
         visible = row[0]
-
         description = row[1]
-        asd
         if visible > 3:
             print("GAME OVER\nYou spent too much time in the open."
                   ,"A hungry bird spots you and doesn't waist any time when swallowing you as a whole...")
