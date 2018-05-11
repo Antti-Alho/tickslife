@@ -12,53 +12,26 @@ db = mysql.connector.connect(
 
 command = [""]
 
-class direction(Enum):
-    NORTH = 0
-    NE = 1
-    EAST = 2
-    SE = 3
-    SOUTH = 4
-    SW = 5
-    WEST = 6
-    NW = 7
-
-class animalDirection(Enum):
-    head = 1
-    neck = 2
-    rightarmpit = 3
-    leftarmpit = 4
-    rightArm = 5
-    leftarm = 6
-    righthand = 7
-    lefthand = 8
-    chest = 9
-    stomach = 10
-    back = 11
-    rightside = 12
-    leftside = 13
-    groin = 14
-    rightthig = 15
-    leftthig = 16
-    rightknee = 17
-    leftknee = 18
-    rightham = 19
-    leftham = 20
-    rightcalf = 21
-    leftcalf = 22
-    rightfoot = 23
-    leftfoot = 24
-
 def climbAnimal():
+    import random
     cur = db.cursor()
-    sql = "SELECT animal.animalID FROM animal INNER JOIN tick \
+    sql = "SELECT animal.animalID, animal.name FROM animal INNER JOIN tick \
     ON animal.X = tick.X AND animal.Y = tick.Y AND animal.level = tick.level;"
     cur.execute(sql)
     for row in cur.fetchall():
         animalID = row[0]
+        animalname = row[1]
     if cur.rowcount>=1:
-        sql = "UPDATE tick SET tick.locationID = 24, tick.animalID = " + str(animalID) + ";"
-        print("You climbed preys left foot") 
+        sql = "UPDATE tick SET tick.locationID = "+ str(random.randint(1,24)) +", tick.animalID = " + str(animalID) + ";"
         cur.execute(sql)
+        print("You climbed on a", str(animalname))
+        sql = "SELECT locationInAnimal.name FROM locationInAnimal INNER JOIN tick ON locationInAnimal.locationID=tick.locationID AND locationInAnimal.animalID = tick.animalID;"
+        cur.execute(sql)
+        for row in cur.fetchall():
+            bodypart = row[0]
+        print("After a bit of climbing you ended up in the", str(bodypart) ,"of the", str(animalname) ) 
+    else:
+        print("There is nothing to climb into")
     return
 
 def inspect():
@@ -138,7 +111,7 @@ def directionToNearestAnimal():
         tickY = row[1]
         tickLevel = row[2]
     animalX = nearestAnimalXY[0]
-    animalY = nearestAnimalXY[1]
+    animalY = nearestAnimalXY[1]    
     if tickX == animalX and tickY < animalY:
         print("and comes from south")
     if tickX < animalX and tickY < animalY:
@@ -196,7 +169,7 @@ def bite():
                 cur.execute(sql)
                 print("The vole you just bit had lyme disease. You now carry this useful 'gun' with you")
             if row[0]==3:
-                sql = "UPDATE tick SET X=1, Y=3, level = 3,;"
+                sql = "UPDATE tick SET X=1, Y=3, level = 3;"
                 cur.execute(sql)
             sql = "SELECT level FROM tick;"
             cur.execute(sql)
@@ -204,7 +177,13 @@ def bite():
                 if row[0]==1:
                     sql = "UPDATE tick SET X=3, Y=2, level=2, locationID = NULL, animalID = NULL;"
                 elif row[0]==2:
-                    sql = "UPDATE tick SET X=1, Y=6, level=4, locationID = NULL, animalID = NULL;"
+                    sql = "SELECT animalID FROM tick;"
+                    cur.execute(sql)
+                    for row in cur.fetchall():
+                        if row[0]==3:
+                            sql = "UPDATE tick SET X=1, Y=3, level=3, locationID = NULL, animalID = NULL;"
+                        else:
+                            sql = "UPDATE tick SET X=1, Y=6, level=4, locationID = NULL, animalID = NULL;"
                 elif row[0] ==3:
                     sql = "UPDATE tick SET X=1, Y=6, level=4, locationID = NULL, animalID = NULL;"
                 elif row[0] ==4:
@@ -252,29 +231,25 @@ def theEnd():
         print("---")
     if answer == "yes":
         db.rollback()
+    else:
+        command = 'exit'
     return
 
-def death():
-    global command
+def isGameOver():
     rollback = False
     cur = db.cursor()
-    sql = "SELECT X, Y, level, timeVisible FROM tick"
+    sql = "SELECT timeVisible, description.description FROM tick INNER JOIN description \
+    ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
     cur.execute(sql)
     for row in cur.fetchall():
-        if row[0] == 200 and row[1] == 101 and row[2] == 2:
-            print("GAME OVER\nYou squeeze through the gap and to the sidewalk. Suddenly, you see someone walking towards you."
-                  ,"Unfortunately, you have no time to react and a foot crushes you against the pavement...")
-            rollback = True
-        if row[0] == 199 and row[1] == 101 and row[2] == 2:
-            print ("GAME OVER\nThe man starts moving and your grasp ends up not being tight enough."
-                   ,"You fall right under the man’s foot and get crushed by its weight...")
-            rollback = True
-        if row[0] == 198 and row[1] == 101 and row[2] == 2:
-            print("GAME OVER\nWhile falling a sudden gust of wind flies you to the driveway."
-                  ,"The last thing you hear is a screeching tire when you get crushed by its weight...")
-        if row [3] == 4:
+        visible = row[0]
+        description = row[1]
+        if visible > 3:
             print("GAME OVER\nYou spent too much time in the open."
                   ,"A hungry bird spots you and doesn't waist any time when swallowing you as a whole...")
+            rollback = True
+        if "GAME OVER" in description:
+            print(description)
             rollback = True
         if rollback == True:
             answer = 0
@@ -285,8 +260,9 @@ def death():
                 print("")
                 print("---")
             if answer == "no":
-                command[0] = 'exit'
+                command = 'exit'
             else:
+                db.close()
                 db.rollback()
                 printNextStory()
     return
@@ -297,34 +273,27 @@ def moveInAnimal(direction):
         if x != " ":
             newdirection = newdirection + x
     cur = db.cursor()
-    sql = "SELECT route.locationFromID, route.locationToID, animal.name FROM route INNER JOIN tick \
-    ON tick.animalID = route.animalID and tick.locationID = route.locationFromID INNER JOIN animal \
-    ON tick.animalID = animal.animalID;"
+    sql = "SELECT route.locationToID, locationInAnimal.name, animal.name FROM tick INNER JOIN route \
+    ON tick.animalID = route.animalID AND tick.locationID = route.locationFromID INNER JOIN animal \
+    ON tick.animalID = animal.animalID INNER JOIN locationInAnimal \
+    ON tick.animalID = locationInAnimal.animalID;"
     cur.execute(sql)
-    move = 1000
+    move = sys.maxsize
     for row in cur.fetchall():
-        try:
-            if row[1] == animalDirection[newdirection].value:
-                move = animalDirection[newdirection].value
-                sql = "UPDATE tick SET locationID = '"+str(move)+"';"
-                print("you move to "+direction+" of the "+row[2])
-                cur.execute(sql)        
-        except KeyError:
-            print("psyykeni on paloina lattialla")
-            printPossibleMoveCommandsInAnimal()
+        newrow1 = ""
+        for x in row[1]:
+            if x != " ":
+                newrow1 = newrow1 + x
+        
+        if newdirection.lower() == newrow1.lower():
+            move = row[0]
+            sql = "UPDATE tick SET locationID = '"+str(move)+"';"
+            print("You move to "+row[1]+" of the "+row[2])
+            cur.execute(sql)
             break
+    else:
+        printPossibleMoveCommandsInAnimal()
     return
-  
-def possibleMovementsInAnimal():
-    possibleMovements = []
-    cur = db.cursor()
-    sql = "SELECT locationInAnimal.name FROM tick INNER JOIN route \
-    ON tick.locationID = route.locationID AND tick.animalID = route.animalID\
-    INNER JOIN locationInAnimal ON locationInAnimal.locationID = route.locationToID;"
-    cur.execute(sql)
-    for row in cur.fetchall():
-        possibleMovements.append(row[0])
-    return possibleMovements
 
 def animalMove():
     cur = db.cursor()
@@ -384,22 +353,23 @@ def isTickVisible():
         else:
             return False
 
-def tickIsNotInAnimal():
+def tickIsInAnimal():
     cur = db.cursor()
     sql = "SELECT animalID FROM tick;"
     cur.execute(sql)
     for row in cur.fetchall():
         if row[0] == None:
-            return True
-        else:
             return False
+        else:
+            return True
 
 def endOfTurn():
+    isGameOver()
     BLUE1 = "\033[94m"
     GREEN2 = "\033[92m"
     BROWN3 = "\033[93m"
     ENDC4 = "\033[0m"
-    if tickIsNotInAnimal:
+    if tickIsInAnimal() == False:
         cur = db.cursor()
         sql = "SELECT description, color FROM description INNER JOIN tick ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
         cur.execute(sql)
@@ -413,27 +383,6 @@ def endOfTurn():
     animalMove()
     return
 
-def printCurrentClimbOptions():
-    cur = db.cursor()
-    sql = "SELECT tick.X, tick.Y, tick.level FROM tick;"
-    cur.execute(sql)
-    for row in cur.fetchall():
-        if row[0] == 1 and row[1] == 2 and row[2] == 2:
-            print("tree")
-        if row[0] == 3 and row[1] == 4 and row[2] == 2:
-            print("tree")
-        if row[0] == 4 and row[1] == 2 and row[2] == 2:
-            print("doghouse or house")
-        if row[0] == 1 and row[1] == 1 and row[2] == 3:
-            print("window")
-        if row[0] == 2 and row[1] == 2 and row[2] == 3:
-            print("table")
-        if row[0] == 3 and row[1] == 3 and row[2] == 3:
-            print("basket")
-        if row[0] == 2 and row[1] == 5 and row[2] == 4:
-            print("bench")
-    return 
-
 def printPossibleMoveCommandsInAnimal():
     cur = db.cursor()
     sql = "SELECT route.locationFromID, route.locationToID, locationInAnimal.name FROM route INNER JOIN tick \
@@ -446,19 +395,20 @@ def printPossibleMoveCommandsInAnimal():
     return
 
 def printHelp():
-    print("wait\nclimb\ndrop\nbite\ninspect\nsmell\nrestart\ngo + south/west/east/north/up/down\nmove + south/west/east/north/up/down ")
+    print("write:\
+        wait - to not do anythin and let time pass and animals move\n \
+        climb - to climb into animal\n \
+        bite - to bite \n \
+        inspect - to see how thick the animals skin is\n \
+        smell - to see if there are animals nearby\n \
+        south/west/east/north\n \
+        or n/w/e/n\n \
+        and when moving in animal type the body parts name you want to go to \n \
+        to list possible movement options in animal just type something\
+        ")
     return
 
-def climbOrDrop():
-    cur = db.cursor()
-    sql = "SELECT level FROM tick"
-    cur.execute(sql)
-    for row in cur.fetchall():
-        if row[0] == 2 and command[0] == "climb" or row[0] != 2 and command[0] == "climb":
-            climbAnimal()
-            
-
-def tickMove(direction, command = None):
+def tickMove(direction):
     cur = db.cursor()
     sql = "SELECT X,Y,level,timeVisible FROM tick"
     cur.execute(sql)
@@ -467,125 +417,92 @@ def tickMove(direction, command = None):
         y = row[1]
         level = row[2]
         time = row[3]
-    if direction == "north":
-        sql = "UPDATE tick SET Y = "+str(y-1)+";"
-    if direction == "south":
-        sql = "UPDATE tick SET Y = "+str(y+1)+";"
-    if direction == "west":
-        sql = "UPDATE tick SET X = "+str(x-1)+";"
-    if direction == "east":
-        sql = "UPDATE tick SET X = "+str(x+1)+";"
-    if direction == "still":
-        sql = "UPDATE tick SET timeVisible = "+str(time+1)+";"
-    if direction == "down" and y == 100:
-        if x == 100 and level == 2:
-            sql = "UPDATE tick SET X = 1, Y = 2;"
-        if x == 200 and level == 2:
-            sql = "UPDATE tick SET X = 3, Y = 4;"
-        if x == 300 and level == 2:
-            sql = "UPDATE tick SET X = 4, Y = 2;"
-        if x == 100 and level == 3:
-            sql = "UPDATE tick SET X = 1, Y = 1;"
-        if x == 200 and level == 3:
-            sql = "UPDATE tick SET X = 2, Y = 2;"
-        if x == 300 and level == 3:
-            sql = "UPDATE tick SET X = 3, Y = 3;"
-        if x == 100 and level == 4:
-            sql = "UPDATE tick SET X = 5, Y = 4;"
-    if direction == "up":
-        try :
-            if x == 1 and y == 2 and level == 2 and command[2] == "tree":
-                sql = "UPDATE tick SET X = 100, Y = 100;"
-            if x == 3 and y == 4 and level == 2 and command[2] == "tree":
-                sql = "UPDATE tick SET X = 200, Y = 100;"
-            if x == 4 and y == 2 and level == 2 and command[2] == "doghouse" or command[2] == "house":
-                sql = "UPDATE tick SET X = 300, Y = 100;"
-            if x == 1 and y == 1 and level == 3 and command[2] == "window":
-                sql = "UPDATE tick SET X = 100, Y = 100;"
-            if x == 2 and y == 2 and level == 3 and command[2] == "table":
-                sql = "UPDATE tick SET X = 200, Y = 100;"
-            if x == 3 and y == 3 and level == 3 and command[2] == "basket":
-                sql = "UPDATE tick SET X = 300, Y = 100;"
-            if x == 2 and y == 5 and level == 4 and command[2] == "bench":
-                sql = "UPDATE tick SET X = 100, Y = 100;"
-    try:
-        cur.execute(sql)
-    except err.IntegrityError:
-        print("You can't go there!")
-    
-    endOfTurn()
+
+    if noObstacle(x,y,level,direction):
+        if direction == "north":
+            sql = "UPDATE tick SET Y = "+str(y-1)+";"
+        if direction == "south":
+            sql = "UPDATE tick SET Y = "+str(y+1)+";"
+        if direction == "west":
+            sql = "UPDATE tick SET X = "+str(x-1)+";"
+        if direction == "east":
+            sql = "UPDATE tick SET X = "+str(x+1)+";"
+        if direction == "wait":
+            sql = "UPDATE tick SET timeVisible = "+str(time+1)+";"
+        try:
+            cur.execute(sql)
+        except err.IntegrityError:
+            print("You can't go there!")
+        endOfTurn()
     return
 
-def getCommand():
-    cmd = input()
-    command = []
-    length = 0
-    command.append("")
-    eka = 0
-    for x in range(len(cmd)):
-        if cmd[x] == " " and eka == 0:
-            length += 1
-            eka += 1
-            command.append("")
-        else:
-            command[length] = command[length] + cmd[x]
-    return command
+def noObstacle(x,y,level,command):
+    x2 = x
+    y2 = y
+    
+    if command == "north":
+        y2 = y-1
+    elif command == "south":
+        y2 = y+1
+    elif command == "west":
+        x2 = x-1
+    elif command == "east":
+        x2 = x+1
 
+    cur = db.cursor()
+    sql = "SELECT description FROM tileObstacle \
+    WHERE startX = "+str(x)+" and startY = "+str(y)+" and startlevel = "+str(level)+"\
+    and endX = "+str(x2)+" and endY = "+str(y2)+" and endLevel = "+str(level)+";"
+    cur.execute(sql)
+    for row in cur.fetchall():
+        print(row[0])
+        return False
+    return True
 
 printNextStory()
-while command[0] != 'exit':
-    command = getCommand()
+endOfTurn()
+while command != 'exit':
+    command = input()
 
-    if command[0] == "climb" or command[0] == "drop":
-        climbOrDrop()
-
-    elif command[0] == "go" or command[0] == "move" or command[0] == "m":
-        if tickIsNotInAnimal():
-            if len(command) < 2:
-                print("you must give direction after go command")
-            elif command[1] == "north" or command[1] == "n" or command[1] == "N":
-                tickMove("north")
-            elif command[1] == "south" or command[1] == "s" or command[1] == "S":
-                tickMove("south")
-            elif command[1] == "west" or command[1] == "w" or command[1] == "W":
-                tickMove("west")
-            elif command[1] == "east" or command[1] == "e" or command[1] == "E":
-                tickMove("east")
-            elif command[1] == "down" or command[1] == "d" or command[1] == "D":
-                tickMove("down")
-
-            elif command[1] == "up" or command[1] == "u" or command[1] == "U":
-                endOfTurn()
-            else:#error message when go commands parameter is wrong
-                print("")
-                print("--", end="")
-                for i in command:
-                    print(i, end=" ")
-                print("-- is not a valid command l2p")
-                printCurrentClimbOptions()
+    if tickIsInAnimal() == False:
+        if command == "north" or command == "n" or command == "N":
+            tickMove("north")
+        elif command == "south" or command == "s" or command == "S":
+            tickMove("south")
+        elif command == "west" or command == "w" or command == "W":
+            tickMove("west")
+        elif command == "east" or command == "e" or command == "E":
+            tickMove("east")
+        elif command == "climb":
+            climbAnimal()
+        elif command == "smell":
+            smell()
+        elif command == "help" or command == "hepl" or command == "h":
+            printHelp()
+        elif command == "wait":
+            tickMove("wait")
+        elif command == "exit":
+            print("")
         else:
-            try:
-                moveInAnimal(command[1])
-            except IndexError:
-                printPossibleMoveCommandsInAnimal()
+            print(command)
+            print("is not a valid command type help for help")
 
-    elif command[0] == "wait":
-        tickMove("still")
-
-    elif command[0] == "help":
+    elif command == "wait":
+        print("Now is not the time to wait! BLOOD!")
+    elif command == "help" or command == "hepl" or command == "h":
         printHelp()
-
-    elif command[0] == "smell":
-        smell()
-
-    elif command[0] == "inspect":
+    elif command == "inspect":
         inspect()
-
-    elif command[0] == "bite":
+    elif command == "bite":
         bite()
-    elif command[0] == "restart":
+    elif command == "restart":
         db.rollback()
         printNextStory()
+    elif tickIsInAnimal():
+        moveInAnimal(command)
+    else:
+        print("you broke something")
+
     print(" --- ")
 
 db.close()
