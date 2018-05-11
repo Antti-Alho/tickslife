@@ -852,7 +852,7 @@ INSERT INTO animalRoute VALUES (4,2,3,4,1);
 INSERT INTO animalRoute VALUES (5,2,2,4,1);
 INSERT INTO animalRoute VALUES (6,2,1,4,1);
 # Dog
-INSERT INTO animalRoute VALUES (1,3,2,2,2);
+INSERT INTO animalRoute VALUES (1,3,4,2,2);
 # Man 1
 INSERT INTO animalRoute VALUES (1,4,1,5,2);
 INSERT INTO animalRoute VALUES (2,4,2,5,2);
@@ -960,6 +960,10 @@ INSERT INTO description VALUES (3,21,"Sidewalk\nYou sqeeze through the gap and t
 INSERT INTO description VALUES (3,22,"Sidewalk\nYou sqeeze through the gap and to the sidewalk. The asphalt burns under your feet. You can see some cars passing through on the street.",3,5,2);
 INSERT INTO description VALUES (3,23,"Sidewalk\nYou sqeeze through the gap and to the sidewalk. The asphalt burns under your feet. You can see some cars passing through on the street.",4,5,2);
 
+INSERT INTO description VALUES (3,24,"GAME OVER\nYou walk into the driveway. The last thing you hear is a screeching tire when you get crushed by its weight...",1,6,2);
+INSERT INTO description VALUES (3,24,"GAME OVER\nYou walk into the driveway. The last thing you hear is a screeching tire when you get crushed by its weight...",2,6,2);
+INSERT INTO description VALUES (3,24,"GAME OVER\nYou walk into the driveway. The last thing you hear is a screeching tire when you get crushed by its weight...",3,6,2);
+INSERT INTO description VALUES (3,24,"GAME OVER\nYou walk into the driveway. The last thing you hear is a screeching tire when you get crushed by its weight...",4,6,2);
 # lvl2.5 description
 INSERT INTO description VALUES (2,1, "Room\nThis seems to be the corner of the room. Straight above, you can see a window frame. The window frame transforms the moonlight flooding inside into a shape of a cross reflecting on the floor.'",1,1,3);
 INSERT INTO description VALUES (2,2, "Room\nAbove you, there is a table made of glass with wooden legs. The material that the legs are made of, may just be rough enough to climb.'",2,1,3);

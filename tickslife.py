@@ -13,16 +13,23 @@ db = mysql.connector.connect(
 command = [""]
 
 def climbAnimal():
+    import random
     cur = db.cursor()
-    sql = "SELECT animal.animalID FROM animal INNER JOIN tick \
+    sql = "SELECT animal.animalID, animal.name FROM animal INNER JOIN tick \
     ON animal.X = tick.X AND animal.Y = tick.Y AND animal.level = tick.level;"
     cur.execute(sql)
     for row in cur.fetchall():
         animalID = row[0]
+        animalname = row[1]
     if cur.rowcount>=1:
-        sql = "UPDATE tick SET tick.locationID = 24, tick.animalID = " + str(animalID) + ";"
-        print("You climbed preys left foot") 
+        sql = "UPDATE tick SET tick.locationID = "+ str(random.randint(1,24)) +", tick.animalID = " + str(animalID) + ";"
         cur.execute(sql)
+        print("You climbed on a", str(animalname))
+        sql = "SELECT locationInAnimal.name FROM locationInAnimal INNER JOIN tick ON locationInAnimal.locationID=tick.locationID AND locationInAnimal.animalID = tick.animalID;"
+        cur.execute(sql)
+        for row in cur.fetchall():
+            bodypart = row[0]
+        print("After a bit of climbing you ended up in the", str(bodypart) ,"of the", str(animalname) ) 
     else:
         print("There is nothing to climb into")
     return
@@ -162,7 +169,7 @@ def bite():
                 cur.execute(sql)
                 print("The vole you just bit had lyme disease. You now carry this useful 'gun' with you")
             if row[0]==3:
-                sql = "UPDATE tick SET X=1, Y=3, level = 3,;"
+                sql = "UPDATE tick SET X=1, Y=3, level = 3;"
                 cur.execute(sql)
             sql = "SELECT level FROM tick;"
             cur.execute(sql)
@@ -170,7 +177,13 @@ def bite():
                 if row[0]==1:
                     sql = "UPDATE tick SET X=3, Y=2, level=2, locationID = NULL, animalID = NULL;"
                 elif row[0]==2:
-                    sql = "UPDATE tick SET X=1, Y=6, level=4, locationID = NULL, animalID = NULL;"
+                    sql = "SELECT animalID FROM tick;"
+                    cur.execute(sql)
+                    for row in cur.fetchall():
+                        if row[0]==3:
+                            sql = "UPDATE tick SET X=1, Y=3, level=3, locationID = NULL, animalID = NULL;"
+                        else:
+                            sql = "UPDATE tick SET X=1, Y=6, level=4, locationID = NULL, animalID = NULL;"
                 elif row[0] ==3:
                     sql = "UPDATE tick SET X=1, Y=6, level=4, locationID = NULL, animalID = NULL;"
                 elif row[0] ==4:
@@ -222,27 +235,21 @@ def theEnd():
         command = 'exit'
     return
 
-def death():
-    global command
+def isGameOver():
     rollback = False
     cur = db.cursor()
-    sql = "SELECT X, Y, level, timeVisible FROM tick"
+    sql = "SELECT timeVisible, description.description FROM tick INNER JOIN description \
+    ON description.X = tick.X AND description.Y = tick.Y AND description.level = tick.level;"
     cur.execute(sql)
     for row in cur.fetchall():
-        if row[0] == 200 and row[1] == 101 and row[2] == 2:
-            print("GAME OVER\nYou squeeze through the gap and to the sidewalk. Suddenly, you see someone walking towards you."
-                  ,"Unfortunately, you have no time to react and a foot crushes you against the pavement...")
-            rollback = True
-        if row[0] == 199 and row[1] == 101 and row[2] == 2:
-            print ("GAME OVER\nThe man starts moving and your grasp ends up not being tight enough."
-                   ,"You fall right under the man’s foot and get crushed by its weight...")
-            rollback = True
-        if row[0] == 198 and row[1] == 101 and row[2] == 2:
-            print("GAME OVER\nWhile falling a sudden gust of wind flies you to the driveway."
-                  ,"The last thing you hear is a screeching tire when you get crushed by its weight...")
-        if row [3] == 4:
+        visible = row[0]
+        description = row[1]
+        if visible > 3:
             print("GAME OVER\nYou spent too much time in the open."
                   ,"A hungry bird spots you and doesn't waist any time when swallowing you as a whole...")
+            rollback = True
+        if "GAME OVER" in description:
+            print(description)
             rollback = True
         if rollback == True:
             answer = 0
@@ -281,7 +288,7 @@ def moveInAnimal(direction):
         if newdirection.lower() == newrow1.lower():
             move = row[0]
             sql = "UPDATE tick SET locationID = '"+str(move)+"';"
-            print("you move to "+row[1]+" of the "+row[2])
+            print("You move to "+row[1]+" of the "+row[2])
             cur.execute(sql)
             break
     else:
@@ -357,6 +364,7 @@ def tickIsInAnimal():
             return True
 
 def endOfTurn():
+    isGameOver()
     BLUE1 = "\033[94m"
     GREEN2 = "\033[92m"
     BROWN3 = "\033[93m"
@@ -409,6 +417,7 @@ def tickMove(direction):
         y = row[1]
         level = row[2]
         time = row[3]
+
     if noObstacle(x,y,level,direction):
         if direction == "north":
             sql = "UPDATE tick SET Y = "+str(y-1)+";"
@@ -426,7 +435,6 @@ def tickMove(direction):
             print("You can't go there!")
         endOfTurn()
     return
-
 
 def noObstacle(x,y,level,command):
     x2 = x
