@@ -2,6 +2,10 @@ DROP DATABASE IF EXISTS tickslife;
 CREATE DATABASE tickslife;
 USE tickslife;
 
+CREATE USER 'dbuser05'@'localhost' IDENTIFIED BY 'dbpass';
+GRANT SELECT, INSERT, UPDATE, DELETE ON tickslife.* TO 'dbuser05'@'localhost';
+
+
 CREATE TABLE tile
 (
   X INT NOT NULL,
